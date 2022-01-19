@@ -11,7 +11,7 @@ class GatorYaml:
 
         self.enum_dict(dic)
 
-        print(self.output)
+        return self.output
 
     def enum_list(self, l):
         for i in l:
