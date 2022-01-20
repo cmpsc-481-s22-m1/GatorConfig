@@ -1,7 +1,7 @@
 class GatorYaml:
     def __init__(self):
         self.spaces = 4
-        self.tabs = 0
+        self.tabs = -1
         self.output = ""
         self.keywords = ["(pure)"]
 
@@ -36,21 +36,21 @@ class GatorYaml:
         self.tabs -= 1
 
     def output_list_item(self, item):
-        self.output += (" "*self.spaces)*self.tabs + " -" + item + "\n"
+        self.output += (" "*self.spaces)*self.tabs + " -" + str(item) + "\n"
 
     def output_key(self, key):
-        self.output += (" "*self.spaces)*self.tabs + key + ":\n"
+        self.output += (" "*self.spaces)*self.tabs + str(key) + ":\n"
 
     def output_key_value(self, key, value):
-        self.output += ((" "*self.spaces)*self.tabs) + key + ": " + value + "\n"
+        self.output += ((" "*self.spaces)*self.tabs) + str(key) + ": " + str(value) + "\n"
 
     def is_keyword(self, key, value):
         if key in self.keywords:
-            self.output += (" "*self.spaces)*self.tabs + key + " " + value + "\n"
+            self.output += (" "*self.spaces)*self.tabs + str(key) + " " + str(value) + "\n"
             return True
         return False
 
-# d = {"test":"Bing bong", "test2":["bing", "bong"], "test3":{"Indent!":"wooooo!", "wanna see me do it again?":{"Bada-bing": "bada-boom!", "list?":["Hello", "Steve"]}}, "test4":"Continue?", "(pure)":"Very pure text here."}
-#
-# yaml = GatorYaml()
-# print(yaml.dump(d))
+d = {"test":"Bing bong", "test2":["bing", "bong"], "test3":{"Indent!":"wooooo!", "wanna see me do it again?":{"Bada-bing": "bada-boom!", "list?":["Hello", "Steve"]}}, "test4":"Continue?", "(pure)":"Very pure text here."}
+
+yaml = GatorYaml()
+print(yaml.dump(d))
