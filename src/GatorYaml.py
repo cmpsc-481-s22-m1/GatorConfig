@@ -1,13 +1,11 @@
 class GatorYaml:
     def __init__(self):
+        self.spaces = 4
+        self.tabs = 0
+        self.output = ""
         self.keywords = ["(pure)"]
-        pass
 
     def dump(self, dic):
-
-        self.output = ""
-        self.tabs = -1
-        self.spaces = 4
 
         self.enum_dict(dic)
 
@@ -19,7 +17,7 @@ class GatorYaml:
                 self.tabs += 1
                 self.enum_dict(i)
             else:
-                self.output_list_item()
+                self.output_list_item(i)
 
     def enum_dict(self, d):
         self.tabs += 1
@@ -41,10 +39,10 @@ class GatorYaml:
         self.output += (" "*self.spaces)*self.tabs + " -" + item + "\n"
 
     def output_key(self, key):
-        self.output += (" "*self.spaces)*self.tabs + k + ":\n"
+        self.output += (" "*self.spaces)*self.tabs + key + ":\n"
 
     def output_key_value(self, key, value):
-        self.output += (" "*self.spaces)*self.tabs + k + ": " + d[k] + "\n"
+        self.output += ((" "*self.spaces)*self.tabs) + key + ": " + value + "\n"
 
     def is_keyword(self, d, k):
         if k in self.keywords:
@@ -55,4 +53,4 @@ class GatorYaml:
 # d = {"test":"Bing bong", "test2":["bing", "bong"], "test3":{"Indent!":"wooooo!", "wanna see me do it again?":{"Bada-bing": "bada-boom!", "list?":["Hello", "Steve"]}}, "test4":"Continue?", "(pure)":"Very pure text here."}
 #
 # yaml = GatorYaml()
-# yaml.dump(d)
+# print(yaml.dump(d))
