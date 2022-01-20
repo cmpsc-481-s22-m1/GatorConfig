@@ -3,7 +3,7 @@ from ruamel import yaml
 
 YAML_STR = """\
 name: Grade
-on: [push]
+on: [push, pull_request]
 jobs:
   grade:
     runs-on: ubuntu-latest
