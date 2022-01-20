@@ -16,4 +16,4 @@ jobs:
 """
 
 data = yaml.round_trip_load(yaml_str)
-yaml.round_trip_dump(data, build_file, indent=4)
+yaml.round_trip_dump(data, build_file, indent=2)
