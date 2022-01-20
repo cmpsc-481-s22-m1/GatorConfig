@@ -1,8 +1,7 @@
-import ruamel.yaml as yaml
+"""This module generates a GitHub Actions configuration file that uses GatorGradle"""
+from ruamel import yaml
 
-build_file = open('../.github/workflows/grade.yml', 'w')
-
-yaml_str = """\
+YAML_STR = """\
 name: Grade
 on: [push]
 jobs:
@@ -14,6 +13,7 @@ jobs:
       - name: Run GatorGradle
         uses: GatorEducator/gatorgradle-action@v1
 """
+data = yaml.round_trip_load(YAML_STR)
 
-data = yaml.round_trip_load(yaml_str)
-yaml.round_trip_dump(data, build_file, indent=2)
+with open('../.github/workflows/grade.yml', 'w', encoding='utf-8') as build_file:
+    yaml.round_trip_dump(data, build_file, indent=2)
