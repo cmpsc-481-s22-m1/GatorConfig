@@ -30,7 +30,7 @@ class GatorYaml:
                 self.output_key(k)
                 self.enum_dict(d[k])
             else:
-                if not self.is_keyword(d, k):
+                if not self.is_keyword(k, d[k]):
                     self.output_key_value(k, d[k])
 
         self.tabs -= 1
@@ -44,9 +44,9 @@ class GatorYaml:
     def output_key_value(self, key, value):
         self.output += ((" "*self.spaces)*self.tabs) + key + ": " + value + "\n"
 
-    def is_keyword(self, d, k):
-        if k in self.keywords:
-            self.output += (" "*self.spaces)*self.tabs + k + " " + d[k] + "\n"
+    def is_keyword(self, key, value):
+        if key in self.keywords:
+            self.output += (" "*self.spaces)*self.tabs + key + " " + value + "\n"
             return True
         return False
 
