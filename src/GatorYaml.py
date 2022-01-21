@@ -1,21 +1,20 @@
-from src.split_file_path import split_file_path
-
+"""Converts dictionaries to GatorYAML"""
 class GatorYaml:
     def __init__(self, indent=4, spaces=4):
-        self.spaces = spaces
-        self.tabs = -1
-        self.output = ""
-        self.keywords = ["(pure)"]
-        self.indents = indent
+        self.spaces = spaces  # How many spaces is a tab
+        self.tabs = -1  # Current tab level
+        self.output = ""  # Init output
+        self.keywords = ["(pure)"]  # Any keywords to look for
+        self.indents = indent  # set indent for file path
 
     def dump(self, dic):
-
+        """Input dictionary is parsed. returns string of valid YAML"""
         self.enum_dict(dic)
 
         return self.output
 
-    def enum_list(self, l):
-        for i in l:
+    def enum_list(self, list_in):
+        for i in list_in:
             if isinstance(i, dict):
                 self.tabs += 1
                 self.enum_dict(i)
@@ -30,6 +29,7 @@ class GatorYaml:
                 self.indents = int(d[k])
 
             if k == "files":
+                self.tabs -= 1
                 # if isinstance(d[k], list):
                 #     self.enum_list(d[k])
                 if isinstance(d[k], dict):
@@ -60,56 +60,22 @@ class GatorYaml:
 
         self.tabs -= 1
 
-    def enum_file_list(self, list):
-        for item in list:
-            self.output += (" "*self.spaces)*self.indents + str(item) + "\n"
+    def enum_file_list(self, list_in):
+        for item in list_in:
+            self.output += (" " * self.spaces) * self.indents + str(item) + "\n"
 
     def output_list_item(self, item):
-        self.output += (" "*self.spaces)*self.tabs + " -" + str(item) + "\n"
+        self.output += (" " * self.spaces) * self.tabs + " -" + str(item) + "\n"
 
     def output_key(self, key):
-        self.output += (" "*self.spaces)*self.tabs + str(key) + ":\n"
+        self.output += (" " * self.spaces) * self.tabs + str(key) + ":\n"
 
     def output_key_value(self, key, value):
-        self.output += ((" "*self.spaces)*self.tabs) + str(key) + ": " + str(value) + "\n"
+        self.output += ((" " * self.spaces) * self.tabs) + str(key) + ": " + str(value) + "\n"
 
     def is_keyword(self, key, value):
         if key in self.keywords:
-            self.output += (" "*self.spaces)*self.tabs + str(key) + " " + str(value) + "\n"
+            self.output += (" " * self.spaces) * self.tabs + str(key) + " " + str(value) + "\n"
             return True
         return False
 
-
-
-# d = {"test":"Bing bong", "test2":["bing", "bong"], "test3":{"Indent!":"wooooo!", "wanna see me do it again?":{"Bada-bing": "bada-boom!", "list?":["Hello", "Steve"]}}, "test4":"Continue?", "(pure)":"Very pure text here.", }
-
-# test = {
-#     "name": "gatorgrader-samplelab",
-#     "break": True,
-#     "fastfail": False,
-#     "indent": 4,
-#     "idcommand": "echo $TRAVIS_REPO_SLUG",
-#     "version": "v0.2.0",
-#     "executables": ["cat", "bash"],
-#     "startup": "./config/startup.sh",
-#     "reflection": "writing/reflection.md",
-#     "files": split_file_path({"src/main/java/test.java":
-#                              ["--exists", "--single 1 --language Java",
-#                               "--multi 3 --language Java",
-#                               "--fragment \"println(\" --count 2",
-#                               "--fragment \"new DataClass(\" --count 1",
-#                               "--regex \"new\s+\S+?\(.*?\)\" --count 2 --exact"],
-#                               "src/main/java/test2.java":
-#                               ["--exists", "--multi 1 --language Java",
-#                                "--single 1 --language Java",
-#                                "--fragment \"int \" --count 1"
-#                                ]})
-# }
-# # combo = test | )
-#
-#
-# yaml = GatorYaml()
-#
-# f = open("./test.yml", "w+")
-#
-# f.write(yaml.dump(test))
