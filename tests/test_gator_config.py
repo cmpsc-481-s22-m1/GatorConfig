@@ -8,18 +8,19 @@ runner = CliRunner()
 def test_cli_input():
     """Test cli input with every flag"""
     result = runner.invoke(cli, [
-        "--name", 
-        "Test", 
-        "--break", 
-        "--fastfail", 
-        "--file", 
-        "Object 1", 
-        "--file", 
-        "Object 2", 
-        "--indent", 
-        6, 
-        "--commit-count", 
-        6])
+        "--name",
+        "Test",
+        "--break",
+        "--fastfail",
+        "--file",
+        "Object 1",
+        "--file",
+        "Object 2",
+        "--indent",
+        6,
+        "--commit-count",
+        6
+        ])
     assert result.exit_code == 0
     assert "Name: Test" in result.stdout
     assert "Break: True" in result.stdout
@@ -38,6 +39,3 @@ def test_cli_no_input():
     assert "Files: ()" in result.stdout
     assert "Indent: 4" in result.stdout
     assert "Commit Count: 5" in result.stdout
-
-
-    

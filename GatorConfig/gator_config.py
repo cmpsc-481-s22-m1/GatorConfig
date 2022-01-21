@@ -4,6 +4,7 @@ import typer
 
 cli = typer.Typer()
 
+#pylint: disable=too-many-arguments
 @cli.command()
 def cli_input(
     name: str = typer.Option("Project"),
