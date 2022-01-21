@@ -1,14 +1,14 @@
 """Test split_file_path function."""
 
-from src.split_file_path import split_file_path
 import pytest
+from src.split_file_path import split_file_path
 
 
 def test_output_as_dic():
     """Ensure output is a dictionary."""
     input_dic = {"sample/file.py": ['']}
     output = split_file_path(input_dic)
-    assert(type(output) is dict)
+    assert isinstance(output, dict)
 
 @pytest.mark.parametrize(
     "test_input,expected",
