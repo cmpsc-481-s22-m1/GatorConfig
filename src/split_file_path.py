@@ -1,6 +1,6 @@
 """Split file path module."""
 def split_file_path(paths):
-    """Separate directories from files paths and stores them as dictionaries inside a dictionary."""
+    """Convert files paths stored in a dic to nested dics."""
     output = {}
     for key, value in paths.items():
         directories = key.split('/')
