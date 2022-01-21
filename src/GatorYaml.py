@@ -1,4 +1,6 @@
 """Converts dictionaries to GatorYAML"""
+
+
 class GatorYaml:
     def __init__(self, indent=4, spaces=4):
         self.spaces = spaces  # How many spaces is a tab
@@ -78,4 +80,3 @@ class GatorYaml:
             self.output += (" " * self.spaces) * self.tabs + str(key) + " " + str(value) + "\n"
             return True
         return False
-
