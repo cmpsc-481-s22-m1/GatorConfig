@@ -1,6 +1,6 @@
 # import pytest
 from typer.testing import CliRunner
-from .GatorConfig import cli
+from GatorConfig.GatorConfig import cli
 
 runner = CliRunner()
 
