@@ -2,7 +2,8 @@
 from ruamel import yaml
 
 def create_configuration_file(target_file):
-    YAML_STR = """\
+    """Create the workflow configuration file itself"""
+    str = """\
     name: Grade
     on: [push, pull_request]
     jobs:
@@ -14,7 +15,7 @@ def create_configuration_file(target_file):
           - name: Run GatorGradle
             uses: GatorEducator/gatorgradle-action@v1
     """
-    data = yaml.round_trip_load(YAML_STR)
+    data = yaml.round_trip_load(str)
 
     with open(target_file, 'w', encoding='utf-8') as build_file:
         yaml.round_trip_dump(data, build_file, indent=2)
