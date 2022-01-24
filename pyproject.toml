@@ -8,6 +8,7 @@ license = "MIT"
 [tool.poetry.dependencies]
 python = ">=3.7,<4.0"
 typer = "^0.4.0"
+"ruamel.yaml" = "^0.17.20"
 
 [tool.poetry.dev-dependencies]
 taskipy = "^1.9.0"
@@ -18,6 +19,8 @@ pylint = "^2.12.2"
 [tool.taskipy.tasks]
 test = "pytest --cov-report term-missing --cov-fail-under=70  --cov-branch --cov=gator_config tests/"
 lint = "pylint gator_config/ tests/"
+test = "pytest --cov-report term-missing --cov-fail-under=70  --cov-branch --cov=githubactions tests/"
+lint = "pylint hello/ tests/ githubactions/"
 
 [build-system]
 requires = ["poetry-core>=1.0.0"]
