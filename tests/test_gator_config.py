@@ -1,7 +1,7 @@
 """Test functions within gator_config"""
 # import pytest
 from typer.testing import CliRunner
-from gator_config.gator_config import cli
+from src.gator_config import cli
 
 runner = CliRunner()
 
