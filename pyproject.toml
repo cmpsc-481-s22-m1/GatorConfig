@@ -18,7 +18,6 @@ pylint = "^2.12.2"
 
 [tool.taskipy.tasks]
 test = "pytest --cov-report term-missing --cov-fail-under=70  --cov-branch --cov=gator_config tests/"
-lint = "pylint gator_config/ tests/ githubactions/"
 
 [build-system]
 requires = ["poetry-core>=1.0.0"]
