@@ -362,7 +362,6 @@ testing = ["pytest (>=6)", "pytest-checkdocs (>=2.4)", "pytest-flake8", "pytest-
 [metadata]
 lock-version = "1.1"
 python-versions = ">=3.7,<4.0"
-content-hash = "095ee08918e8e6862c3bbbc28dbdb99ba65f06ed0765af28297e0fd1a3da15a6"
 content-hash = "ff82394f0e808fe004a321e6a679f9e28d2a22075fc8283dc717e07295d079f6"
 
 [metadata.files]
