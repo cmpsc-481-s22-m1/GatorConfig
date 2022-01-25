@@ -1,7 +1,6 @@
 # team4-GatorConfig
 
-A simple Python project template with basic CI (Continuous Integration) and
-developer support infrastructure. The GitHub Actions workflow executes
+A simple Python project utilizing a CLI approach to automate generating configuration files for GatorGrader. The GitHub Actions workflow executes
 [pytest](https://pytest.org/) (with
 [coverage](https://pypi.org/project/pytest-cov/)) and
 [pylint](https://pylint.org/) using the Poetry configuration, and checks
