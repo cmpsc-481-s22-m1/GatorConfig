@@ -1,6 +1,6 @@
-# project-template
+# team4-GatorConfig
 
-Simple Python project template with basic CI (Continuous Integration) and
+A simple Python project template with basic CI (Continuous Integration) and
 developer support infrastructure. The GitHub Actions workflow executes
 [pytest](https://pytest.org/) (with
 [coverage](https://pypi.org/project/pytest-cov/)) and
