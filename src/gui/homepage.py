@@ -1,13 +1,15 @@
-from PyQt5 import QtGui
-from PyQt5.QtCore import *
-from PyQt5.QtGui import *
-from PyQt5.QtWidgets import *
-from gui.form import Form
+"""Main page for the PyQT app"""
+
+from PyQt5.QtCore import Qt
+from PyQt5.QtWidgets import QMainWindow, QWidget, QVBoxLayout, QLabel, QPushButton
+from src.gui.form import Form
 
 
 class Homepage(QMainWindow):
+    """Custom QMainWindow object"""
     def __init__(self, owner=None, parent=None):
-        super(QMainWindow, self).__init__(parent)
+        """Init the widget, populate it with the configuration form"""
+        super().__init__(parent)
         self.setWindowTitle("New Configuration")
 
         self.owner = owner
@@ -40,6 +42,7 @@ class Homepage(QMainWindow):
         self.setCentralWidget(main_win)
 
     def submit_form(self, form):
+        """Gathers data from the form and closes the application"""
         data = form.submit_form()
         self.owner.data = data
         self.close()

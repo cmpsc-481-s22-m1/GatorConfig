@@ -1,15 +1,19 @@
-from PyQt5 import QtGui
-from PyQt5.QtCore import *
-from PyQt5.QtGui import *
-from PyQt5.QtWidgets import *
+"""Checked File widgets"""
+
 import os
+from PyQt5.QtWidgets import QWidget, \
+    QVBoxLayout, QLabel, \
+    QHBoxLayout, QLineEdit, QPushButton, \
+    QPlainTextEdit, QFrame, \
+    QFileDialog
 
 
 class CheckFile(QWidget):
-    def __init__(self, parent=None):
-        super(QWidget, self).__init__(parent=None)
+    """QWidget class for a checked file"""
 
-        # self.box = QGroupBox()
+    def __init__(self, parent=None):
+        """Init QWidget parent and the widgets that make up a checked file widget"""
+        super().__init__(parent)
         self.outer_lay = QVBoxLayout()
 
         self.file = None
@@ -20,7 +24,7 @@ class CheckFile(QWidget):
         self.check_label = QLabel("File ")
         self.path_text = QLineEdit()
         self.path_button = QPushButton("Open",
-                                       clicked=lambda: self.get_path_from_file(self.path_text, self.path_button))
+                                       clicked=lambda: self.get_path_from_file(self.path_text))
         self.file_params = QPlainTextEdit()
 
         # Add widgets to hbox layout
@@ -31,17 +35,7 @@ class CheckFile(QWidget):
         self.outer_lay.addLayout(lay)
         self.outer_lay.addWidget(self.file_params)
 
-
-        # ----File Params----#
-
-        # self.add_param_button = QPushButton("Add New Check", clicked=lambda: self.add_param())
-
-        # self.outer_lay.addWidget(self.add_param_button)
-
-
-
-        # self.box.setLayout(self.outer_lay)
-
+        # Horizontal line separator
         self.frame = QFrame()
         self.frame.setFrameShape(QFrame.HLine)
         self.frame.setFrameShadow(QFrame.Sunken)
@@ -50,31 +44,16 @@ class CheckFile(QWidget):
 
         self.setLayout(self.outer_lay)
 
-    def get_path_from_file(self, targetText, targetButton):
+    def get_path_from_file(self, target_text):
+        """Opens a file dialog to select a new file.
+        Sets self.file to the file name and sets the tab text."""
         self.file = QFileDialog.getOpenFileName(self, 'OpenFile')[0]
-        targetText.setText(self.file)
+        target_text.setText(self.file)
         tabs = self.parentWidget().parentWidget()
         tabs.setTabText(tabs.currentIndex(), os.path.basename(self.file))
 
     def get_data(self):
+        """Gets all the data of the checked files and returns their file paths and params."""
         if self.file is None:
             self.file = self.path_text.text()
         return self.file, self.file_params.toPlainText().split()
-
-    def add_param(self):
-        self.outer_lay.insertWidget(self.outer_lay.count() - 1, Param(self.outer_lay.count() - 1))
-
-
-class Param(QWidget):
-    def __init__(self, check_num, parent=None):
-        super(QWidget, self).__init__(parent)
-
-        self.label = QLabel("Check " + str(check_num))
-        self.line = QLineEdit()
-
-        lay = QHBoxLayout()
-        lay.addWidget(self.label)
-        lay.addWidget(self.line)
-
-        self.setLayout(lay)
-

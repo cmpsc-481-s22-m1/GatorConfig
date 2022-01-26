@@ -1,14 +1,22 @@
-from PyQt5 import QtGui
-from PyQt5.QtCore import *
-from PyQt5.QtGui import *
-from PyQt5.QtWidgets import *
+"""Form that makes up the configuration GUI"""
+from PyQt5.QtWidgets import QTabWidget, \
+    QWidget, QFormLayout, \
+    QCheckBox, QLineEdit, \
+    QVBoxLayout, QPushButton, \
+    QSpinBox, QHBoxLayout, QPlainTextEdit
+from src.gui.check_file import CheckFile
 
-from gui.check_file import CheckFile
-
+# pylint: disable=R0902
+# pylint: disable=W0108
+# Disabling R0902 because this is a main class. PyQt5 *requires* this type of code.
+# Could split this into multiple classes if REALLY needed but that can wait until later.
+# Also disabling W0108 because the lambda is necessary.
 
 class Form(QTabWidget):
+    """Main form class, contains basic and advanced tabs."""
     def __init__(self, parent=None):
-        super(QTabWidget, self).__init__(parent)
+        """Init the form. Create the two tabs and populate them with widgets."""
+        super().__init__(parent)
 
         # Create tabs
         self.basic = QWidget()
@@ -21,6 +29,7 @@ class Form(QTabWidget):
         self.advanced_tab()
 
     def basic_tab(self):
+        """Creates a new form and populates it with the widgets for basic configuration"""
         # Create a QFormLayout instance
         form_layout = QFormLayout()
 
@@ -44,11 +53,12 @@ class Form(QTabWidget):
 
         self.tabs = QTabWidget()
         self.tabs.setTabsClosable(True)
-        self.tabs.tabCloseRequested.connect(lambda index: self.tabs.removeTab(index))
+        self.tabs.tabCloseRequested.connect(self.tabs.removeTab)
 
         # Checked Files Controls
         # Create add file button
-        add_file_button = QPushButton("Add New Checked File", clicked=lambda: self.add_checked_file())
+        add_file_button = QPushButton(
+            "Add New Checked File", clicked=lambda: self.add_checked_file())
 
         # Add button to layout
         group_lay.addWidget(add_file_button)
@@ -61,6 +71,7 @@ class Form(QTabWidget):
         self.basic.setLayout(form_layout)
 
     def advanced_tab(self):
+        """Creates the form for the advanced tab and populates it with the required widgets."""
         # Create a QFormLayout instance
         form_layout = QFormLayout()
 
@@ -79,8 +90,9 @@ class Form(QTabWidget):
         self.lay = QHBoxLayout()
         self.startup_script_text = QLineEdit()
         self.startup_script_button = QPushButton("Open",
-                                                 clicked=lambda: self.get_path_from_file(self.startup_script_text,
-                                                                                         self.startup_script_button))
+                                                 clicked=lambda: self.get_path_from_file(
+                                                     self.startup_script_text,
+                                                     self.startup_script_button))
 
         # connect button to file dialog
         # self.startup_script_button.clicked.connect()
@@ -100,15 +112,18 @@ class Form(QTabWidget):
         self.advanced.setLayout(form_layout)
 
     def add_checked_file(self):
+        """Creates a new CheckFile and adds it to the basic config's file tabs."""
         self.tabs.addTab(CheckFile(), "File " + str(self.tabs.count() + 1))
         self.tabs.setCurrentIndex(self.tabs.currentIndex() + 1)
 
         # group_lay.insertWidget(group_lay.count() - 1, CheckFile(group_lay.count()))
 
     def change_tab_text(self, text):
+        """Changes the current tab's text."""
         self.tabs.setTabText(self.tabs.currentIndex(), text)
 
     def submit_form(self):
+        """Submits the data from both the basic and advanced tabs."""
         files = {}
 
         for index in range(self.tabs.count()):
