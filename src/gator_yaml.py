@@ -9,7 +9,7 @@ class GatorYaml:
         self.spaces = spaces  # How many spaces is a tab
         self.tabs = -1  # Current tab level
         self.output = ""  # Init output
-        self.keywords = ["(pure)"]  # Any keywords to look for
+        self.keywords = ["(pure)", "commits"]  # Any keywords to look for
         self.indents = indent  # set indent for file path
 
     def dump(self, dic):
@@ -87,6 +87,9 @@ class GatorYaml:
     def is_keyword(self, key, value):
         """Output key and value if a keyword"""
         if key in self.keywords:
-            self.output += (" " * self.spaces) * self.tabs + str(key) + " " + str(value) + "\n"
+            if key == "commits":
+                self.output += (" " * self.spaces) * self.tabs + "--" + str(key) + " " + str(value) + "\n"
+            else:
+                self.output += (" " * self.spaces) * self.tabs + str(key) + " " + str(value) + "\n"
             return True
         return False

@@ -77,7 +77,8 @@ def test_output_list_item(item, expected):
          "Continue?\n"),
         ({"break": True}, "break: True\n"),
         ({"listy!": ["item1", "Item2", True]}, "listy!:\n -item1\n -Item2\n -True\n"),
-        ({"(pure)": "pure output!"}, "(pure) pure output!\n")
+        ({"(pure)": "pure output!"}, "(pure) pure output!\n"),
+        ({"commits":10}, "--commits 10\n")
     ],
 )
 def test_dump(dic, expected):
