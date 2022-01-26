@@ -21,7 +21,6 @@ def test_cli_input():
         "--commit-count",
         6
         ])
-    assert result.exit_code == 0
     assert "Name: Test" in result.stdout
     assert "Break: True" in result.stdout
     assert "Fastfail: True" in result.stdout
