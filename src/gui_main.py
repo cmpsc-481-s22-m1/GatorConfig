@@ -1,7 +1,6 @@
 """A GUI to easily create GatorYAML configuration dictionaries"""
 import sys
 
-from PyQt5.QtCore import QCoreApplication
 from PyQt5.QtWidgets import QApplication
 
 from src.gui.homepage import Homepage
