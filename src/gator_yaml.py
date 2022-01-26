@@ -1,8 +1,10 @@
 """Converts dictionaries to GatorYAML"""
+import split_file_path
 
 
 class GatorYaml:
     """Main GatorYaml object"""
+
     def __init__(self, indent=4, spaces=4):
         """Init GatorYAML object. Takes optional arguments to change indent of files
         and how many spaces is considered a tab """
@@ -12,8 +14,15 @@ class GatorYaml:
         self.keywords = ["(pure)"]  # Any keywords to look for
         self.indents = indent  # set indent for file path
 
-    def dump(self, dic):
+    def dump(self, dic, paths=None):
         """Input dictionary is parsed. returns string of valid YAML"""
+
+        if paths is not None:
+            if isinstance(paths, dict):
+                dic["files"] = split_file_path(paths)
+            else:
+                raise Exception("Paths expected to be \"dict\", got " + str(type(paths)) + "!")
+
         self.enum_dict(dic)
 
         return self.output
