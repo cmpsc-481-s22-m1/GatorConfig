@@ -4,6 +4,7 @@ from typing import List
 from pathlib import Path
 import typer
 from src import gator_yaml
+from src import actions_configuration
 
 cli = typer.Typer()
 
@@ -88,3 +89,4 @@ def get_checks(file: List[Path]) -> Dict:
 
 if __name__ == "__main__":
     cli()
+    actions_configuration.create_configuration_file('../.github/workflows/grade.yml')
