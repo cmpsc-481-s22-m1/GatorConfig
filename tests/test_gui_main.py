@@ -1,6 +1,5 @@
 """This module tests that the GUI opens"""
 
-from src.gui_main import Gui
 from src.gui.homepage import Homepage
 from src.gui.check_file import CheckFile
 
