@@ -1,19 +1,28 @@
 """Converts dictionaries to GatorYAML"""
+from src.split_file_path import split_file_path
 
 
 class GatorYaml:
     """Main GatorYaml object"""
+
     def __init__(self, indent=4, spaces=4):
         """Init GatorYAML object. Takes optional arguments to change indent of files
         and how many spaces is considered a tab """
         self.spaces = spaces  # How many spaces is a tab
         self.tabs = -1  # Current tab level
         self.output = ""  # Init output
-        self.keywords = ["(pure)"]  # Any keywords to look for
+        self.keywords = ["(pure)", "commits"]  # Any keywords to look for
         self.indents = indent  # set indent for file path
 
-    def dump(self, dic):
+    def dump(self, dic, paths=None):
         """Input dictionary is parsed. returns string of valid YAML"""
+
+        if paths is not None:
+            if isinstance(paths, dict):
+                dic["files"] = split_file_path(paths)
+            else:
+                raise Exception("Paths expected to be \"dict\", got " + str(type(paths)) + "!")
+
         self.enum_dict(dic)
 
         return self.output
@@ -87,6 +96,11 @@ class GatorYaml:
     def is_keyword(self, key, value):
         """Output key and value if a keyword"""
         if key in self.keywords:
-            self.output += (" " * self.spaces) * self.tabs + str(key) + " " + str(value) + "\n"
+            if key == "commits":
+                self.output += (" " * self.spaces) * self.tabs \
+                               + "--" + str(key) + " " + str(value) + "\n"
+            else:
+                self.output += (" " * self.spaces) * self.tabs + str(key) \
+                               + " " + str(value) + "\n"
             return True
         return False

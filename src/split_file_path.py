@@ -1,6 +1,8 @@
 """Split file path module."""
-def split_file_path(paths):
-    """Convert files paths stored in a dic to nested dics."""
+
+
+def split_file_path(paths: list) -> dict:
+    """Convert files paths stored in a dict to nested dicts."""
     output = {}
     for key, value in paths.items():
         directories = key.split('/')
