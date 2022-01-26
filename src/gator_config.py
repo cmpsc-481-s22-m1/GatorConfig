@@ -1,7 +1,7 @@
 """Capture user input to automatically generate YAML file."""
 from typing import List
 import typer
-from src import actions_configuration
+#from src import actions_configuration
 
 cli = typer.Typer()
 
@@ -31,7 +31,7 @@ def cli_input(
     print(f"Files: {file}")
     print(f"Indent: {indent}")
     print(f"Commit Count: {commit_count}")
-    actions_configuration.create_configuration_file('../.github/workflows/grade.yml')
+    #actions_configuration.create_configuration_file('../.github/workflows/grade.yml')
 
 if __name__ == "__main__":
     cli()
