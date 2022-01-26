@@ -1,7 +1,7 @@
 """Capture user input to automatically generate YAML file."""
-import gator_yaml
 from typing import List
 import typer
+import gator_yaml
 
 cli = typer.Typer()
 
