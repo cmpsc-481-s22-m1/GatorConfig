@@ -47,7 +47,3 @@ are executed under the `[tool.taskipy.tasks]` header in `pyproject.toml`.
 - **Lint** your code with `poetry run task lint`
 
 ### Writing code
-
-This project provides a basic "hello world" example package named `hello`. When
-using this template, you should replace or rename this package (and mentions of
-it in `pyproject.toml`) with your own package.
