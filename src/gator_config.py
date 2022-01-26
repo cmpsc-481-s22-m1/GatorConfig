@@ -4,7 +4,7 @@ from typing import List
 from pathlib import Path
 import typer
 from src import gator_yaml
-from src import actions_configuration
+import actions_configuration
 
 cli = typer.Typer()
 
@@ -79,7 +79,7 @@ def get_checks(file: List[Path]) -> Dict:
         print("")
         check_list = []
         while running:
-            check = typer.prompt(f"Enter a check for {item} (type \"stop\" to move on)")
+            check = input(f"Enter a check for {item} (type \"stop\" to move on): ")
             if check.lower() == "stop":
                 running = False
             else:

@@ -1,5 +1,7 @@
 """Test functions within gator_config"""
-# import pytest
+import pytest
+import mock
+import pathlib
 from typer.testing import CliRunner
 from src.gator_config import cli
 
@@ -14,28 +16,30 @@ def test_cli_input():
         "--fastfail",
         "--file",
         "Object 1",
-        "--file",
-        "Object 2",
         "--indent",
         6,
         "--commit-count",
         6
         ])
-    assert result.exit_code == 0
-    assert "Name: Test" in result.stdout
-    assert "Break: True" in result.stdout
-    assert "Fastfail: True" in result.stdout
-    assert "Files: (\'Object 1\', \'Object 2\')" in result.stdout
-    assert "Indent: 6" in result.stdout
-    assert "Commit Count: 6" in result.stdout
+    output = pathlib.Path.cwd().joinpath("gatorgrader.yml")
+    with mock.patch('builtins.input', return_value="stop"):
+        assert output.exists()
+    with open(output) as fle:
+        assert "name: Project" in fle.read()
 
-def test_cli_no_input():
+@pytest.mark.parametrize("expected",[""])
+
+def test_cli_no_input(expected):
     """Test cli input with no flags"""
     result = runner.invoke(cli)
-    assert result.exit_code == 0
-    assert "Name: Project" in result.stdout
-    assert "Break: False" in result.stdout
-    assert "Fastfail: False" in result.stdout
-    assert "Files: ()" in result.stdout
-    assert "Indent: 4" in result.stdout
-    assert "Commit Count: 5" in result.stdout
+    output = pathlib.Path.cwd().joinpath("gatorgrader.yml")
+    with mock.patch('builtins.input', return_value="stop"):
+        assert output.exists()
+    with open(output) as fle:
+        assert "name: Project" in fle.read()
+
+
+# pytest.mark.parametrize()
+
+# def test_output_file():
+#     pass
