@@ -1,7 +1,7 @@
 """Capture user input to automatically generate YAML file."""
 from typing import List
-import actions_configuration
 import typer
+from src import actions_configuration
 
 cli = typer.Typer()
 
