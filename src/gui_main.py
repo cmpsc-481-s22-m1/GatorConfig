@@ -13,7 +13,7 @@ from src.gui.homepage import Homepage
 class Gui:
     """Main GUI object"""
 
-    def __init__(self, test=False):
+    def __init__(self):
         """Initializes PyQT application"""
         # Create App
         self.app = QApplication(sys.argv)
@@ -37,10 +37,8 @@ class Gui:
 
         self.win.show()
 
-        if not test:
-            self.app.exec_()
-        else:
-            QCoreApplication.quit()
+        self.app.exec_()
+
 
     def close_window(self):
         """Closes the window. Added to appease lord PyLint"""
