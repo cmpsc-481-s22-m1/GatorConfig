@@ -6,7 +6,7 @@ from src.gui.check_file import CheckFile
 
 def test_gui():
     """Check that the gui opens"""
-    gui = Gui()
+    gui = Gui(test=True)
     assert isinstance(gui, Gui)
 
 
