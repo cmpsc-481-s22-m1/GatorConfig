@@ -4,7 +4,7 @@ from typing import List
 from pathlib import Path
 import typer
 from src import gator_yaml
-import actions_configuration
+from src import actions_configuration
 
 cli = typer.Typer()
 
