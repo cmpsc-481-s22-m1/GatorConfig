@@ -1,7 +1,8 @@
 """Capture user input to automatically generate YAML file."""
-from src import gator_yaml
 from typing import List
+from pathlib import Path
 import typer
+import gator_yaml
 
 cli = typer.Typer()
 
@@ -16,6 +17,7 @@ def cli_input(
     gen_readme: bool = typer.Option(False),
     file: List[str] = typer.Option([]),
     #language: str = typer.Option(None),
+    output_path: Path = typer.Option(Path.cwd()),
     indent: int = typer.Option(4),
     commit_count: int = typer.Option(5)
 ):
@@ -29,19 +31,7 @@ def cli_input(
         indent (int, optional): [description]. Defaults to typer.Option(4).
         commit_count (int, optional): [description]. Defaults to typer.Option(5).
     """
-    files = {}
-    for item in file:
-        running = True
-        print("")
-        check_list = []
-        while running:
-            check = typer.prompt(f"Enter a check for {item}(type \"stop\" to move on)")
-            if check.lower() == "stop":
-                running = False
-            else:
-                check_list.append(check)
-        files[item] = check_list
-
+    files = get_checks(file)
 
     yaml_out = gator_yaml.GatorYaml()
     #print(files)
@@ -55,9 +45,31 @@ def cli_input(
         "commits": commit_count,
         "files": files
     }
-    print(f"Files: {output['files']}")
     file_yaml = yaml_out.dump(output, paths=output["files"])
-    print(f"Yaml:\n{file_yaml}")
+    output_file(file_yaml, output_path)
+
+
+def output_file(yaml_string, output_path: Path):
+    fle = output_path.joinpath("gatorgrader.yml")
+    fle.touch(exist_ok=True)
+    with open(fle, "w") as f:
+        f.write(yaml_string)
+    print(f"Wrote file to: {fle}")
+
+def get_checks(file):
+    files = {}
+    for item in file:
+        running = True
+        print("")
+        check_list = []
+        while running:
+            check = typer.prompt(f"Enter a check for {item} (type \"stop\" to move on)")
+            if check.lower() == "stop":
+                running = False
+            else:
+                check_list.append(check)
+        files[item] = check_list
+    return files
 
 if __name__ == "__main__":
     cli()
