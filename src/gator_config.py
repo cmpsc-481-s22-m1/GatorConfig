@@ -25,7 +25,6 @@ def cli_input(
         indent (int, optional): [description]. Defaults to typer.Option(4).
         commit_count (int, optional): [description]. Defaults to typer.Option(5).
     """
-    actions_configuration.create_configuration_file('../.github/workflows/grade.yml')
     print(f"Name: {name}")
     print(f"Break: {brk}")
     print(f"Fastfail: {fastfail}")
@@ -35,3 +34,4 @@ def cli_input(
 
 if __name__ == "__main__":
     cli()
+    actions_configuration.create_configuration_file('../.github/workflows/grade.yml')
