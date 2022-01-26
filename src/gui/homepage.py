@@ -6,10 +6,11 @@ from gui.form import Form
 
 
 class Homepage(QMainWindow):
-    def __init__(self, parent=None):
+    def __init__(self, owner=None, parent=None):
         super(QMainWindow, self).__init__(parent)
         self.setWindowTitle("New Configuration")
 
+        self.owner = owner
         # Create Central Widget
         main_win = QWidget()
 
@@ -39,4 +40,6 @@ class Homepage(QMainWindow):
         self.setCentralWidget(main_win)
 
     def submit_form(self, form):
-        form.submit_form()
+        data = form.submit_form()
+        self.owner.data = data
+        self.close()

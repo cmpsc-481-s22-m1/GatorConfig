@@ -13,7 +13,7 @@ from gui.homepage import Homepage
 class Gui:
     def __init__(self):
         # Create App
-        app = QApplication(sys.argv)
+        self.app = QApplication(sys.argv)
 
         # Open the qss styles file and read
         # with open('./style.qss', 'r') as f:
@@ -26,12 +26,17 @@ class Gui:
         # Make it look not as bad...
         # app.setStyle()
 
+        self.data = None
+
         # Show Window
-        win = Homepage()
+        win = Homepage(owner=self)
         win.setGeometry(400, 400, 400, 300)
 
         win.show()
-        sys.exit(app.exec_())
+        self.app.exec_()
 
+    def get_data(self):
+        return self.data
 
 gui = Gui()
+print(gui.get_data())

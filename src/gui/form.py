@@ -129,4 +129,5 @@ class Form(QTabWidget):
                      }
 
         print("Form Submitted!")
-        print(full_data)
+        # print(full_data)
+        return full_data
