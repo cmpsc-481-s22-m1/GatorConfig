@@ -1,8 +1,9 @@
 """Capture user input to automatically generate YAML file."""
+from typing import Dict
 from typing import List
 from pathlib import Path
 import typer
-import gator_yaml
+from src import gator_yaml
 
 cli = typer.Typer()
 
@@ -49,14 +50,28 @@ def cli_input(
     output_file(file_yaml, output_path)
 
 
-def output_file(yaml_string, output_path: Path):
+def output_file(yaml_string: str, output_path: Path):
+    """Create and write to file if it doesn't exist, writes to file otherwise.
+
+    Args:
+        yaml_string (str): [description]
+        output_path (Path): [description]
+    """
     fle = output_path.joinpath("gatorgrader.yml")
     fle.touch(exist_ok=True)
-    with open(fle, "w") as f:
-        f.write(yaml_string)
+    with open(fle, "w", encoding="utf8") as yml:
+        yml.write(yaml_string)
     print(f"Wrote file to: {fle}")
 
-def get_checks(file):
+def get_checks(file: List[Path]) -> Dict:
+    """Read in checks per file.
+
+    Args:
+        file (List[Path]): List of file paths read in from command line.
+
+    Returns:
+        Dict: Dictionary of file paths and checks to perform per file.
+    """
     files = {}
     for item in file:
         running = True

@@ -1,5 +1,5 @@
 """Converts dictionaries to GatorYAML"""
-from split_file_path import split_file_path
+from src.split_file_path import split_file_path
 
 
 class GatorYaml:
