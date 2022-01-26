@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 """Capture user input to automatically generate YAML file."""
 import gator_yaml
 from typing import List
@@ -50,16 +49,3 @@ def cli_input(
 
 if __name__ == "__main__":
     cli()
-=======
-"""This module generates the configuration files needed to automate GatorGradle"""
-from src import actions_configuration
-from src import gator_config
-
-def main():
-    """Generate the configuration files based on command line input"""
-    gator_config.cli()
-    actions_configuration.create_configuration_file('../.github/workflows/grade.yml')
-
-if __name__ == "__main__":
-    main()
->>>>>>> ccae6a1dd1b45060091c5b9f0ddbb43584dd54fe
