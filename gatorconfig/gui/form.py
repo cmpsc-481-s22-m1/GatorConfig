@@ -4,7 +4,7 @@ from PyQt5.QtWidgets import QTabWidget, \
     QCheckBox, QLineEdit, \
     QVBoxLayout, QPushButton, \
     QSpinBox, QHBoxLayout, QPlainTextEdit
-from src.gui.check_file import CheckFile
+from gatorconfig.gui.check_file import CheckFile
 
 # pylint: disable=R0902
 # pylint: disable=W0108

@@ -3,7 +3,7 @@ import pathlib
 import pytest
 import mock
 from typer.testing import CliRunner
-from src.gator_config import cli
+from gatorconfig.gator_config import cli
 
 runner = CliRunner()
 

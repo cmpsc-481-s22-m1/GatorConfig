@@ -3,8 +3,8 @@ from typing import Dict
 from typing import List
 from pathlib import Path
 import typer
-from src import gator_yaml
-from src import actions_configuration
+from gatorconfig import gator_yaml
+from gatorconfig import actions_configuration
 
 cli = typer.Typer()
 

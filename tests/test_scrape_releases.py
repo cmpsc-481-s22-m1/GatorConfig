@@ -1,6 +1,6 @@
 """Module to test scrape releases"""
 import pytest
-from src.scrape_releases import get_github_releases
+from gatorconfig.scrape_releases import get_github_releases
 
 @pytest.mark.parametrize(
     "url,expected",

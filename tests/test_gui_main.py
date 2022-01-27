@@ -1,7 +1,7 @@
 """This module tests that the GUI opens"""
 
-from src.gui.homepage import Homepage
-from src.gui.check_file import CheckFile
+from gatorconfig.gui.homepage import Homepage
+from gatorconfig.gui.check_file import CheckFile
 
 
 def test_homepage(qtbot):
