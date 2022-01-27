@@ -12,6 +12,3 @@ def create_configuration_file(target_file):
     yaml.default_flow_style = False
     out = Path(target_file)
     yaml.dump(default, out)
-
-if __name__ == "__main__":
-    create_configuration_file('../.github/workflows/grade.yml')
