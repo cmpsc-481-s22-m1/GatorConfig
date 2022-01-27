@@ -1,6 +1,6 @@
 """Testing for gator_yaml"""
 import pytest
-from src.gator_yaml import GatorYaml
+from gatorconfig.gator_yaml import GatorYaml
 
 
 @pytest.mark.parametrize(
@@ -77,7 +77,8 @@ def test_output_list_item(item, expected):
          "Continue?\n"),
         ({"break": True}, "break: True\n"),
         ({"listy!": ["item1", "Item2", True]}, "listy!:\n -item1\n -Item2\n -True\n"),
-        ({"(pure)": "pure output!"}, "(pure) pure output!\n")
+        ({"(pure)": "pure output!"}, "(pure) pure output!\n"),
+        ({"commits":10}, "--commits 10\n")
     ],
 )
 def test_dump(dic, expected):
@@ -104,11 +105,11 @@ def test_enum_file_list(list_in, expected):
 @pytest.mark.parametrize(
     "files,expected",
     [
-        ({'src': {'main': {'java': {'test.java': ['']}}}},
-         "src:\n    main:\n        java:\n        "
+        ({'gatorconfig': {'main': {'java': {'test.java': ['']}}}},
+         "gatorconfig:\n    main:\n        java:\n        "
          "    test.java:\n                \n"),
-        ({'src': {'main': {'java': {'test.java': [''], 'test2.java': ['']}}}},
-         "src:\n    main:\n        java:\n            "
+        ({'gatorconfig': {'main': {'java': {'test.java': [''], 'test2.java': ['']}}}},
+         "gatorconfig:\n    main:\n        java:\n            "
          "test.java:\n                \n            test2.java:\n       "
          "         \n"),
     ],
