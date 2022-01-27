@@ -36,4 +36,16 @@ are executed under the `[tool.taskipy.tasks]` header in `pyproject.toml`.
 - **Test** your code with `poetry run task test`
 - **Lint** your code with `poetry run task lint`
 
+<<<<<<< Updated upstream
 ### Writing code
+=======
+### Running GatorConfig
+
+GatorConfig is a tool that will utilize the command line interface, that was built to accommodate the users. To run the GatorConfig program in CLI, type the command:
+
+`poetry run gatorconfig`
+
+Once you run this command, the program will output
+
+`Wrote file to: C:\Users\'YOUR PATH'\GatorConfig\gatorgrader.yml`
+>>>>>>> Stashed changes
