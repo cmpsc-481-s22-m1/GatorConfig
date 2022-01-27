@@ -24,7 +24,7 @@ pytest-qt = "^4.0.2"
 pytest-xvfb = "^2.0.0"
 
 [tool.poetry.scripts]
-gatorconfig = "src.gator_config:cli"
+gatorconfig = "gatorconfig.gator_config:cli"
 
 [tool.taskipy.tasks]
 test = "pytest --cov-report term-missing --cov-fail-under=70  --cov-branch --cov=gatorconfig tests/"
