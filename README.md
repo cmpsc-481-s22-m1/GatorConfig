@@ -57,4 +57,3 @@ the variables, such as the name, break, fastfail, etc.,
 Additionally, you can run the `poetry run gatorconfig --help` for more
 information about the configuration. This command will list out the variables
 in the file as well as the defaults it outputs.
-
