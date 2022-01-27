@@ -19,17 +19,7 @@ spelling with [cspell](https://cspell.org/).
 
 After cloning this project, you will likely want to instruct Poetry to create a
 virtual environment and install the Python packages (like pytest and pylint)
-listed in `pyproject.toml`. You also likely want to configure Poetry to create
-that virtual environment in your local project folder, so that text editors like
-Visual Studio Code can find the environment and provide code completion.
-
-To configure Poetry to create a virtual environment in your local project folder
-(only needed once per system):
-
-```bash
-poetry config virtualenvs.create true
-poetry config virtualenvs.in-project true
-```
+listed in `pyproject.toml`.
 
 To install Python dependencies:
 
