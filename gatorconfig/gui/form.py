@@ -135,11 +135,11 @@ class Form(QTabWidget):
                      "break": self.break_fail.isChecked(),
                      "fastfail": self.fast_fail.isChecked(),
                      "indent": int(self.indent_size.text()),
-                     "idcommand": "echo $TRAVIS_REPO_SLUG",
+                     "idcommand": "",
                      "version": self.grader_version.text(),
-                     "executables": "cat, bash",
+                     "executables": "",
                      "startup": self.startup_script_text.text(),
-                     "reflection": "./",
+                     "reflection": "",
                      "files": files
                      }
 
