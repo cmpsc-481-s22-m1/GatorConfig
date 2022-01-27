@@ -46,8 +46,7 @@ Once you run this command, the program will output
 
 `Wrote file to: C:\Users\'YOUR PATH'\GatorConfig\gatorgrader.yml`
 
-<<<<<<< HEAD
-The command will autogenerate a default configuration file for GatorGradle named `gatorgrader.yml` which will contain a default input for the variables, such as the name, break, fastfail, etc.,
+This command will autogenerate a default configuration file for GatorGradle named `gatorgrader.yml` which will contain a default input for the variables, such as the name, break, fastfail, etc.,
 
 Additionally, you can run the `poetry run gatorconfig --help` for more information about the configuration. This command will list out the variables in teh file as well as the defaults it outputs:
 
