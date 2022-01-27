@@ -16,7 +16,9 @@
         "github",
         "favou",
         "pwsh",
-        "fastfail"
+        "fastfail",
+        "gatorconfig",
+        "gatorgrader"
 
 
 

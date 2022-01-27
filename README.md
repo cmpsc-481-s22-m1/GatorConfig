@@ -55,22 +55,4 @@ the variables, such as the name, break, fastfail, etc.,
 
 Additionally, you can run the `poetry run gatorconfig --help` for more
 information about the configuration. This command will list out the variables
-in the file as well as the defaults it outputs:
-
-```Options:
-  --name TEXT                     [default: Project]
-  --break
-  --fastfail / --no-fastfail      [default: no-fastfail]
-  --gen-readme / --no-gen-readme  [default: no-gen-readme]
-  --file TEXT
-  --output-path PATH              [default: C:\Users\favou\OneDrive\Documents\
-                                  Documents\cs481\GatorConfig]
-  --indent INTEGER                [default: 4]
-  --commit-count INTEGER          [default: 5]
-  --install-completion [bash|zsh|fish|powershell|pwsh]
-                                  Install completion for the specified shell.
-  --show-completion [bash|zsh|fish|powershell|pwsh]
-                                  Show completion for the specified shell, to
-                                  copy it or customize the installation.
-  --help                          Show this message and exit.
-```
+in the file as well as the defaults it outputs.
