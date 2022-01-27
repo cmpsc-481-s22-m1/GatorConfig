@@ -47,9 +47,9 @@ in CLI, type the command:
 
 Once you run this command, the program will output
 
-`Wrote file to: C:\Users\'YOUR PATH'\GatorConfig\gatorgrader.yml`
+`Wrote file to: C:\Users\<YOUR PATH>\GatorConfig\gatorgrader.yml`
 
-This command will autogenerate a default configuration file for GatorGradle
+This command will auto-generate a default configuration file for GatorGradle
 named `gatorgrader.yml` which will contain a default input for
 the variables, such as the name, break, fastfail, etc.,
 
