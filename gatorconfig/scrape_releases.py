@@ -4,7 +4,6 @@ from typing import List
 import requests
 
 
-
 def get_github_releases(url: str) -> List:
     """Takes a URL or organization and repo and returns a list of all releases."""
     output = []
