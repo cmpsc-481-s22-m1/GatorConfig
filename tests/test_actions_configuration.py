@@ -3,9 +3,9 @@ import src.actions_configuration
 
 def test_create_configuration_file(tmpdir):
     """Check that the configuration file is actually created"""
-    p = tmpdir.mkdir('sub').join('config.yml')
-    src.actions_configuration.create_configuration_file(p)
-    assert p.read() == """name: Grade
+    path = tmpdir.mkdir('sub').join('config.yml')
+    src.actions_configuration.create_configuration_file(path)
+    assert path.read() == """name: Grade
 on:
 - push
 - pull_request
