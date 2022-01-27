@@ -24,7 +24,7 @@ pytest-qt = "^4.0.2"
 pytest-xvfb = "^2.0.0"
 
 [tool.taskipy.tasks]
-test = "pytest --cov-report term-missing --cov-fail-under=70  --cov-branch --cov=src tests/"
+test = "pytest --cov-report term-missing --cov-fail-under=70  --cov-branch --cov=gatorconfig tests/"
 lint = "pylint src/ tests/ src/gui/"
 
 [build-system]
