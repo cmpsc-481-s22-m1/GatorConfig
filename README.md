@@ -36,9 +36,6 @@ are executed under the `[tool.taskipy.tasks]` header in `pyproject.toml`.
 - **Test** your code with `poetry run task test`
 - **Lint** your code with `poetry run task lint`
 
-<<<<<<< Updated upstream
-### Writing code
-=======
 ### Running GatorConfig
 
 GatorConfig is a tool that will utilize the command line interface, that was built to accommodate the users. To run the GatorConfig program in CLI, type the command:
@@ -48,4 +45,25 @@ GatorConfig is a tool that will utilize the command line interface, that was bui
 Once you run this command, the program will output
 
 `Wrote file to: C:\Users\'YOUR PATH'\GatorConfig\gatorgrader.yml`
->>>>>>> Stashed changes
+
+The command will autogenerate a default configuration file for GatorGradle named `gatorgrader.yml` which will contain a default input for the variables, such as the name, break, fastfail, etc.,
+
+Additionally, you can run the `poetry run gatorconfig --help` for more information about the configuration. This command will list out the variables in teh file as well as the defaults it outputs:
+
+```Options:
+  --name TEXT                     [default: Project]
+  --break
+  --fastfail / --no-fastfail      [default: no-fastfail]
+  --gen-readme / --no-gen-readme  [default: no-gen-readme]
+  --file TEXT
+  --output-path PATH              [default: C:\Users\favou\OneDrive\Documents\
+                                  Documents\cs481\GatorConfig]
+  --indent INTEGER                [default: 4]
+  --commit-count INTEGER          [default: 5]
+  --install-completion [bash|zsh|fish|powershell|pwsh]
+                                  Install completion for the specified shell.
+  --show-completion [bash|zsh|fish|powershell|pwsh]
+                                  Show completion for the specified shell, to
+                                  copy it or customize the installation.
+  --help                          Show this message and exit.
+'``
