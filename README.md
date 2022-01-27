@@ -38,7 +38,8 @@ are executed under the `[tool.taskipy.tasks]` header in `pyproject.toml`.
 
 ### Running GatorConfig
 
-GatorConfig is a tool that will utilize the command line interface, that was built to accommodate the users. To run the GatorConfig program in CLI, type the command:
+GatorConfig is a tool that will utilize the command line interface, that was
+built to accommodate the users. GatorConfig's command line interface is created with [Typer](https://typer.tiangolo.com/), a library for building CLI applications based on Python 3.6+ type hints. To run the GatorConfig program in CLI, type the command:
 
 `poetry run gatorconfig`
 
@@ -46,12 +47,16 @@ Once you run this command, the program will output
 
 `Wrote file to: C:\Users\'YOUR PATH'\GatorConfig\gatorgrader.yml`
 
-<<<<<<< HEAD
-The command will autogenerate a default configuration file for GatorGradle named `gatorgrader.yml` which will contain a default input for the variables, such as the name, break, fastfail, etc.,
+The command will autogenerate a default configuration file for
+GatorGradle named `gatorgrader.yml`, which will contain a default input
+for the variables, such as the name, break, fastfail, etc.,
 
-Additionally, you can run the `poetry run gatorconfig --help` for more information about the configuration. This command will list out the variables in teh file as well as the defaults it outputs:
+Additionally, you can run the `poetry run gatorconfig --help` for more
+information about the configuration. This command will list out the variables
+in the file as well as the defaults it outputs:
 
-```Options:
+```
+Options:
   --name TEXT                     [default: Project]
   --break
   --fastfail / --no-fastfail      [default: no-fastfail]
@@ -67,6 +72,4 @@ Additionally, you can run the `poetry run gatorconfig --help` for more informati
                                   Show completion for the specified shell, to
                                   copy it or customize the installation.
   --help                          Show this message and exit.
-'``
-=======
->>>>>>> 4b3f1209ad4e6d78980ba4f4902a05cb85f16505
+```
