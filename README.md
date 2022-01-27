@@ -38,7 +38,7 @@ are executed under the `[tool.taskipy.tasks]` header in `pyproject.toml`.
 
 ### Running GatorConfig
 
-GatorConfig is a tool that will utilize the command line interface, that was built to accommodate the users. To run the GatorConfig program in CLI, type the command:
+GatorConfig is a tool that will utilize the command line interface, which was built to accommodate the users. To run the GatorConfig program in CLI, type the command:
 
 `poetry run gatorconfig`
 
