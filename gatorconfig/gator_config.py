@@ -79,8 +79,8 @@ def get_checks(file: List[Path]) -> Dict:
         print("")
         check_list = []
         while running:
-            check = input(f"Enter a check for {item} (type \"stop\" to move on): ")
-            if check.lower() == "stop":
+            check = input(f"Enter a check for {item} (Press \"Enter\" to move on): ")
+            if check.lower() == "":
                 running = False
             else:
                 check_list.append(check)

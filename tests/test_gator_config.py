@@ -24,7 +24,7 @@ def test_cli_input():
         6
         ])
     output = pathlib.Path.cwd().joinpath("gatorgrader.yml")
-    with mock.patch('builtins.input', return_value="stop"):
+    with mock.patch('builtins.input', return_value=""):
         assert result.exit_code == 0
         assert output.exists()
     with open(output, encoding='utf-8') as fle:
@@ -38,7 +38,7 @@ def test_cli_no_input(expected):
     # pylint: disable=W0612
     result = runner.invoke(cli)
     output = pathlib.Path.cwd().joinpath("gatorgrader.yml")
-    with mock.patch('builtins.input', return_value="stop"):
+    with mock.patch('builtins.input', return_value=""):
         assert output.exists()
     with open(output, encoding='utf-8') as fle:
         assert "name: Project" in fle.read()
