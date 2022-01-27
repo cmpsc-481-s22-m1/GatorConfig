@@ -1,6 +1,7 @@
 # team4-GatorConfig
 
-A simple Python project utilizing a CLI approach to automate generating configuration files for GatorGrader. The GitHub Actions workflow executes
+A simple Python project utilizing a CLI approach to automate generating
+configuration files for GatorGrader. The GitHub Actions workflow executes
 [pytest](https://pytest.org/) (with
 [coverage](https://pypi.org/project/pytest-cov/)) and
 [pylint](https://pylint.org/) using the Poetry configuration, and checks
@@ -38,7 +39,9 @@ are executed under the `[tool.taskipy.tasks]` header in `pyproject.toml`.
 
 ### Running GatorConfig
 
-GatorConfig is a tool that will utilize the command line interface, which was built to accommodate the users. To run the GatorConfig program in CLI, type the command:
+GatorConfig is a tool that will utilize the command line interface, which
+was built to accommodate the users. To run the GatorConfig program
+in CLI, type the command:
 
 `poetry run gatorconfig`
 
@@ -46,14 +49,15 @@ Once you run this command, the program will output
 
 `Wrote file to: C:\Users\'YOUR PATH'\GatorConfig\gatorgrader.yml`
 
-This command will autogenerate a default configuration file for GatorGradle named `gatorgrader.yml` which will contain a default input for the variables, such as the name, break, fastfail, etc.,
+This command will autogenerate a default configuration file for GatorGradle
+named `gatorgrader.yml` which will contain a default input for
+the variables, such as the name, break, fastfail, etc.,
 
 Additionally, you can run the `poetry run gatorconfig --help` for more
 information about the configuration. This command will list out the variables
 in the file as well as the defaults it outputs:
 
-```
-Options:
+```Options:
   --name TEXT                     [default: Project]
   --break
   --fastfail / --no-fastfail      [default: no-fastfail]
