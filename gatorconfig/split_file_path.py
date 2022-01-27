@@ -1,6 +1,8 @@
 """Split file path module."""
-def split_file_path(paths):
-    """Convert files paths stored in a dic to nested dics."""
+
+
+def split_file_path(paths: list) -> dict:
+    """Convert files paths stored in a dict to nested dicts."""
     output = {}
     for key, value in paths.items():
         directories = key.split('/')
@@ -15,8 +17,8 @@ def split_file_path(paths):
 
 # example dictionary containing three file paths
 # path_dic = {
-#    'src/main/java/samplelab/SampleLabMain.java': [''],
-#    'src/main/java/samplelab/DataClass.java': [''],
+#    'gatorconfig/main/java/samplelab/SampleLabMain.java': [''],
+#    'gatorconfig/main/java/samplelab/DataClass.java': [''],
 #    'writing/reflection.md': ['']
 # }
 # final_dic = split_file_path(path_dic)
