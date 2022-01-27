@@ -4,6 +4,9 @@ version = "0.1.0"
 description = "Autogeneration of GatorGradle configuration files."
 authors = ["Daniel Ullrich", "Kobe Coleman", "Paige Downey", "Favour Ojo", "Wesley Long"]
 license = "MIT"
+packages = [
+    { include = "gatorconfig" }
+]
 
 [tool.poetry.dependencies]
 python = ">=3.7,<4.0"
@@ -25,7 +28,7 @@ pytest-xvfb = "^2.0.0"
 
 [tool.taskipy.tasks]
 test = "pytest --cov-report term-missing --cov-fail-under=70  --cov-branch --cov=src tests/"
-lint = "pylint src/ tests/ src/gui/"
+lint = "pylint gatorconfig/ tests/ gatorconfig/gui/"
 
 [build-system]
 requires = ["poetry-core>=1.0.0"]
