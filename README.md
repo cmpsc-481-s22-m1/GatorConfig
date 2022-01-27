@@ -38,8 +38,12 @@ are executed under the `[tool.taskipy.tasks]` header in `pyproject.toml`.
 
 ### Running GatorConfig
 
+<<<<<<< HEAD
 GatorConfig is a tool that will utilize the command line interface, that was
 built to accommodate the users. GatorConfig's command line interface is created with [Typer](https://typer.tiangolo.com/), a library for building CLI applications based on Python 3.6+ type hints. To run the GatorConfig program in CLI, type the command:
+=======
+GatorConfig is a tool that will utilize the command line interface, which was built to accommodate the users. To run the GatorConfig program in CLI, type the command:
+>>>>>>> ba311f4ff9bcc5ac0f2e2d91ced351ff8aac62d3
 
 `poetry run gatorconfig`
 
@@ -47,9 +51,13 @@ Once you run this command, the program will output
 
 `Wrote file to: C:\Users\'YOUR PATH'\GatorConfig\gatorgrader.yml`
 
+<<<<<<< HEAD
 The command will autogenerate a default configuration file for
 GatorGradle named `gatorgrader.yml`, which will contain a default input
 for the variables, such as the name, break, fastfail, etc.,
+=======
+This command will autogenerate a default configuration file for GatorGradle named `gatorgrader.yml` which will contain a default input for the variables, such as the name, break, fastfail, etc.,
+>>>>>>> ba311f4ff9bcc5ac0f2e2d91ced351ff8aac62d3
 
 Additionally, you can run the `poetry run gatorconfig --help` for more
 information about the configuration. This command will list out the variables
