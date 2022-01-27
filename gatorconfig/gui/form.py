@@ -4,7 +4,7 @@ from PyQt5.QtWidgets import QTabWidget, \
     QCheckBox, QLineEdit, \
     QVBoxLayout, QPushButton, \
     QSpinBox, QHBoxLayout, QPlainTextEdit
-from src.gui.check_file import CheckFile
+from gatorconfig.gui.check_file import CheckFile
 
 # pylint: disable=R0902
 # pylint: disable=W0108
@@ -135,11 +135,11 @@ class Form(QTabWidget):
                      "break": self.break_fail.isChecked(),
                      "fastfail": self.fast_fail.isChecked(),
                      "indent": int(self.indent_size.text()),
-                     "idcommand": "echo $TRAVIS_REPO_SLUG",
+                     "idcommand": "",
                      "version": self.grader_version.text(),
-                     "executables": "cat, bash",
+                     "executables": "",
                      "startup": self.startup_script_text.text(),
-                     "reflection": "./",
+                     "reflection": "",
                      "files": files
                      }
 
