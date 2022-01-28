@@ -59,7 +59,7 @@ def output_file(yaml_string: str, output_path: Path):
         yaml_string (str): [description]
         output_path (Path): [description]
     """
-    fle = output_path.joinpath("gatorgrader.yml")
+    fle = Path(output_path / "gatorgrader.yml")
     fle.touch(exist_ok=True)
     with open(fle, "w", encoding="utf8") as yml:
         yml.write(yaml_string)
