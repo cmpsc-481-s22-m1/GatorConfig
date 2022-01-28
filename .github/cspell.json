@@ -13,7 +13,15 @@
         "virtualenvs",
         "git",
         "gitignore",
-        "github"
+        "github",
+        "favou",
+        "pwsh",
+        "fastfail",
+        "gatorconfig",
+        "gatorgrader"
+
+
+
     ],
     "ignorePaths": [
         ".github/**",
