@@ -1,7 +1,7 @@
 """Test split_file_path function."""
 
 import pytest
-from src.split_file_path import split_file_path
+from gatorconfig.split_file_path import split_file_path
 
 
 def test_output_as_dic():
@@ -12,16 +12,16 @@ def test_output_as_dic():
 
 @pytest.mark.parametrize(
     "test_input,expected",
-    [({'src/main/java/samplelab/SampleLabMain.java': [''],
-    'src/main/java/samplelab/DataClass.java': ['']},
-    {'src': {'main': {'java': {'samplelab':
+    [({'gatorconfig/main/java/samplelab/SampleLabMain.java': [''],
+    'gatorconfig/main/java/samplelab/DataClass.java': ['']},
+    {'gatorconfig': {'main': {'java': {'samplelab':
     {'SampleLabMain.java': [''], 'DataClass.java': ['']}}}}}),
-    ({'src/main/java/samplelab/SampleLabMain.java': [''],
-    'writing/reflection.md': ['']}, {'src': {'main': {'java': {'samplelab':
+    ({'gatorconfig/main/java/samplelab/SampleLabMain.java': [''],
+    'writing/reflection.md': ['']}, {'gatorconfig': {'main': {'java': {'samplelab':
     {'SampleLabMain.java': ['']}}}}, 'writing': {'reflection.md': ['']}}),
-    ({'src/main/java/samplelab/DataClass.java': [''],
-    'src/main/java/HelloWorld.java': ['']},
-    {'src': {'main': {'java': {'samplelab': {'DataClass.java': ['']},
+    ({'gatorconfig/main/java/samplelab/DataClass.java': [''],
+    'gatorconfig/main/java/HelloWorld.java': ['']},
+    {'gatorconfig': {'main': {'java': {'samplelab': {'DataClass.java': ['']},
     'HelloWorld.java': ['']}}}})
     ]
 )

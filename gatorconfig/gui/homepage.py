@@ -2,7 +2,7 @@
 
 from PyQt5.QtCore import Qt
 from PyQt5.QtWidgets import QMainWindow, QWidget, QVBoxLayout, QLabel, QPushButton
-from src.gui.form import Form
+from gatorconfig.gui.form import Form
 
 
 class Homepage(QMainWindow):

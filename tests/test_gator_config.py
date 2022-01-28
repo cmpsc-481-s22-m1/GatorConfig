@@ -1,8 +1,8 @@
 """Test functions within gator_config"""
 import pytest
 from typer.testing import CliRunner
-from src.gator_config import output_file
-from src.gator_config import cli
+from gatorconfig.gator_config import cli
+from gatorconfig.gator_config import output_file
 
 runner = CliRunner()
 # @pytest.mark.skip(reason="no way of currently testing this")

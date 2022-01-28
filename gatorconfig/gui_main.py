@@ -3,7 +3,7 @@ import sys
 
 from PyQt5.QtWidgets import QApplication
 
-from src.gui.homepage import Homepage
+from gatorconfig.gui.homepage import Homepage
 
 
 # from Form import Form
