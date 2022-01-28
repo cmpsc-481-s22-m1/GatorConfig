@@ -36,7 +36,7 @@ def test_cli_no_input(mocker: MockerFixture, tmpdir: MockerFixture):
     """Test cli input with no flags"""
     test_dir = tmpdir.mkdir("testing")
     result = runner.invoke(cli, ["--output-path", test_dir])
-    assert result.exit_code == 0
+    assert result.exit_code == 1
     test_file = test_dir / "gatorgrader.yml"
     with mocker.patch('builtins.input', return_value=""):
         assert test_file.exists()
