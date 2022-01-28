@@ -52,9 +52,10 @@ def test_cli_no_input(mocker, tmpdir):
 
 @pytest.fixture()
 def test_output_file(tmpdir, input_text):
+    """Test creation of file, and if the file has the correct contents"""
     test_dir = tmpdir.mkdir("testing")
-    test_file_path = test_dir.joinpath("gatorgrader.yml")    
-    assert test_file_path.exists() == False
+    test_file_path = test_dir.joinpath("gatorgrader.yml")
+    assert test_file_path.exists() is False
     output_file(input_text, test_dir)
     assert test_file_path.exists()
     assert "I am text" in test_file_path
