@@ -32,7 +32,7 @@ def test_cli_input(mocker, tmpdir):
     with open(test_file, encoding='utf-8') as fle:
         print(fle.read())
 
-def test_cli_no_input(mocker: MockerFixture, tmpdir: MockerFixture):
+def test_cli_no_input(mocker: MockerFixture, tmpdir):
     """Test cli input with no flags"""
     test_dir = tmpdir.mkdir("testing")
     result = runner.invoke(cli, ["--output-path", test_dir])
