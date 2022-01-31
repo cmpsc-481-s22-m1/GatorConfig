@@ -49,7 +49,7 @@ def cli_input(
     }
     file_yaml = yaml_out.dump(output, paths=output["files"])
     output_file(file_yaml, output_path)
-    actions_configuration.create_configuration_file('../.github/workflows/grade.yml')
+    actions_configuration.create_configuration_file('.github/workflows/grade.yml')
 
 
 def output_file(yaml_string: str, output_path: Path):
