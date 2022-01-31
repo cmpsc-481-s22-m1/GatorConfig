@@ -35,7 +35,6 @@ to install without the extra gui feature install with
 poetry install
 ```
 
-
 ### Running tasks
 
 This project uses the [taskipy](https://github.com/illBeRoy/taskipy) task runner
