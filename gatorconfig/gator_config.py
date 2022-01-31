@@ -14,12 +14,12 @@ cli = typer.Typer()
 @cli.command()
 def cli_input(
     name: str = typer.Option("Project"),
-    brk: bool = typer.Option(False, "--break"),
+    overwrite: bool = typer.Option(False),
     fastfail: bool = typer.Option(False),
     gen_readme: bool = typer.Option(False),
     file: List[str] = typer.Option([]),
-    #language: str = typer.Option(None),
-    output_path: Path = typer.Option(Path.cwd()),
+    # language: str = typer.Option(None),
+    # output_path: Path = typer.Option(Path.cwd()),
     indent: int = typer.Option(4),
     commit_count: int = typer.Option(5)
 ):
@@ -33,22 +33,26 @@ def cli_input(
         indent (int, optional): [description]. Defaults to typer.Option(4).
         commit_count (int, optional): [description]. Defaults to typer.Option(5).
     """
-    files = get_checks(file)
-
-    yaml_out = gator_yaml.GatorYaml()
-    #print(files)
-    # Creation of the output variable
-    output = {
-        "name": name,
-        "break": brk,
-        "fastfail": fastfail,
-        "readme": gen_readme,
-        "indent": indent,
-        "commits": commit_count,
-        "files": files
-    }
-    file_yaml = yaml_out.dump(output, paths=output["files"])
-    output_file(file_yaml, output_path)
+    config_dir = Path.cwd().joinpath("config")
+    if config_dir.exists():
+        if overwrite:
+            files = get_checks(file)
+            yaml_out = gator_yaml.GatorYaml()
+            #print(files)
+            # Creation of the output variable
+            output = {
+                "name": name,
+                "break": brk,
+                "fastfail": fastfail,
+                "readme": gen_readme,
+                "indent": indent,
+                "commits": commit_count,
+                "files": files
+            }
+            file_yaml = yaml_out.dump(output, paths=output["files"])
+            output_file(file_yaml, output_path)
+        elif config_dir.joinpath("gatorgrader.yml").exists():
+            print(f"\"gatorgrader.yml\" already exists within {config_dir}")
     actions_configuration.create_configuration_file('../.github/workflows/grade.yml')
 
 
