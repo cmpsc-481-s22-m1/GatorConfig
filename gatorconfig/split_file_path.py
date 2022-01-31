@@ -17,8 +17,8 @@ def split_file_path(paths: list) -> dict:
 
 # example dictionary containing three file paths
 # path_dic = {
-#    'src/main/java/samplelab/SampleLabMain.java': [''],
-#    'src/main/java/samplelab/DataClass.java': [''],
+#    'gatorconfig/main/java/samplelab/SampleLabMain.java': [''],
+#    'gatorconfig/main/java/samplelab/DataClass.java': [''],
 #    'writing/reflection.md': ['']
 # }
 # final_dic = split_file_path(path_dic)

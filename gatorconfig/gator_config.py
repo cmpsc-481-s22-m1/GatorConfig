@@ -3,8 +3,8 @@ from typing import Dict
 from typing import List
 from pathlib import Path
 import typer
-from src import gator_yaml
-from src import actions_configuration
+from gatorconfig import gator_yaml
+from gatorconfig import actions_configuration
 
 cli = typer.Typer()
 
@@ -49,6 +49,7 @@ def cli_input(
     }
     file_yaml = yaml_out.dump(output, paths=output["files"])
     output_file(file_yaml, output_path)
+    actions_configuration.create_configuration_file('../.github/workflows/grade.yml')
 
 
 def output_file(yaml_string: str, output_path: Path):
@@ -58,7 +59,7 @@ def output_file(yaml_string: str, output_path: Path):
         yaml_string (str): [description]
         output_path (Path): [description]
     """
-    fle = output_path.joinpath("gatorgrader.yml")
+    fle = Path(output_path / "gatorgrader.yml")
     fle.touch(exist_ok=True)
     with open(fle, "w", encoding="utf8") as yml:
         yml.write(yaml_string)
@@ -79,8 +80,8 @@ def get_checks(file: List[Path]) -> Dict:
         print("")
         check_list = []
         while running:
-            check = input(f"Enter a check for {item} (type \"stop\" to move on): ")
-            if check.lower() == "stop":
+            check = input(f"Enter a check for {item} (Press \"Enter\" to move on): ")
+            if check.lower() == "":
                 running = False
             else:
                 check_list.append(check)
@@ -89,4 +90,3 @@ def get_checks(file: List[Path]) -> Dict:
 
 if __name__ == "__main__":
     cli()
-    actions_configuration.create_configuration_file('../.github/workflows/grade.yml')
