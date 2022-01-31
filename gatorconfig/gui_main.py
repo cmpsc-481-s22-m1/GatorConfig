@@ -1,6 +1,7 @@
 """A GUI to easily create GatorYAML configuration dictionaries"""
 import sys
-
+# pylint: disable=E0611
+# RC file is not working.
 from PyQt6.QtWidgets import QApplication
 
 from gatorconfig.gui.homepage import Homepage

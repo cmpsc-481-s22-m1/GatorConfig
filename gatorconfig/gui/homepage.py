@@ -1,5 +1,7 @@
 """Main page for the PyQT app"""
 
+# pylint: disable=E0611
+# RC file is not working.
 from PyQt6.QtCore import Qt
 from PyQt6.QtWidgets import QMainWindow, QWidget, QVBoxLayout, QLabel, QPushButton
 from gatorconfig.gui.form import Form
@@ -46,3 +48,6 @@ class Homepage(QMainWindow):
         data = form.submit_form()
         self.owner.data = data
         self.close()
+
+    def useless(self):
+        """A useless method to be filled in if needed but is only here to appease PyLint"""

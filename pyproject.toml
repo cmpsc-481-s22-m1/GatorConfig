@@ -36,9 +36,6 @@ gatorconfig = "gatorconfig.gator_config:cli"
 test = "pytest --cov-report term-missing --cov-fail-under=70  --cov-branch --cov=gatorconfig tests/"
 lint = "pylint gatorconfig/ tests/ gatorconfig/gui/ --rcfile .pylintrc"
 
-[tool.pylint]
-extension-pkg-allow-list="PyQt6"
-
 [build-system]
 requires = ["poetry-core>=1.0.0"]
 build-backend = "poetry.core.masonry.api"

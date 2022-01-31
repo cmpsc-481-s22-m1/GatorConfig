@@ -1,4 +1,6 @@
 """Form that makes up the configuration GUI"""
+# pylint: disable=E0611
+# RC file is not working.
 from PyQt6.QtWidgets import QTabWidget, \
     QWidget, QFormLayout, \
     QCheckBox, QLineEdit, \
