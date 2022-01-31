@@ -6,6 +6,7 @@ from PyQt6.QtWidgets import QTabWidget, \
     QSpinBox, QHBoxLayout, QPlainTextEdit, QFileDialog
 from gatorconfig.gui.check_file import CheckFile
 
+
 # pylint: disable=R0902
 # pylint: disable=W0108
 # Disabling R0902 because this is a main class. PyQt6 *requires* this type of code.
@@ -14,6 +15,7 @@ from gatorconfig.gui.check_file import CheckFile
 
 class Form(QTabWidget):
     """Main form class, contains basic and advanced tabs."""
+
     def __init__(self, parent=None):
         """Init the form. Create the two tabs and populate them with widgets."""
         super().__init__(parent)
@@ -116,11 +118,12 @@ class Form(QTabWidget):
         self.tabs.setCurrentIndex(self.tabs.currentIndex() + 1)
 
         # group_lay.insertWidget(group_lay.count() - 1, CheckFile(group_lay.count()))
+
     def get_path_from_file(self, target_text):
         """Opens a file dialog to select a new file.
         Sets self.file to the file name and sets the tab text."""
-        self.file = QFileDialog.getOpenFileName(self, 'OpenFile')[0]
-        target_text.setText(self.file)
+        file = QFileDialog.getOpenFileName(self, 'OpenFile')[0]
+        target_text.setText(file)
 
     def change_tab_text(self, text):
         """Changes the current tab's text."""
