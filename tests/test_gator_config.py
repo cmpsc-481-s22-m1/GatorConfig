@@ -26,7 +26,7 @@ def test_cli_input(mocker, tmpdir):
             test_dir
             ])
     print("Test Output:", result.stdout)
-    test_file = test_dir / "gatorgrader.yml"
+    test_file = test_dir / "config" / "gatorgrader.yml"
     with mocker.patch('builtins.input', return_value=""):
         assert test_file.exists()
     with open(test_file, encoding='utf-8') as fle:
@@ -36,8 +36,8 @@ def test_cli_no_input(mocker: MockerFixture, tmpdir):
     """Test cli input with no flags"""
     test_dir = tmpdir.mkdir("testing")
     result = runner.invoke(cli, ["--output-path", test_dir])
-    assert result.exit_code == 1
-    test_file = test_dir / "gatorgrader.yml"
+    assert result.exit_code == 0
+    test_file = test_dir / "config" / "gatorgrader.yml"
     with mocker.patch('builtins.input', return_value=""):
         assert test_file.exists()
     with open(test_file, encoding='utf-8') as fle:
@@ -51,7 +51,7 @@ def test_output_file(tmpdir):
     """Test creation of file, and if the file has the correct contents"""
     input_text = "I am text"
     test_dir = tmpdir.mkdir("testing")
-    test_file_path = test_dir / "gatorgrader.yml"
+    test_file_path = test_dir / "config" / "gatorgrader.yml"
     assert test_file_path.exists() is False
     output_file(input_text, test_dir)
     assert test_file_path.exists()

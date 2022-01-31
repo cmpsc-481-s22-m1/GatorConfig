@@ -55,7 +55,7 @@ def cli_input(
     }
     file_yaml = yaml_out.dump(output, paths=output["files"])
     output_file(file_yaml, output_path)
-    actions_configuration.create_configuration_file('../.github/workflows/grade.yml')
+    actions_configuration.create_configuration_file('.github/workflows/grade.yml')
 
 
 def output_file(yaml_string: str, output_path: Path):
@@ -65,11 +65,10 @@ def output_file(yaml_string: str, output_path: Path):
         yaml_string (str): [description]
         output_path (Path): [description]
     """
-    fle = Path(output_path / "gatorgrader.yml")
-    fle.touch(exist_ok=True)
-    with open(fle, "w", encoding="utf8") as yml:
-        yml.write(yaml_string)
-    print(f"Wrote file to: {fle}")
+    pth = Path(output_path / 'config')
+    pth.mkdir(exist_ok=True)
+    (pth / 'gatorgrader.yml').open('w').write(yaml_string)
+    print(f"Wrote file to: {pth}" + "/gatorgrader.yml")
 
 def get_checks(file: List[Path]) -> Dict:
     """Read in checks per file.
