@@ -13,15 +13,15 @@ cli = typer.Typer()
 #pylint: disable=too-many-arguments
 @cli.command()
 def cli_input(
-    name: str = typer.Option("Project"),
-    brk: bool = typer.Option(False, "--break"),
-    fastfail: bool = typer.Option(False),
-    gen_readme: bool = typer.Option(False),
-    file: List[str] = typer.Option([]),
+    name: str = typer.Option("Project", help="The name of the project"),
+    brk: bool = typer.Option(False, "--break", help="Enables break"),
+    fastfail: bool = typer.Option(False, help="Enables fastfail"),
+    gen_readme: bool = typer.Option(False, help="Enables gen_readme"),
+    file: List[str] = typer.Option([],help="Enter a singular file path"), 
     #language: str = typer.Option(None),
-    output_path: Path = typer.Option(Path.cwd()),
-    indent: int = typer.Option(4),
-    commit_count: int = typer.Option(5)
+    output_path: Path = typer.Option(Path.cwd(), help="Enter preferred output path"),
+    indent: int = typer.Option(4, help="Enter preferred indent"),
+    commit_count: int = typer.Option(5, help="Enter preferred minimum amount of commits")
 ):
     """Gather input from the command line.
 
