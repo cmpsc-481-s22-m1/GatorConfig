@@ -1,14 +1,14 @@
 """Form that makes up the configuration GUI"""
-from PyQt5.QtWidgets import QTabWidget, \
+from PyQt6.QtWidgets import QTabWidget, \
     QWidget, QFormLayout, \
     QCheckBox, QLineEdit, \
     QVBoxLayout, QPushButton, \
-    QSpinBox, QHBoxLayout, QPlainTextEdit
+    QSpinBox, QHBoxLayout, QPlainTextEdit, QFileDialog
 from gatorconfig.gui.check_file import CheckFile
 
 # pylint: disable=R0902
 # pylint: disable=W0108
-# Disabling R0902 because this is a main class. PyQt5 *requires* this type of code.
+# Disabling R0902 because this is a main class. PyQt6 *requires* this type of code.
 # Could split this into multiple classes if REALLY needed but that can wait until later.
 # Also disabling W0108 because the lambda is necessary.
 
@@ -91,8 +91,7 @@ class Form(QTabWidget):
         self.startup_script_text = QLineEdit()
         self.startup_script_button = QPushButton("Open",
                                                  clicked=lambda: self.get_path_from_file(
-                                                     self.startup_script_text,
-                                                     self.startup_script_button))
+                                                     self.startup_script_text))
 
         # connect button to file dialog
         # self.startup_script_button.clicked.connect()
@@ -117,6 +116,11 @@ class Form(QTabWidget):
         self.tabs.setCurrentIndex(self.tabs.currentIndex() + 1)
 
         # group_lay.insertWidget(group_lay.count() - 1, CheckFile(group_lay.count()))
+    def get_path_from_file(self, target_text):
+        """Opens a file dialog to select a new file.
+        Sets self.file to the file name and sets the tab text."""
+        self.file = QFileDialog.getOpenFileName(self, 'OpenFile')[0]
+        target_text.setText(self.file)
 
     def change_tab_text(self, text):
         """Changes the current tab's text."""

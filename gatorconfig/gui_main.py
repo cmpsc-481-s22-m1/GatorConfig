@@ -1,7 +1,7 @@
 """A GUI to easily create GatorYAML configuration dictionaries"""
 import sys
 
-from PyQt5.QtWidgets import QApplication
+from PyQt6.QtWidgets import QApplication
 
 from gatorconfig.gui.homepage import Homepage
 
@@ -36,7 +36,7 @@ class Gui:
 
         self.win.show()
 
-        self.app.exec_()
+        self.app.exec()
 
 
     def close_window(self):
@@ -47,5 +47,5 @@ class Gui:
         """Returns submitted form data"""
         return self.data
 
-# gui = Gui()
+gui = Gui()
 # print(type(gui))

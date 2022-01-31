@@ -12,8 +12,8 @@ packages = [
 python = ">=3.7,<4.0"
 typer = "^0.4.0"
 "ruamel.yaml" = "^0.17.20"
-PyQt5 = "^5.15.6"
 requests = "^2.27.1"
+PyQt6 = {version = "^6.2.2", optional = true}
 
 [tool.poetry.dev-dependencies]
 taskipy = "^1.9.0"
@@ -25,6 +25,9 @@ pytest-mock = "^3.6.1"
 pytest-qt = "^4.0.2"
 pytest-xvfb = "^2.0.0"
 requests-mock = "^1.9.3"
+
+[tool.poetry.extras]
+gui = ["PyQt6"]
 
 [tool.poetry.scripts]
 gatorconfig = "gatorconfig.gator_config:cli"
