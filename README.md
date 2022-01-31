@@ -26,6 +26,12 @@ listed in `pyproject.toml`.
 To install Python dependencies:
 
 ```bash
+poetry install -E gui
+```
+
+to install without the extra gui feature install with
+
+```bash
 poetry install
 ```
 
