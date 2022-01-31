@@ -78,7 +78,7 @@ def get_checks(file: List[Path]) -> Dict:
     for item in file:
         running = True
         print("")
-        check_list = []
+        check_list = ['--exists', 'fragment "TODO" --count 0']
         while running:
             check = input(f"Enter a check for {item} (Press \"Enter\" to move on): ")
             if check.lower() == "":
