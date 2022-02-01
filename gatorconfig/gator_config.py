@@ -10,10 +10,18 @@ cli = typer.Typer()
 
 
 
+def default_name():
+    """Generate default name based on current directory."""
+    curr_dir = str(Path.cwd())
+    dirs = curr_dir.split('/')
+    def_name = dirs[-1]
+    return def_name
+
+
 #pylint: disable=too-many-arguments
 @cli.command()
 def cli_input(
-    name: str = typer.Option("Project"),
+    name: str = typer.Option(default_name()),
     brk: bool = typer.Option(False, "--break"),
     fastfail: bool = typer.Option(False),
     gen_readme: bool = typer.Option(False),
@@ -26,7 +34,7 @@ def cli_input(
     """Gather input from the command line.
 
     Args:
-        name (str, optional): [description]. Defaults to typer.Option("Project").
+        name (str, optional): [description]. Defaults to typer.Option(default_name()).
         brk (bool, optional): [description]. Defaults to typer.Option(False, "--break").
         fastfail (bool, optional): [description]. Defaults to typer.Option(False).
         file (List[str], optional): [description]. Defaults to typer.Option([]).
