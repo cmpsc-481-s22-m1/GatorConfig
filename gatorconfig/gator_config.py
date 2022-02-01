@@ -35,26 +35,26 @@ def cli_input(
         commit_count (int, optional): [description]. Defaults to typer.Option(5).
     """
     config_dir = Path.cwd().joinpath("config")
-    if config_dir.is_dir() and config_dir.exists():
-        if overwrite:
-            pass
-        elif config_dir.joinpath("gatorgrader.yml").exists():
-            print(f"\"gatorgrader.yml\" already exists within {config_dir}")
-    files = get_checks(file)
+    config_dir.mkdir(exist_ok=True)
+    files = {}
     yaml_out = gator_yaml.GatorYaml()
+    if overwrite or not config_dir.joinpath("gatorgrader.yml").exists():
+        # Creation of the output variable
+        files = get_checks(file)
+        output = {
+            "name": name,
+            "break": brk,
+            "fastfail": fastfail,
+            "readme": gen_readme,
+            "indent": indent,
+            "commits": commit_count,
+            "files": files
+        }
+        file_yaml = yaml_out.dump(output, paths=output["files"])
+        output_file(file_yaml, output_path)
+    elif config_dir.joinpath("gatorgrader.yml").exists():
+        print(f"\"gatorgrader.yml\" already exists within {config_dir}")
     #print(files)
-    # Creation of the output variable
-    output = {
-        "name": name,
-        "break": brk,
-        "fastfail": fastfail,
-        "readme": gen_readme,
-        "indent": indent,
-        "commits": commit_count,
-        "files": files
-    }
-    file_yaml = yaml_out.dump(output, paths=output["files"])
-    output_file(file_yaml, output_path)
     actions_configuration.create_configuration_file('.github/workflows/grade.yml')
 
 
@@ -65,9 +65,8 @@ def output_file(yaml_string: str, output_path: Path):
         yaml_string (str): [description]
         output_path (Path): [description]
     """
-    pth = Path(output_path / 'config')
-    pth.mkdir(exist_ok=True)
-    (pth / 'gatorgrader.yml').open('w').write(yaml_string)
+    pth = Path(output_path / 'config' / 'gatorgrader.yml')
+    pth.open('w').write(yaml_string)
     print(f"Wrote file to: {pth}" + "/gatorgrader.yml")
 
 def get_checks(file: List[Path]) -> Dict:
