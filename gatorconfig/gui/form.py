@@ -5,9 +5,10 @@ from PyQt6.QtWidgets import QTabWidget, \
     QWidget, QFormLayout, \
     QCheckBox, QLineEdit, \
     QVBoxLayout, QPushButton, \
-    QSpinBox, QHBoxLayout, QPlainTextEdit, QFileDialog
+    QSpinBox, QHBoxLayout, QPlainTextEdit, QFileDialog, QComboBox
 from gatorconfig.gui.check_file import CheckFile
-
+from gatorconfig import scrape_releases as scrape
+from gatorconfig.gui.cwidgets import CFilePicker
 
 # pylint: disable=R0902
 # pylint: disable=W0108
@@ -42,7 +43,14 @@ class Form(QTabWidget):
         self.break_fail = QCheckBox()
         self.generate_readme = QCheckBox()
 
-        self.grader_version = QLineEdit("v0.2.0")
+        self.grader_version = QComboBox()
+        self.grader_version.addItems(scrape.get_github_releases("GatorEducator/GatorGrader"))
+        self.grader_version.setMaxVisibleItems(15)
+        self.gradle_version = QComboBox()
+        self.gradle_version.addItems(scrape.get_github_releases("GatorEducator/GatorGradle"))
+        self.gradle_version.setMaxVisibleItems(15)
+
+        self.reflection = CFilePicker()
 
         self.assignment_name = QLineEdit("Default")
 
@@ -50,6 +58,8 @@ class Form(QTabWidget):
         form_layout.addRow("Break:", self.break_fail)
         form_layout.addRow("Generate ReadMe:", self.generate_readme)
         form_layout.addRow("GatorGrader Version:", self.grader_version)
+        form_layout.addRow("GatorGradle Version:", self.gradle_version)
+        form_layout.addRow("Reflection:", self.reflection)
         form_layout.addRow("Assignment Name:", self.assignment_name)
 
         # Create VBox for group
@@ -97,6 +107,9 @@ class Form(QTabWidget):
                                                  clicked=lambda: self.get_path_from_file(
                                                      self.startup_script_text))
 
+        self.executables = QLineEdit()
+        self.idcommand = QLineEdit()
+
         # connect button to file dialog
         # self.startup_script_button.clicked.connect()
 
@@ -105,6 +118,8 @@ class Form(QTabWidget):
         self.lay.addWidget(self.startup_script_button)
 
         form_layout.addRow("Startup Script:", self.lay)
+        form_layout.addRow("Executables:", self.executables)
+        form_layout.addRow("Id Command:", self.idcommand)
 
         self.description_input2 = QPlainTextEdit()
 
@@ -145,7 +160,7 @@ class Form(QTabWidget):
                      "fastfail": self.fast_fail.isChecked(),
                      "indent": int(self.indent_size.text()),
                      "idcommand": "",
-                     "version": self.grader_version.text(),
+                     "version": self.grader_version.currentText(),
                      "executables": "",
                      "startup": self.startup_script_text.text(),
                      "reflection": "",
