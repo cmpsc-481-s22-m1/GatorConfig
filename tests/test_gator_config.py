@@ -43,7 +43,6 @@ def test_cli_no_input(mocker: MockerFixture, tmpdir):
     with open(test_file, encoding='utf-8') as fle:
         #print(fle.read())
         assert "name: GatorConfig" in fle.read()
-        assert "indent: 4" in fle.read()
 
 
 #@pytest.mark.parametrize("input_text", ["I am text"])
