@@ -1,6 +1,7 @@
 """Form that makes up the configuration GUI"""
 # pylint: disable=E0611
 # RC file is not working.
+import requests.exceptions
 from PyQt6.QtWidgets import QTabWidget, \
     QWidget, QFormLayout, \
     QCheckBox, QLineEdit, \
@@ -9,6 +10,7 @@ from PyQt6.QtWidgets import QTabWidget, \
 from gatorconfig.gui.check_file import CheckFile
 from gatorconfig import scrape_releases as scrape
 from gatorconfig.gui.cwidgets import CFilePicker
+
 
 # pylint: disable=R0902
 # pylint: disable=W0108
@@ -43,12 +45,22 @@ class Form(QTabWidget):
         self.break_fail = QCheckBox()
         self.generate_readme = QCheckBox()
 
-        self.grader_version = QComboBox()
-        self.grader_version.addItems(scrape.get_github_releases("GatorEducator/GatorGrader"))
-        self.grader_version.setMaxVisibleItems(15)
-        self.gradle_version = QComboBox()
-        self.gradle_version.addItems(scrape.get_github_releases("GatorEducator/GatorGradle"))
-        self.gradle_version.setMaxVisibleItems(15)
+        # Get github releases
+        try:
+            grader_versions = scrape.get_github_releases("GatorEducator/GatorGrader")
+            self.grader_version = QComboBox()
+            self.grader_version.addItems(grader_versions)
+            self.grader_version.setMaxVisibleItems(15)
+        except requests.exceptions.ConnectionError:
+            self.grader_version = QLineEdit()
+
+        try:
+            gradle_versions = scrape.get_github_releases("GatorEducator/GatorGradle")
+            self.gradle_version = QComboBox()
+            self.gradle_version.addItems(gradle_versions)
+            self.gradle_version.setMaxVisibleItems(15)
+        except requests.exceptions.ConnectionError:
+            self.gradle_version = QLineEdit()
 
         self.reflection = CFilePicker()
 
@@ -160,7 +172,7 @@ class Form(QTabWidget):
                      "fastfail": self.fast_fail.isChecked(),
                      "indent": int(self.indent_size.text()),
                      "idcommand": "",
-                     "version": self.grader_version.currentText(),
+                     "version": self.get_grader_version(),
                      "executables": "",
                      "startup": self.startup_script_text.text(),
                      "reflection": "",
@@ -170,3 +182,9 @@ class Form(QTabWidget):
         print("Form Submitted!")
         # print(full_data)
         return full_data
+
+    def get_grader_version(self):
+        if isinstance(self.grader_version, QComboBox):
+            return self.grader_version.currentText()
+        else:
+            return self.grader_version.text()
