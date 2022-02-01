@@ -18,7 +18,7 @@ def cli_input(
     fastfail: bool = typer.Option(False, help="Enables fastfail"),
     gen_readme: bool = typer.Option(False, help="Generates a README file"),
     file: List[str] = typer.Option([], help="""Enter singular file path, can be done
-    ""multiple times"""),
+    multiple times"""),
     #language: str = typer.Option(None),
     output_path: Path = typer.Option(Path.cwd(), help="Enter preferred output path"),
     indent: int = typer.Option(4, help="Enter preferred indent"),
