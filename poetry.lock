@@ -96,6 +96,14 @@ optional = false
 python-versions = "*"
 
 [[package]]
+name = "gatoryaml"
+version = "1.0.0"
+description = "Custom YAML-like generator for GatorGrader config files."
+category = "main"
+optional = false
+python-versions = ">=3.7,<4.0"
+
+[[package]]
 name = "idna"
 version = "3.3"
 description = "Internationalized Domain Names in Applications (IDNA)"
@@ -548,7 +556,7 @@ gui = ["PyQt6"]
 [metadata]
 lock-version = "1.1"
 python-versions = ">=3.7,<4.0"
-content-hash = "708fb25aa2311171b9919b5f543f5368c3309933a6c07bf821ce45279c31021c"
+content-hash = "0e46801838604515722350f2ec8728bd2d45d48ec965878b19a1737ee7cd9739"
 
 [metadata.files]
 astroid = [
@@ -628,6 +636,10 @@ coverage = [
 easyprocess = [
     {file = "EasyProcess-1.1-py3-none-any.whl", hash = "sha256:82eed523a0a5eb12a81fa4eacd9f342caeb3f900eb4b798740e6696ad07e63f9"},
     {file = "EasyProcess-1.1.tar.gz", hash = "sha256:885898302a57aab948973e8b5d32a4229392b9fb2d986ab1d4ffd590e5ba90ec"},
+]
+gatoryaml = [
+    {file = "GatorYaml-1.0.0-py3-none-any.whl", hash = "sha256:0a18c08eddee4fb99cd1cfc2b14179166f384f64a73d75f7c8d5ac822fa2ef36"},
+    {file = "GatorYaml-1.0.0.tar.gz", hash = "sha256:315b191f62f5ce8c657724a806659f61e9e6270a6a312390041fadbb51ad1fe9"},
 ]
 idna = [
     {file = "idna-3.3-py3-none-any.whl", hash = "sha256:84d9dd047ffa80596e0f246e2eab0b391788b0503584e8945f2368256d2735ff"},

@@ -1,5 +1,4 @@
 """Checked File widgets"""
-
 # pylint: disable=E0611
 # RC file is not working.
 import os

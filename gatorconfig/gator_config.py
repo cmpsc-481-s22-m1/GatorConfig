@@ -3,7 +3,7 @@ from typing import Dict
 from typing import List
 from pathlib import Path
 import typer
-from gatorconfig import gator_yaml
+import gatoryaml
 from gatorconfig import actions_configuration
 
 cli = typer.Typer()
@@ -21,15 +21,16 @@ def default_name():
 #pylint: disable=too-many-arguments
 @cli.command()
 def cli_input(
-    name: str = typer.Option(default_name()),
-    brk: bool = typer.Option(False, "--break"),
-    fastfail: bool = typer.Option(False),
-    gen_readme: bool = typer.Option(False),
-    file: List[str] = typer.Option([]),
+    name: str = typer.Option(default_name(), help="The name of the project"),
+    brk: bool = typer.Option(False, "--break", help="Enables break"),
+    fastfail: bool = typer.Option(False, help="Enables fastfail"),
+    gen_readme: bool = typer.Option(False, help="Generates a README file"),
+    file: List[str] = typer.Option([], help="""Enter singular file path, can be done
+    multiple times"""),
     #language: str = typer.Option(None),
-    output_path: Path = typer.Option(Path.cwd()),
-    indent: int = typer.Option(4),
-    commit_count: int = typer.Option(5)
+    output_path: Path = typer.Option(Path.cwd(), help="Enter preferred output path"),
+    indent: int = typer.Option(4, help="Enter preferred indent"),
+    commit_count: int = typer.Option(5, help="Enter preferred minimum amount of commits")
 ):
     """Gather input from the command line.
 
@@ -41,21 +42,19 @@ def cli_input(
         indent (int, optional): [description]. Defaults to typer.Option(4).
         commit_count (int, optional): [description]. Defaults to typer.Option(5).
     """
-    files = get_checks(file)
+    body = get_checks(file)
 
-    yaml_out = gator_yaml.GatorYaml()
     #print(files)
     # Creation of the output variable
-    output = {
+    header = {
         "name": name,
         "break": brk,
         "fastfail": fastfail,
         "readme": gen_readme,
         "indent": indent,
         "commits": commit_count,
-        "files": files
     }
-    file_yaml = yaml_out.dump(output, paths=output["files"])
+    file_yaml = gatoryaml.dump(header, body)
     output_file(file_yaml, output_path)
     actions_configuration.create_configuration_file('.github/workflows/grade.yml')
 
