@@ -1,5 +1,4 @@
 """Checked File widgets"""
-
 # pylint: disable=E0611
 # RC file is not working.
 import os
@@ -39,8 +38,8 @@ class CheckFile(QWidget):
 
         # Horizontal line separator
         self.frame = QFrame()
-        self.frame.setFrameShape(QFrame.Shape.HLine)
-        self.frame.setFrameShadow(QFrame.Shadow.Sunken)
+        self.frame.setFrameShape(QFrame.HLine)
+        self.frame.setFrameShadow(QFrame.Sunken)
 
         self.outer_lay.addWidget(self.frame)
 
