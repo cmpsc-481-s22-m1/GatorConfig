@@ -5,8 +5,9 @@ from PyQt6.QtWidgets import QTabWidget, \
     QWidget, QFormLayout, \
     QCheckBox, QLineEdit, \
     QVBoxLayout, QPushButton, \
-    QSpinBox, QHBoxLayout, QPlainTextEdit, QFileDialog
+    QSpinBox, QHBoxLayout, QPlainTextEdit, QFileDialog, QComboBox
 from gatorconfig.gui.check_file import CheckFile
+from gatorconfig import scrape_releases as scrape
 
 
 # pylint: disable=R0902
@@ -42,7 +43,9 @@ class Form(QTabWidget):
         self.break_fail = QCheckBox()
         self.generate_readme = QCheckBox()
 
-        self.grader_version = QLineEdit("v0.2.0")
+        self.grader_version = QComboBox()
+        self.grader_version.addItems(scrape.get_github_releases("GatorEducator/GatorGrader"))
+        self.grader_version.setMaxVisibleItems(15)
 
         self.assignment_name = QLineEdit("Default")
 
