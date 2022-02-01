@@ -184,7 +184,7 @@ class Form(QTabWidget):
         return full_data
 
     def get_grader_version(self):
+        """Returns GatorGrader version depending on the input type"""
         if isinstance(self.grader_version, QComboBox):
             return self.grader_version.currentText()
-        else:
-            return self.grader_version.text()
+        return self.grader_version.text()
