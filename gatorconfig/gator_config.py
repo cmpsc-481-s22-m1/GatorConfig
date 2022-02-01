@@ -3,7 +3,7 @@ from typing import Dict
 from typing import List
 from pathlib import Path
 import typer
-from gatorconfig import gator_yaml
+import gatoryaml
 from gatorconfig import actions_configuration
 
 cli = typer.Typer()
@@ -34,21 +34,19 @@ def cli_input(
         indent (int, optional): [description]. Defaults to typer.Option(4).
         commit_count (int, optional): [description]. Defaults to typer.Option(5).
     """
-    files = get_checks(file)
+    body = get_checks(file)
 
-    yaml_out = gator_yaml.GatorYaml()
     #print(files)
     # Creation of the output variable
-    output = {
+    header = {
         "name": name,
         "break": brk,
         "fastfail": fastfail,
         "readme": gen_readme,
         "indent": indent,
         "commits": commit_count,
-        "files": files
     }
-    file_yaml = yaml_out.dump(output, paths=output["files"])
+    file_yaml = gatoryaml.dump(header, body)
     output_file(file_yaml, output_path)
     actions_configuration.create_configuration_file('.github/workflows/grade.yml')
 
