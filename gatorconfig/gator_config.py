@@ -65,8 +65,9 @@ def output_file(yaml_string: str, output_path: Path):
         yaml_string (str): [description]
         output_path (Path): [description]
     """
-    pth = Path(output_path / 'config' / 'gatorgrader.yml')
-    pth.open('w').write(yaml_string)
+    pth = Path(output_path / 'config')
+    pth.mkdir(exist_ok=True)
+    (pth / 'gatorgrader.yml').open('w').write(yaml_string)
     print(f"Wrote file to: {pth}" + "/gatorgrader.yml")
 
 def get_checks(file: List[Path]) -> Dict:

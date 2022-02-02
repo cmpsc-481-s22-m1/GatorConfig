@@ -59,9 +59,9 @@ def test_output_file(tmpdir):
     """Test creation of file, and if the file has the correct contents"""
     input_text = "I am text"
     test_dir = tmpdir.mkdir("testing")
-    test_file_path = test_dir / "config" / "gatorgrader.yml"
-    assert test_file_path.exists() is False
+    test_file = test_dir / "config" / "gatorgrader.yml"
+    assert test_file.exists() is False
     output_file(input_text, test_dir)
-    assert test_file_path.exists()
-    with open(test_file_path, encoding='utf-8') as test_file:
+    assert test_file.exists()
+    with open(test_file, encoding='utf-8') as test_file:
         assert "I am text" in test_file.read()
