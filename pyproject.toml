@@ -4,8 +4,14 @@ version = "0.1.0"
 description = "Autogeneration of GatorGradle configuration files."
 authors = ["Daniel Ullrich", "Kobe Coleman", "Paige Downey", "Favour Ojo", "Wesley Long"]
 license = "MIT"
+readme = "README.md"
+homepage = "https://github.com/cmpsc-481-s22-m1/GatorConfig"
+repository = "https://github.com/cmpsc-481-s22-m1/GatorConfig"
 packages = [
     { include = "gatorconfig" }
+]
+include = [
+    "LICENSE",
 ]
 
 [tool.poetry.dependencies]
