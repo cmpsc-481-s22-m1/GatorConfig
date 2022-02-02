@@ -1,7 +1,9 @@
 """Capture user input to automatically generate YAML file."""
+from importlib.resources import path
 from typing import Dict
 from typing import List
 from pathlib import Path
+import os
 import typer
 import gatoryaml
 from gatorconfig import actions_configuration
@@ -12,10 +14,7 @@ cli = typer.Typer()
 
 def default_name():
     """Generate default name based on current directory."""
-    curr_dir = str(Path.cwd())
-    dirs = curr_dir.split('/')
-    def_name = dirs[-1]
-    return def_name
+    return os.path.basename(Path.cwd())
 
 
 #pylint: disable=too-many-arguments
