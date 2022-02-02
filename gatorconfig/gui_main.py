@@ -49,4 +49,4 @@ class Gui:
         return self.data
 
 gui = Gui()
-# print(type(gui))
+print(gui.get_data())
