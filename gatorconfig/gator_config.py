@@ -100,7 +100,7 @@ def get_checks(file: List[Path]) -> Dict:
                 running = False
             else:
                 check_list.append(check)
-        files[item] = check_list
+        files[item] = list(set(check_list))
     return files
 
 if __name__ == "__main__":
