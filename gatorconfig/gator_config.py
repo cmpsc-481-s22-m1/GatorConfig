@@ -3,31 +3,40 @@ from typing import Dict
 from typing import List
 from pathlib import Path
 import typer
-from gatorconfig import gator_yaml
+import gatoryaml
 from gatorconfig import actions_configuration
 
 cli = typer.Typer()
 
 
 
+def default_name():
+    """Generate default name based on current directory."""
+    curr_dir = str(Path.cwd())
+    dirs = curr_dir.split('/')
+    def_name = dirs[-1]
+    return def_name
+
+
 #pylint: disable=too-many-arguments
 @cli.command()
 def cli_input(
-    name: str = typer.Option("Project", help="Name of the project"),
-    overwrite: bool = typer.Option(False),
-    brk: bool = typer.Option(False, "--break"),
-    fastfail: bool = typer.Option(False),
-    gen_readme: bool = typer.Option(False),
-    file: List[str] = typer.Option([]),
-    # language: str = typer.Option(None),
-    output_path: Path = typer.Option(Path.cwd()),
-    indent: int = typer.Option(4),
-    commit_count: int = typer.Option(5)
+    name: str = typer.Option(default_name(), help="The name of the project"),
+    brk: bool = typer.Option(False, "--break", help="Enables break"),
+    overwrite: bool = typer.Option(False, help="Allows GatorConfig to overwrite existing files"),
+    fastfail: bool = typer.Option(False, help="Enables fastfail"),
+    gen_readme: bool = typer.Option(False, help="Generates a README file"),
+    file: List[str] = typer.Option([], help="""Enter singular file path, can be done
+    multiple times"""),
+    #language: str = typer.Option(None),
+    output_path: Path = typer.Option(Path.cwd(), help="Enter preferred output path"),
+    indent: int = typer.Option(4, help="Enter preferred indent"),
+    commit_count: int = typer.Option(5, help="Enter preferred minimum amount of commits")
 ):
     """Gather input from the command line.
 
     Args:
-        name (str, optional): [description]. Defaults to typer.Option("Project").
+        name (str, optional): [description]. Defaults to typer.Option(default_name()).
         brk (bool, optional): [description]. Defaults to typer.Option(False, "--break").
         fastfail (bool, optional): [description]. Defaults to typer.Option(False).
         file (List[str], optional): [description]. Defaults to typer.Option([]).
@@ -36,21 +45,20 @@ def cli_input(
     """
     config_dir = output_path.joinpath("config")
     config_dir.mkdir(exist_ok=True)
-    files = {}
-    yaml_out = gator_yaml.GatorYaml()
     if overwrite or not config_dir.joinpath("gatorgrader.yml").exists():
         # Creation of the output variable
-        files = get_checks(file)
-        output = {
+        body = get_checks(file)
+        #print(files)
+        # Creation of the output variable
+        header = {
             "name": name,
             "break": brk,
             "fastfail": fastfail,
             "readme": gen_readme,
             "indent": indent,
             "commits": commit_count,
-            "files": files
         }
-        file_yaml = yaml_out.dump(output, paths=output["files"])
+        file_yaml = gatoryaml.dump(header, body)
         output_file(file_yaml, output_path)
     elif config_dir.joinpath("gatorgrader.yml").exists():
         print(f"\"gatorgrader.yml\" already exists within {config_dir}")
@@ -83,14 +91,16 @@ def get_checks(file: List[Path]) -> Dict:
     for item in file:
         running = True
         print("")
-        check_list = []
+        check_list = ['--description "Confirm the file exists" ConfirmFileExists',
+                      '--description "Make sure there are no TODOs in the file"'
+                      ' MatchFileFragment --fragment "TODO" --count 0']
         while running:
             check = input(f"Enter a check for {item} (Press \"Enter\" to move on): ")
             if check.lower() == "":
                 running = False
             else:
                 check_list.append(check)
-        files[item] = check_list
+        files[item] = set(check_list)
     return files
 
 if __name__ == "__main__":

@@ -43,7 +43,7 @@ def test_cli_no_input(mocker: MockerFixture, tmpdir):
         assert test_file.exists()
     with open(test_file, encoding='utf-8') as fle:
         #print(fle.read())
-        assert "name: Project" in fle.read()
+        assert "name: GatorConfig" in fle.read()
 
 def test_cli_overwrite(tmpdir):
     """Test cli \"--overwrite\" flag"""

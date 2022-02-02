@@ -1,5 +1,6 @@
-
 # team4-GatorConfig
+
+![Untitled-1-1@0 5x](https://user-images.githubusercontent.com/42869122/152185887-278dc70d-26d6-45c2-acaf-1a65995fb9eb.png)
 
 A simple Python project utilizing a CLI approach to automate generating
 configuration files for GatorGrader. The GitHub Actions workflow executes
@@ -24,6 +25,12 @@ virtual environment and install the Python packages (like pytest and pylint)
 listed in `pyproject.toml`.
 
 To install Python dependencies:
+
+```bash
+poetry install -E gui
+```
+
+to install without the extra gui feature install with
 
 ```bash
 poetry install
