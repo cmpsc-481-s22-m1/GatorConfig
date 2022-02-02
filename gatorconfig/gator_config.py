@@ -84,14 +84,16 @@ def get_checks(file: List[Path]) -> Dict:
     for item in file:
         running = True
         print("")
-        check_list = []
+        check_list = ['--description "Confirm the file exists" ConfirmFileExists',
+                      '--description "Make sure there are no TODOs in the file"'
+                      ' MatchFileFragment --fragment "TODO" --count 0']
         while running:
             check = input(f"Enter a check for {item} (Press \"Enter\" to move on): ")
             if check.lower() == "":
                 running = False
             else:
                 check_list.append(check)
-        files[item] = check_list
+        files[item] = set(check_list)
     return files
 
 if __name__ == "__main__":
