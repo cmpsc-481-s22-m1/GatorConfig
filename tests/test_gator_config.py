@@ -47,8 +47,8 @@ def test_cli_no_input(mocker: MockerFixture, tmpdir):
 
 def test_cli_overwrite(mocker: MockerFixture, tmpdir):
     """Test cli \"--overwrite\" flag"""
-    test_dir = tmpdir.mkdir("testing") / "config"
-    test_file = test_dir / "gatorgrader.yml"
+    test_dir = tmpdir.mkdir("testing")
+    test_file = test_dir / "config" / "gatorgrader.yml"
     result = runner.invoke(cli, ["--output-path", test_dir, "--overwrite"])
     assert result.exit_code == 0
     with open(test_file, encoding="utf8") as fle:
