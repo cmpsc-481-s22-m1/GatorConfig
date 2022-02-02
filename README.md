@@ -1,5 +1,8 @@
 
+![Untitled-1-1@0 5x](https://user-images.githubusercontent.com/42869122/152185887-278dc70d-26d6-45c2-acaf-1a65995fb9eb.png)
+
 # team4-GatorConfig
+
 
 A simple Python project utilizing a CLI approach to automate generating
 configuration files for GatorGrader. The GitHub Actions workflow executes
