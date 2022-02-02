@@ -47,13 +47,11 @@ def test_cli_no_input(mocker: MockerFixture, tmpdir):
 
 def test_cli_overwrite(mocker: MockerFixture, tmpdir):
     """Test cli \"--overwrite\" flag"""
-    test_dir = tmpdir.mkdir("testing")
-    pth = test_dir / 'config' / 'gatorgrader.yml'
-    pth.open("w").write("Hello!")
-    with mocker.patch('builtins.input', return_value=""):
-        result = runner.invoke(cli, ["--output-path", test_dir, "--overwrite"])
+    test_dir = tmpdir.mkdir("testing") / "config"
+    test_file = test_dir / "gatorgrader.yml"
+    result = runner.invoke(cli, ["--output-path", test_dir, "--overwrite"])
     assert result.exit_code == 0
-    with open(pth, encoding="utf8") as fle:
+    with open(test_file, encoding="utf8") as fle:
         assert "break: False" in fle.read()
 #@pytest.mark.parametrize("input_text", ["I am text"])
 
