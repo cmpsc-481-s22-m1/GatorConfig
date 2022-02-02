@@ -1,5 +1,5 @@
 """Capture user input to automatically generate YAML file."""
-from importlib.resources import path
+#from importlib.resources import path
 from typing import Dict
 from typing import List
 from pathlib import Path
