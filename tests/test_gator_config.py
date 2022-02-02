@@ -1,5 +1,5 @@
 """Test functions within gator_config"""
-from pathlib import Path
+#from pathlib import Path
 from pytest_mock import MockerFixture
 from typer.testing import CliRunner
 from gatorconfig.gator_config import cli
@@ -45,7 +45,7 @@ def test_cli_no_input(mocker: MockerFixture, tmpdir):
         #print(fle.read())
         assert "name: Project" in fle.read()
 
-def test_cli_overwrite(mocker: MockerFixture, tmpdir):
+def test_cli_overwrite(tmpdir):
     """Test cli \"--overwrite\" flag"""
     test_dir = tmpdir.mkdir("testing")
     test_file = test_dir / "config" / "gatorgrader.yml"
