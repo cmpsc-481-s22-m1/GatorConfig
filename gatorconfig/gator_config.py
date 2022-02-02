@@ -34,7 +34,7 @@ def cli_input(
         indent (int, optional): [description]. Defaults to typer.Option(4).
         commit_count (int, optional): [description]. Defaults to typer.Option(5).
     """
-    config_dir = Path.cwd().joinpath("config")
+    config_dir = output_path.joinpath("config")
     config_dir.mkdir(exist_ok=True)
     files = {}
     yaml_out = gator_yaml.GatorYaml()
