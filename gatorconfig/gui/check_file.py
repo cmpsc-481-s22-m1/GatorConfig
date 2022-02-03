@@ -57,4 +57,4 @@ class CheckFile(QWidget):
         """Gets all the data of the checked files and returns their file paths and params."""
         if self.file is None:
             self.file = self.path_text.text()
-        return self.file, self.file_params.toPlainText().split()
+        return self.file, self.file_params.toPlainText().split("\n")
