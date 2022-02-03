@@ -52,7 +52,7 @@ def test_cli_overwrite(tmpdir):
     result = runner.invoke(cli, ["--output-path", test_dir, "--overwrite"])
     assert result.exit_code == 0
     with open(test_file, encoding="utf8") as fle:
-        assert "break: False" in fle.read()
+        assert "break: True" in fle.read()
 #@pytest.mark.parametrize("input_text", ["I am text"])
 
 def test_output_file(tmpdir):
