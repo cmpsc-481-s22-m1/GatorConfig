@@ -14,7 +14,8 @@ from gatorconfig.gui.cwidgets import CFilePicker
 
 # pylint: disable=too-many-instance-attributes
 # pylint: disable=unnecessary-lambda
-# Disabling too-many-instance-attributes because this is a main class. PyQt6 *requires* this type of code.
+# Disabling too-many-instance-attributes because
+# this is a main class. PyQt6 *requires* this type of code.
 # Could split this into multiple classes if REALLY needed but that can wait until later.
 # Also disabling unnecessary-lambda because the lambda is necessary.
 

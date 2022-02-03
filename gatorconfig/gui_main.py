@@ -53,5 +53,5 @@ class Gui:
         """Returns submitted form data"""
         return self.data
 
-gui = Gui()
-print(gui.get_data())
+# gui = Gui()
+# print(gui.get_data())
