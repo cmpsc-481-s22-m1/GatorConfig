@@ -54,12 +54,10 @@ def cli_input(
         print(f"'gatorgrader.yml' already exists within {config_dir}")
     gui: bool = typer.Option(False, help="Open GatorConfig in GUI mode"),
     indent: int = typer.Option(4, help="Enter preferred indent"),
-    commits: int = typer.Option(5, help="Enter preferred minimum amount of commits")
+    commit_count: int = typer.Option(5, help="Enter preferred minimum amount of commits")
 
-    """Gather input from the command line."""
-    config_dir = output_path.joinpath("config")
-    config_dir.mkdir(exist_ok=True)
-    if overwrite or not config_dir.joinpath("gatorgrader.yml").exists():
+    """Gather input from the GUI."""
+    if overwrite or not config_path.exists():
         if gui:
             gui_obj = Gui()
             header, body = gui_obj.get_data()
@@ -73,11 +71,11 @@ def cli_input(
                 "fastfail": fastfail,
                 "readme": gen_readme,
                 "indent": indent,
-                "commits": commits,
+                "commits": commit_count,
             }
         file_yaml = gatoryaml.dump(header, body)
         output_file(file_yaml, output_path)
-    elif config_dir.joinpath("gatorgrader.yml").exists():
+    elif config_path.exists():
         print(f"'gatorgrader.yml' already exists within {config_dir}.")
         print("\nUse '--overwrite' to rewrite this file.")
     actions_configuration.create_configuration_file('.github/workflows/grade.yml')
