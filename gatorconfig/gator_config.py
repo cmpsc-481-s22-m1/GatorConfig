@@ -61,7 +61,7 @@ def output_file(yaml_string: str, output_path: Path):
         yaml_string (str): [description]
         output_path (Path): [description]
     """
-    path = output_path / 'config'
+    path = Path(output_path / 'config')
     path.mkdir(exist_ok=True)
     (path / 'gatorgrader.yml').open('w').write(yaml_string)
     print(f"Wrote file to: {path}" + "/gatorgrader.yml")
