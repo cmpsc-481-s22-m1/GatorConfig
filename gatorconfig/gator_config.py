@@ -56,7 +56,7 @@ def cli_input(
     gui: bool = typer.Option(False, help="Open GatorConfig in GUI mode"),
     indent: int = typer.Option(4, help="Enter preferred indent"),
     commits: int = typer.Option(5, help="Enter preferred minimum amount of commits")
-):
+
     """Gather input from the command line.
 
     Args:
