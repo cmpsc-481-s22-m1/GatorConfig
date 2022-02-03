@@ -30,6 +30,8 @@ def cli_input(
     indent: int = typer.Option(4, help="Enter the amount of tabs preferred"),
     commit_count: int = typer.Option(5, help="Enter preferred minimum amount of commits")
 ):
+    """Variables for CLI input and default names"""
+
     config_dir = output_path / "config"
     config_dir.mkdir(exist_ok=True)
     if overwrite or not config_dir / "gatorgrader.yml".exists():
