@@ -62,12 +62,12 @@ Once you run this command, the program will output:
 
 | Tag          | Description|
 |--------------|-----------------------------------------------------------------------------------------|
-| --name       | Sets name for the project.  Defaults to name of current directory.|
-| --break      | Enables the `break` option in configuration file. Defaults to True.|
-| --fastfail   | Enables the `fast fail` option in configuration file.  Defaults to False.|
-| --gen_readme | Creates empty markdown file with the project name.  Default does not create README|
-| --file       | Specify path to file, can be used multiple times.  No Default|
-| --gui        | Opens GUI for creating configuration file.  **MUST HAVE ALL PACKAGES INSTALLED**|
+| --name| Sets name for the project.  Defaults to name of current directory.|
+| --break| Enables the `break` option in configuration file. Defaults to True.|
+| --fastfail| Enables the `fastfail` option in configuration file.  Defaults to False.|
+| --gen_readme | Creates empty markdown file with the project name.|
+| --file       | Specify path to file, can be used multiple times. No Default|
+| --gui        | Opens GUI. **MUST HAVE ALL PACKAGES INSTALLED**|
 | --indent     | Specify indent size.  Default is 4.|
 | --commits    | Specify minimum commits a project must have. Default is 5|
 
