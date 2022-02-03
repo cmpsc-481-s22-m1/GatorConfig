@@ -167,16 +167,19 @@ class Form(QTabWidget):
             key, val = widget.get_data()
             files[key] = val
 
-        full_data = {"name": self.assignment_name.text(),
-                     "break": self.break_fail.isChecked(),
-                     "fastfail": self.fast_fail.isChecked(),
-                     "indent": int(self.indent_size.text()),
-                     "idcommand": "",
-                     "version": self.get_grader_version(),
-                     "executables": "",
-                     "startup": self.startup_script_text.text(),
-                     "reflection": "",
-                     "files": files
+        full_data = {
+                        "header": {
+                            "name": self.assignment_name.text(),
+                            "break": self.break_fail.isChecked(),
+                            "fastfail": self.fast_fail.isChecked(),
+                            "indent": int(self.indent_size.text()),
+                            "idcommand": "",
+                            "version": self.get_grader_version(),
+                            "executables": "",
+                            "startup": self.startup_script_text.text(),
+                            "reflection": ""
+                        },
+                        "body": files
                      }
 
         print("Form Submitted!")
