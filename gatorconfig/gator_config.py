@@ -20,14 +20,14 @@ def default_name():
 @cli.command()
 def cli_input(
     name: str = typer.Option(default_name(), help="The name of the project"),
-    brk: bool = typer.Option(False, "--break", help="Enables break"),
+    brk: bool = typer.Option(True, "--break", help="Enables break"),
     overwrite: bool = typer.Option(False, help="Allows GatorConfig to overwrite existing files"),
     fastfail: bool = typer.Option(False, help="Enables fastfail"),
     gen_readme: bool = typer.Option(False, help="Generates a README file"),
     file: List[str] = typer.Option([], help="""Enter singular file path, can be done
     multiple times"""),
     output_path: Path = typer.Option(Path.cwd(), help="Enter preferred output path"),
-    indent: int = typer.Option(4, help="Enter preferred indent"),
+    indent: int = typer.Option(4, help="Enter the amount of tabs preferred"),
     commit_count: int = typer.Option(5, help="Enter preferred minimum amount of commits")
 ):
     config_dir = output_path / "config"
