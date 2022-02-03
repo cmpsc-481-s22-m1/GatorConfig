@@ -1,5 +1,5 @@
 """Custom PyQt Widgets"""
-# pylint: disable=E0611
+# pylint: disable=no-name-in-module
 # RC file is not working.
 from PyQt6.QtWidgets import QWidget, QLineEdit, QPushButton, QFileDialog, QHBoxLayout
 

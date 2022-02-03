@@ -1,12 +1,4 @@
 """A GUI to easily create GatorYAML configuration dictionaries"""
-import sys
-# pylint: disable=E0611
-# RC file is not working.
-from PyQt6.QtWidgets import QApplication
-
-from gatorconfig.gui.homepage import Homepage
-
-
 # from Form import Form
 # from Homepage import Homepage
 
@@ -15,6 +7,19 @@ class Gui:
 
     def __init__(self):
         """Initializes PyQT application"""
+        try:
+            # pylint: disable=import-outside-toplevel
+            # Moved here so installation could be tested before import.
+            import sys
+            # pylint: disable=no-name-in-module
+            # RC file is not working.
+            from PyQt6.QtWidgets import QApplication
+
+            from gatorconfig.gui.homepage import Homepage
+        except ModuleNotFoundError:
+            print("GUI not installed! Use \"poetry install -E gui\" to install it!\nExiting...")
+            sys.exit(1)
+
         # Create App
         self.app = QApplication(sys.argv)
 

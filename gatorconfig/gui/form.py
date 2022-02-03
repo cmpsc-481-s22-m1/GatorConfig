@@ -1,5 +1,5 @@
 """Form that makes up the configuration GUI"""
-# pylint: disable=E0611
+# pylint: disable=no-name-in-module
 # RC file is not working.
 import requests.exceptions
 from PyQt6.QtWidgets import QTabWidget, \
@@ -14,9 +14,10 @@ from gatorconfig.gui.cwidgets import CFilePicker
 
 # pylint: disable=too-many-instance-attributes
 # pylint: disable=unnecessary-lambda
-# Disabling R0902 because this is a main class. PyQt6 *requires* this type of code.
+# Disabling too-many-instance-attributes because
+# this is a main class. PyQt6 *requires* this type of code.
 # Could split this into multiple classes if REALLY needed but that can wait until later.
-# Also disabling W0108 because the lambda is necessary.
+# Also disabling unnecessary-lambda because the lambda is necessary.
 
 class Form(QTabWidget):
     """Main form class, contains basic and advanced tabs."""
