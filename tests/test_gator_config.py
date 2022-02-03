@@ -1,5 +1,4 @@
 """Test functions within gator_config"""
-#from pathlib import Path
 from pytest_mock import MockerFixture
 from typer.testing import CliRunner
 from gatorconfig.gator_config import cli
@@ -10,7 +9,7 @@ runner = CliRunner()
 def test_cli_input(mocker, tmpdir):
     """Test cli input with every flag"""
     test_dir = tmpdir.mkdir("testing")
-    # pylint: disable=W0612
+    # pylint: disable=unused-variable
     with mocker.patch('builtins.input', return_value=""):
         result = runner.invoke(cli, [
             "--name",
@@ -21,7 +20,7 @@ def test_cli_input(mocker, tmpdir):
             "Object 1",
             "--indent",
             6,
-            "--commits",
+            "--commit-count",
             6,
             "--output-path",
             test_dir
@@ -42,7 +41,6 @@ def test_cli_no_input(mocker: MockerFixture, tmpdir):
     with mocker.patch('builtins.input', return_value=""):
         assert test_file.exists()
     with open(test_file, encoding='utf-8') as fle:
-        #print(fle.read())
         assert "name: GatorConfig" in fle.read()
 
 def test_cli_overwrite(tmpdir):
@@ -52,7 +50,7 @@ def test_cli_overwrite(tmpdir):
     result = runner.invoke(cli, ["--output-path", test_dir, "--overwrite"])
     assert result.exit_code == 0
     with open(test_file, encoding="utf8") as fle:
-        assert "break: False" in fle.read()
+        assert "break: True" in fle.read()
 #@pytest.mark.parametrize("input_text", ["I am text"])
 
 def test_output_file(tmpdir):

@@ -10,9 +10,7 @@ repository = "https://github.com/cmpsc-481-s22-m1/GatorConfig"
 packages = [
     { include = "gatorconfig" }
 ]
-include = [
-    "LICENSE",
-]
+include = ["LICENSE"]
 
 [tool.poetry.dependencies]
 python = ">=3.7,<4.0"
@@ -41,7 +39,7 @@ gatorconfig = "gatorconfig.gator_config:cli"
 
 [tool.taskipy.tasks]
 test = "pytest --cov-report term-missing --cov-fail-under=70  --cov-branch --cov=gatorconfig tests/"
-lint = "pylint gatorconfig/ tests/ gatorconfig/gui/ --rcfile .pylintrc"
+lint = "pylint gatorconfig/ tests/ gatorconfig/gui/"
 
 [build-system]
 requires = ["poetry-core>=1.0.0"]
