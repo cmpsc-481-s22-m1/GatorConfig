@@ -1,9 +1,9 @@
-# team4-GatorConfig
+# GatorConfig
 
 ![logo](https://user-images.githubusercontent.com/42869122/152203388-39f5f0ef-e4c7-4f80-b667-07a4ed739b4d.png)
 
-A simple Python project utilizing a CLI approach to automate generating
-configuration files for GatorGrader. The GitHub Actions workflow executes
+A simple Python project utilizing both a CLI and GUI approach to automate the generation of
+configuration files for [GatorGrader](https://github.com/GatorEducator/gatorgrader). The GitHub Actions workflow executes
 [pytest](https://pytest.org/) (with
 [coverage](https://pypi.org/project/pytest-cov/)) and
 [pylint](https://pylint.org/) using the Poetry configuration, and checks
@@ -21,7 +21,7 @@ spelling with [cspell](https://cspell.org/).
 ### Installing Python dependencies
 
 After cloning this project, you will likely want to instruct Poetry to create a
-virtual environment and install the Python packages (like pytest and pylint)
+virtual environment and install the Python packages (such as pytest and pylint)
 listed in `pyproject.toml`.
 
 To install Python dependencies:
@@ -30,7 +30,7 @@ To install Python dependencies:
 poetry install -E gui
 ```
 
-to install without the extra gui feature install with
+To install without the extra GUI feature, install with:
 
 ```bash
 poetry install
@@ -47,20 +47,20 @@ are executed under the `[tool.taskipy.tasks]` header in `pyproject.toml`.
 
 ### Running GatorConfig
 
-GatorConfig is a tool that will utilize the command line interface, which
+GatorConfig is a tool that can utilize the command line interface, which
 was built to accommodate the users. To run the GatorConfig program
 in CLI, type the command:
 
 `poetry run gatorconfig`
 
-Once you run this command, the program will output
+Once you run this command, the program will output:
 
-`Wrote file to: C:\Users\<YOUR PATH>\GatorConfig\gatorgrader.yml`
+`Wrote file to: C:\Users\<YOUR PATH>\config\gatorgrader.yml`
 
 This command will auto-generate a default configuration file for GatorGradle
-named `gatorgrader.yml` which will contain a default input for
-the variables, such as the name, break, fastfail, etc.,
+named `gatorgrader.yml` located in the `config` folder.
+This file will contain a default input for the variables, such as the name, break, fastfail, etc.,
 
 Additionally, you can run the `poetry run gatorconfig --help` for more
-information about the configuration. This command will list out the variables
+information about the configuration. This command will list the variables
 in the file as well as the defaults it outputs.
