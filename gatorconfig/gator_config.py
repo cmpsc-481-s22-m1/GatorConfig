@@ -76,7 +76,7 @@ def cli_input(
 
 def readme_gen(gen_readme: bool, output_path: Path):
     """Generate basic README in current directory."""
-    if gen_readme is True:
+    if gen_readme:
         try:
             with open(Path(output_path / "README.md"), "x", encoding="utf8") as file:
                 file.write(
