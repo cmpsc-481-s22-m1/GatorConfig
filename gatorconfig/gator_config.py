@@ -61,14 +61,14 @@ def cli_input(
         print(f"\"gatorgrader.yml\" already exists within {config_dir}")
     #print(files)
     actions_configuration.create_configuration_file('.github/workflows/grade.yml')
-    readme_gen(gen_readme)
+    readme_gen(gen_readme, output_path)
 
 
-def readme_gen(gen_readme: bool):
+def readme_gen(gen_readme: bool, output_path: Path):
     """Generate basic README in current directory."""
     if gen_readme is True:
         try:
-            with open("README.md", "x", encoding="utf8") as file:
+            with open(Path(output_path / "README.md"), "x", encoding="utf8") as file:
                 file.write(
                     "# " + default_name() + "\n" + "\n" +
                     "This is the repository containing the " + default_name() + " assignment."
