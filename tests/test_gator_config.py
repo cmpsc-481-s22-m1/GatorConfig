@@ -16,6 +16,7 @@ def test_cli_input(mocker, tmpdir):
             "Test",
             "--break",
             "--fastfail",
+            "--gen-readme",
             "--file",
             "Object 1",
             "--indent",
@@ -27,8 +28,10 @@ def test_cli_input(mocker, tmpdir):
             ])
     print("Test Output:", result.stdout)
     test_file = test_dir / "config" / "gatorgrader.yml"
+    test_readme = test_dir / "README.md"
     with mocker.patch('builtins.input', return_value=""):
         assert test_file.exists()
+        assert test_readme.exists()
     with open(test_file, encoding='utf-8') as fle:
         print(fle.read())
 

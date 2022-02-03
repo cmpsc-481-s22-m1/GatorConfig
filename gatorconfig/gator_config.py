@@ -67,7 +67,6 @@ def cli_input(
                 "name": name,
                 "break": brk,
                 "fastfail": fastfail,
-                "readme": gen_readme,
                 "indent": indent,
                 "commits": commit_count,
             }
@@ -77,6 +76,27 @@ def cli_input(
         print(f"'gatorgrader.yml' already exists within {config_dir}.")
         print("\nUse '--overwrite' to rewrite this file.")
     actions_configuration.create_configuration_file('.github/workflows/grade.yml')
+    readme_gen(gen_readme, output_path)
+
+
+def readme_gen(gen_readme: bool, output_path: Path):
+    """Generate basic README in current directory."""
+    if gen_readme:
+        try:
+            with open(Path(output_path / "README.md"), "x", encoding="utf8") as file:
+                file.write(
+                    "# " + default_name() + "\n" + "\n" +
+                    "This is the repository containing the " + default_name() + " assignment."
+                    + "\n" + "\n" + "## Using GatorGradle" + "\n" + "\n" +
+                    "This assignment utilizes " +
+                    "[GatorGrader](https://github.com/GatorEducator/gatorgrader)"
+                    " in order to perform automated grading checks." +
+                    " To grade your assignment, run the following command in your " +
+                    "Docker container or environment containing Gradle:"
+                    + "\n" + "\n" + "```" + "\n" + "gradle grade" + "\n" + "```" + "\n"
+                )
+        except FileExistsError:
+            print("Your repository already contains a README.md.")
 
 
 def output_file(yaml_string: str, output_path: Path):
@@ -90,6 +110,7 @@ def output_file(yaml_string: str, output_path: Path):
     path.mkdir(exist_ok=True)
     (path / 'gatorgrader.yml').open('w').write(yaml_string)
     print(f"Wrote file to: {path}" + "/gatorgrader.yml")
+
 
 def get_checks(file: List[Path]) -> Dict:
     """Read in checks per file.
