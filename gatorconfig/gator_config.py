@@ -66,12 +66,18 @@ def cli_input(
 
 def readme_gen(gen_readme: bool):
     """Generate basic README in current directory."""
-    if gen_readme == True:
+    if gen_readme is True:
         try:
-            with open("README2.md", "x") as file:
+            with open("README.md", "x", encoding="utf8") as file:
                 file.write(
                     "# " + default_name() + "\n" + "\n" +
                     "This is the repository containing the " + default_name() + " assignment."
+                    + "\n" + "\n" + "## Using GatorGradle" + "\n" + "\n" +
+                    "This assignment utilizes [GatorGrader](https://github.com/GatorEducator/gatorgrader)"
+                    " in order to perform automated grading checks." +
+                    " To grade your assignment, run the following command in your " +
+                    "Docker container or environment containing Gradle:"
+                    + "\n" + "\n" + "```" + "\n" + "gradle grade" + "\n" + "```" + "\n"
                 )
         except FileExistsError:
             print("Your repository already contains a README.md.")
