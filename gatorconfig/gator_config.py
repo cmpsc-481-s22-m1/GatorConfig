@@ -27,7 +27,8 @@ def cli_input(
     file: List[str] = typer.Option([], help="""Enter singular file path, can be done
     multiple times"""),
     output_path: Path = typer.Option(Path.cwd(), help="Enter preferred output path"),
-    indent: int = typer.Option(4, help="Enter the amount of tabs preferred"),
+    indent: int = typer.Option(4, help="""Enter the value of indent in the header 
+    of the gatorgrader.yml file"""),
     commit_count: int = typer.Option(5, help="Enter preferred minimum amount of commits")
 ):
     """Gather input from the command line."""
