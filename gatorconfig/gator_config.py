@@ -73,7 +73,8 @@ def readme_gen(gen_readme: bool):
                     "# " + default_name() + "\n" + "\n" +
                     "This is the repository containing the " + default_name() + " assignment."
                     + "\n" + "\n" + "## Using GatorGradle" + "\n" + "\n" +
-                    "This assignment utilizes [GatorGrader](https://github.com/GatorEducator/gatorgrader)"
+                    "This assignment utilizes " +
+                    "[GatorGrader](https://github.com/GatorEducator/gatorgrader)"
                     " in order to perform automated grading checks." +
                     " To grade your assignment, run the following command in your " +
                     "Docker container or environment containing Gradle:"
