@@ -27,7 +27,6 @@ def cli_input(
     gen_readme: bool = typer.Option(False, help="Generates a README file"),
     file: List[str] = typer.Option([], help="""Enter singular file path, can be done
     multiple times"""),
-    #language: str = typer.Option(None),
     output_path: Path = typer.Option(Path.cwd(), help="Enter preferred output path"),
     indent: int = typer.Option(4, help="Enter preferred indent"),
     commit_count: int = typer.Option(5, help="Enter preferred minimum amount of commits")
@@ -53,7 +52,6 @@ def cli_input(
             "name": name,
             "break": brk,
             "fastfail": fastfail,
-            "readme": gen_readme,
             "indent": indent,
             "commits": commit_count,
         }
@@ -63,6 +61,20 @@ def cli_input(
         print(f"\"gatorgrader.yml\" already exists within {config_dir}")
     #print(files)
     actions_configuration.create_configuration_file('.github/workflows/grade.yml')
+    readme_gen(gen_readme)
+
+
+def readme_gen(gen_readme: bool):
+    """Generate basic README in current directory."""
+    if gen_readme == True:
+        try:
+            with open("README2.md", "x") as file:
+                file.write(
+                    "# " + default_name() + "\n" + "\n" +
+                    "This is the repository containing the " + default_name() + " assignment."
+                )
+        except FileExistsError:
+            print("Your repository already contains a README.md.")
 
 
 def output_file(yaml_string: str, output_path: Path):
@@ -76,6 +88,7 @@ def output_file(yaml_string: str, output_path: Path):
     pth.mkdir(exist_ok=True)
     (pth / 'gatorgrader.yml').open('w').write(yaml_string)
     print(f"Wrote file to: {pth}" + "/gatorgrader.yml")
+
 
 def get_checks(file: List[Path]) -> Dict:
     """Read in checks per file.
