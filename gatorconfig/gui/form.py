@@ -50,6 +50,7 @@ class Form(QTabWidget):
         try:
             grader_versions = scrape.get_github_releases("GatorEducator/GatorGrader")
             self.grader_version = QComboBox()
+            self.grader_version.addItem("Latest")
             self.grader_version.addItems(grader_versions)
             self.grader_version.setMaxVisibleItems(15)
         except requests.exceptions.ConnectionError:
@@ -184,11 +185,12 @@ class Form(QTabWidget):
                      }
 
         print("Form Submitted!")
-        # print(full_data)
         return full_data
 
     def get_grader_version(self):
         """Returns GatorGrader version depending on the input type"""
         if isinstance(self.grader_version, QComboBox):
+            if self.grader_version.currentText() == "Latest":
+                return "master"
             return self.grader_version.currentText()
         return self.grader_version.text()
