@@ -6,6 +6,7 @@ from pathlib import Path
 import os
 import typer
 import gatoryaml
+from gatorconfig.gui_main import Gui
 from gatorconfig import actions_configuration
 
 cli = typer.Typer()
@@ -29,34 +30,43 @@ def cli_input(
     multiple times"""),
     #language: str = typer.Option(None),
     output_path: Path = typer.Option(Path.cwd(), help="Enter preferred output path"),
+    gui: bool = typer.Option(False, help="Open GatorConfig in GUI mode"),
     indent: int = typer.Option(4, help="Enter preferred indent"),
     commit_count: int = typer.Option(5, help="Enter preferred minimum amount of commits")
 ):
     """Gather input from the command line.
 
     Args:
-        name (str, optional): [description]. Defaults to typer.Option(default_name()).
-        brk (bool, optional): [description]. Defaults to typer.Option(False, "--break").
-        fastfail (bool, optional): [description]. Defaults to typer.Option(False).
-        file (List[str], optional): [description]. Defaults to typer.Option([]).
-        indent (int, optional): [description]. Defaults to typer.Option(4).
-        commit_count (int, optional): [description]. Defaults to typer.Option(5).
+        name (str, optional): [description]. Defaults to typer.Option(default_name(), help="The name of the project").
+        brk (bool, optional): [description]. Defaults to typer.Option(False, "--break", help="Enables break").
+        overwrite (bool, optional): [description]. Defaults to typer.Option(False, help="Allows GatorConfig to overwrite existing files").
+        fastfail (bool, optional): [description]. Defaults to typer.Option(False, help="Enables fastfail").
+        gen_readme (bool, optional): [description]. Defaults to typer.Option(False, help="Generates a README file").
+        file (List[str], optional): [description]. Defaults to typer.Option([], help="Enter singular file path, can be done multiple times").
+        output_path (Path, optional): [description]. Defaults to typer.Option(Path.cwd(), help="Enter preferred output path").
+        gui (bool, optional): [description]. Defaults to typer.Option(False, help="Open GatorConfig in GUI mode").
+        indent (int, optional): [description]. Defaults to typer.Option(4, help="Enter preferred indent").
+        commit_count (int, optional): [description]. Defaults to typer.Option(5, help="Enter preferred minimum amount of commits").
     """
     config_dir = output_path.joinpath("config")
     config_dir.mkdir(exist_ok=True)
     if overwrite or not config_dir.joinpath("gatorgrader.yml").exists():
-        # Creation of the output variable
-        body = get_checks(file)
-        #print(files)
-        # Creation of the output variable
-        header = {
-            "name": name,
-            "break": brk,
-            "fastfail": fastfail,
-            "readme": gen_readme,
-            "indent": indent,
-            "commits": commit_count,
-        }
+        if gui:
+            gui_obj = Gui()
+            header, body = gui_obj.get_data()
+        else:
+            # Creation of the output variable
+            body = get_checks(file)
+            #print(files)
+            # Creation of the output variable
+            header = {
+                "name": name,
+                "break": brk,
+                "fastfail": fastfail,
+                "readme": gen_readme,
+                "indent": indent,
+                "commits": commit_count,
+            }
         file_yaml = gatoryaml.dump(header, body)
         output_file(file_yaml, output_path)
     elif config_dir.joinpath("gatorgrader.yml").exists():
