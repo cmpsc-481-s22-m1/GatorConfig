@@ -33,7 +33,7 @@ def cli_input(
     """Gather input from the command line."""
     config_dir = output_path / "config"
     config_dir.mkdir(exist_ok=True)
-    if overwrite or not config_dir / "gatorgrader.yml".exists():
+    if overwrite or not (config_dir / "gatorgrader.yml").exists():
         # Creation of the output variable
         body = get_checks(file)
         #print(files)
@@ -48,7 +48,7 @@ def cli_input(
         }
         file_yaml = gatoryaml.dump(header, body)
         output_file(file_yaml, output_path)
-    elif config_dir / "gatorgrader.yml".exists():
+    elif (config_dir / "gatorgrader.yml").exists():
         print(f"'gatorgrader.yml' already exists within {config_dir}")
     actions_configuration.create_configuration_file('.github/workflows/grade.yml')
 
