@@ -32,21 +32,20 @@ def cli_input(
     output_path: Path = typer.Option(Path.cwd(), help="Enter preferred output path"),
     gui: bool = typer.Option(False, help="Open GatorConfig in GUI mode"),
     indent: int = typer.Option(4, help="Enter preferred indent"),
-    commit_count: int = typer.Option(5, "--commits", help="Enter preferred minimum amount of commits")
+    commits: int = typer.Option(5, help="Enter preferred minimum amount of commits")
 ):
     """Gather input from the command line.
 
     Args:
-        name (str, optional): [description]. Defaults to typer.Option(default_name(), help="The name of the project").
-        brk (bool, optional): [description]. Defaults to typer.Option(False, "--break", help="Enables break").
-        overwrite (bool, optional): [description]. Defaults to typer.Option(False, help="Allows GatorConfig to overwrite existing files").
-        fastfail (bool, optional): [description]. Defaults to typer.Option(False, help="Enables fastfail").
-        gen_readme (bool, optional): [description]. Defaults to typer.Option(False, help="Generates a README file").
-        file (List[str], optional): [description]. Defaults to typer.Option([], help="Enter singular file path, can be done multiple times").
-        output_path (Path, optional): [description]. Defaults to typer.Option(Path.cwd(), help="Enter preferred output path").
-        gui (bool, optional): [description]. Defaults to typer.Option(False, help="Open GatorConfig in GUI mode").
-        indent (int, optional): [description]. Defaults to typer.Option(4, help="Enter preferred indent").
-        commit_count (int, optional): [description]. Defaults to typer.Option(5, help="Enter preferred minimum amount of commits").
+        name (str, optional): The name of the project. Defaults to CWD.
+        brk (bool, optional): Enables break. Defaults to True.
+        overwrite (bool): Allows GatorConfig to overwrite existing files. Defaults to False
+        fastfail (bool, optional): Enable Fastfail. Defaults to False.
+        gen_readme (bool, optional): Generates a README file. Defaults to False.
+        file (List[str], optional): List of file paths. Defaults to None.
+        gui (bool, optional): Open GatorConfig in GUI mode. Defaults to False.
+        indent (int, optional): Enter preferred indent size. Defaults to 4.
+        commits (int, optional): Enter preferred minimum amount of commits. Defaults to 5.
     """
     config_dir = output_path.joinpath("config")
     config_dir.mkdir(exist_ok=True)
@@ -65,12 +64,13 @@ def cli_input(
                 "fastfail": fastfail,
                 "readme": gen_readme,
                 "indent": indent,
-                "commits": commit_count,
+                "commits": commits,
             }
         file_yaml = gatoryaml.dump(header, body)
         output_file(file_yaml, output_path)
     elif config_dir.joinpath("gatorgrader.yml").exists():
-        print(f"\"gatorgrader.yml\" already exists within {config_dir}\n\nUse \"--overwrite\" to rewrite this file.")
+        print(f"\"gatorgrader.yml\" already exists within {config_dir}.")
+        print("\nUse \"--overwrite\" to rewrite this file.")
     #print(files)
     actions_configuration.create_configuration_file('.github/workflows/grade.yml')
 

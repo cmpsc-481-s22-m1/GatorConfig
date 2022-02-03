@@ -21,7 +21,7 @@ def test_cli_input(mocker, tmpdir):
             "Object 1",
             "--indent",
             6,
-            "--commit-count",
+            "--commits",
             6,
             "--output-path",
             test_dir

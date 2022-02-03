@@ -47,4 +47,3 @@ class Gui:
     def get_data(self):
         """Returns submitted form data"""
         return self.data["header"], self.data["body"]
-
