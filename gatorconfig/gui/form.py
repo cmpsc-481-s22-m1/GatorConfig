@@ -183,7 +183,6 @@ class Form(QTabWidget):
                      }
 
         print("Form Submitted!")
-        # print(full_data)
         return full_data
 
     def get_grader_version(self):
