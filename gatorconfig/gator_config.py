@@ -31,7 +31,8 @@ def cli_input(
     output_path: Path = typer.Option(Path.cwd(), help="Enter preferred output path"),
     indent: int = typer.Option(4, help="""Enter the value of indent that will affect the header
     in the gatorgrader.yml file"""),
-    commit_count: int = typer.Option(5, help="Enter preferred minimum amount of commits")
+    commit_count: int = typer.Option(5, help="Enter preferred minimum amount of commits"),
+    gui: bool = typer.Option(False, help="Open GatorConfig in GUI mode"),
 ):
     """Gather input from the command line."""
     config_dir = output_path / "config"
@@ -53,9 +54,6 @@ def cli_input(
         output_file(file_yaml, output_path)
     elif config_path.exists():
         print(f"'gatorgrader.yml' already exists within {config_dir}")
-    gui: bool = typer.Option(False, help="Open GatorConfig in GUI mode")
-    indent: int = typer.Option(4, help="Enter preferred indent")
-    commit_count: int = typer.Option(5, help="Enter preferred minimum amount of commits")
 
     if overwrite or not config_path.exists():
         if gui:
