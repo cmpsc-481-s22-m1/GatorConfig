@@ -18,6 +18,7 @@ def default_name():
 
 
 #pylint: disable=too-many-arguments
+#pylint: disable=too-many-locals
 @cli.command()
 def cli_input(
     name: str = typer.Option(default_name(), help="The name of the project"),
@@ -52,11 +53,10 @@ def cli_input(
         output_file(file_yaml, output_path)
     elif config_path.exists():
         print(f"'gatorgrader.yml' already exists within {config_dir}")
-    gui: bool = typer.Option(False, help="Open GatorConfig in GUI mode"),
-    indent: int = typer.Option(4, help="Enter preferred indent"),
+    gui: bool = typer.Option(False, help="Open GatorConfig in GUI mode")
+    indent: int = typer.Option(4, help="Enter preferred indent")
     commit_count: int = typer.Option(5, help="Enter preferred minimum amount of commits")
 
-    """Gather input from the GUI."""
     if overwrite or not config_path.exists():
         if gui:
             gui_obj = Gui()
