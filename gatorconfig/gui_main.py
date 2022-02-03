@@ -34,7 +34,7 @@ class Gui:
         # Make it look not as bad...
         # app.setStyle()
 
-        self.data = None
+        self.data = {}
 
         # Show Window
         self.win = Homepage(owner=self)
@@ -51,7 +51,4 @@ class Gui:
 
     def get_data(self):
         """Returns submitted form data"""
-        return self.data
-
-# gui = Gui()
-# print(gui.get_data())
+        return self.data["header"], self.data["body"]
