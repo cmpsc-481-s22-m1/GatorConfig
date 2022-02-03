@@ -58,6 +58,18 @@ Once you run this command, the program will output:
 
 `Wrote file to: C:\Users\<YOUR PATH>\config\gatorgrader.yml`
 
+### GatorConfig CLI Tags
+| Tag          | Description                                                                             |
+|--------------|-----------------------------------------------------------------------------------------|
+| --name       | Sets name for the project.  Defaults to name of current directory                       |
+| --break      | Enables the `break` option in configuration file. Defaults to True                      |
+| --fastfail   | Enables the `fast fail` option in configuration file.  Defaults to False                |
+| --gen_readme | Creates empty markdown file with the project name.  Default does not create README      |
+| --file       | Specify path to file, can be used multiple times to specify multiple files.  No Default |
+| --gui        | Opens GUI for creating configuration file.  **MUST HAVE ALL PACKAGES INSTALLED**        |
+| --indent     | Specify indent size.  Default is 4                                                      |
+| --commits    | Specify minimum commits a project must have. Default is 5                               |
+
 This command will auto-generate a default configuration file for GatorGradle
 named `gatorgrader.yml` located in the `config` folder.
 This file will contain a default input for the variables,
