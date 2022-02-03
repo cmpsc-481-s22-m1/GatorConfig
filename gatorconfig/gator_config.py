@@ -1,5 +1,4 @@
 """Capture user input to automatically generate YAML file."""
-#from importlib.resources import path
 from typing import Dict
 from typing import List
 from pathlib import Path
@@ -27,24 +26,13 @@ def cli_input(
     gen_readme: bool = typer.Option(False, help="Generates a README file"),
     file: List[str] = typer.Option([], help="""Enter singular file path, can be done
     multiple times"""),
-    #language: str = typer.Option(None),
     output_path: Path = typer.Option(Path.cwd(), help="Enter preferred output path"),
     indent: int = typer.Option(4, help="Enter preferred indent"),
     commit_count: int = typer.Option(5, help="Enter preferred minimum amount of commits")
 ):
-    """Gather input from the command line.
-
-    Args:
-        name (str, optional): [description]. Defaults to typer.Option(default_name()).
-        brk (bool, optional): [description]. Defaults to typer.Option(False, "--break").
-        fastfail (bool, optional): [description]. Defaults to typer.Option(False).
-        file (List[str], optional): [description]. Defaults to typer.Option([]).
-        indent (int, optional): [description]. Defaults to typer.Option(4).
-        commit_count (int, optional): [description]. Defaults to typer.Option(5).
-    """
-    config_dir = output_path.joinpath("config")
+    config_dir = output_path / "config"
     config_dir.mkdir(exist_ok=True)
-    if overwrite or not config_dir.joinpath("gatorgrader.yml").exists():
+    if overwrite or not config_dir / "gatorgrader.yml".exists():
         # Creation of the output variable
         body = get_checks(file)
         #print(files)
@@ -59,9 +47,8 @@ def cli_input(
         }
         file_yaml = gatoryaml.dump(header, body)
         output_file(file_yaml, output_path)
-    elif config_dir.joinpath("gatorgrader.yml").exists():
-        print(f"\"gatorgrader.yml\" already exists within {config_dir}")
-    #print(files)
+    elif config_dir / "gatorgrader.yml".exists():
+        print(f"'gatorgrader.yml' already exists within {config_dir}")
     actions_configuration.create_configuration_file('.github/workflows/grade.yml')
 
 
@@ -72,10 +59,10 @@ def output_file(yaml_string: str, output_path: Path):
         yaml_string (str): [description]
         output_path (Path): [description]
     """
-    pth = Path(output_path / 'config')
-    pth.mkdir(exist_ok=True)
-    (pth / 'gatorgrader.yml').open('w').write(yaml_string)
-    print(f"Wrote file to: {pth}" + "/gatorgrader.yml")
+    path = output_path / 'config'
+    path.mkdir(exist_ok=True)
+    (path / 'gatorgrader.yml').open('w').write(yaml_string)
+    print(f"Wrote file to: {path}" + "/gatorgrader.yml")
 
 def get_checks(file: List[Path]) -> Dict:
     """Read in checks per file.
@@ -92,15 +79,14 @@ def get_checks(file: List[Path]) -> Dict:
         check_list = ['--description "Confirm the file exists" ConfirmFileExists',
                       '--description "Make sure there are no TODOs in the file"'
                       ' MatchFileFragment --fragment "TODO" --count 0']
-        print(f"These checks are added by default:\n {check_list}")
-        print("")
+        print(f"These checks are added by default:\n {check_list} \n")
         while running:
-            check = input(f"Enter a check for {item} (Press \"Enter\" to move on): ")
+            check = input(f"Enter a check for {item} (Press 'Enter' to move on): ")
             if check.lower() == "":
                 running = False
             else:
                 check_list.append(check)
-        files[item] = list(set(check_list))
+        files[item] = check_list
     return files
 
 if __name__ == "__main__":
