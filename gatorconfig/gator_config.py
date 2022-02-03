@@ -39,7 +39,6 @@ def cli_input(
     if overwrite or not config_path.exists():
         # Creation of the output variable
         body = get_checks(file)
-        #print(files)
         # Creation of the output variable
         header = {
             "name": name,
@@ -57,19 +56,7 @@ def cli_input(
     indent: int = typer.Option(4, help="Enter preferred indent"),
     commits: int = typer.Option(5, help="Enter preferred minimum amount of commits")
 
-    """Gather input from the command line.
-
-    Args:
-        name (str, optional): The name of the project. Defaults to CWD.
-        brk (bool, optional): Enables break. Defaults to True.
-        overwrite (bool): Allows GatorConfig to overwrite existing files. Defaults to False
-        fastfail (bool, optional): Enable Fastfail. Defaults to False.
-        gen_readme (bool, optional): Generates a README file. Defaults to False.
-        file (List[str], optional): List of file paths. Defaults to None.
-        gui (bool, optional): Open GatorConfig in GUI mode. Defaults to False.
-        indent (int, optional): Enter preferred indent size. Defaults to 4.
-        commits (int, optional): Enter preferred minimum amount of commits. Defaults to 5.
-    """
+    """Gather input from the command line."""
     config_dir = output_path.joinpath("config")
     config_dir.mkdir(exist_ok=True)
     if overwrite or not config_dir.joinpath("gatorgrader.yml").exists():
@@ -79,7 +66,6 @@ def cli_input(
         else:
             # Creation of the output variable
             body = get_checks(file)
-            #print(files)
             # Creation of the output variable
             header = {
                 "name": name,
@@ -92,9 +78,8 @@ def cli_input(
         file_yaml = gatoryaml.dump(header, body)
         output_file(file_yaml, output_path)
     elif config_dir.joinpath("gatorgrader.yml").exists():
-        print(f"\"gatorgrader.yml\" already exists within {config_dir}.")
-        print("\nUse \"--overwrite\" to rewrite this file.")
-    #print(files)
+        print(f"'gatorgrader.yml' already exists within {config_dir}.")
+        print("\nUse '--overwrite' to rewrite this file.")
     actions_configuration.create_configuration_file('.github/workflows/grade.yml')
 
 
