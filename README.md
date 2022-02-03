@@ -2,9 +2,10 @@
 
 ![logo](https://user-images.githubusercontent.com/42869122/152203388-39f5f0ef-e4c7-4f80-b667-07a4ed739b4d.png)
 
-A simple Python project utilizing both a CLI and GUI approach to automate the generation of
-configuration files for [GatorGrader](https://github.com/GatorEducator/gatorgrader). The GitHub Actions workflow executes
-[pytest](https://pytest.org/) (with
+A simple Python project utilizing both a CLI and GUI approach
+to automate the generation of configuration files for
+[GatorGrader](https://github.com/GatorEducator/gatorgrader). The GitHub Actions
+workflow executes [pytest](https://pytest.org/) (with
 [coverage](https://pypi.org/project/pytest-cov/)) and
 [pylint](https://pylint.org/) using the Poetry configuration, and checks
 markdown with [markdownlint](https://github.com/DavidAnson/markdownlint) and
@@ -59,7 +60,8 @@ Once you run this command, the program will output:
 
 This command will auto-generate a default configuration file for GatorGradle
 named `gatorgrader.yml` located in the `config` folder.
-This file will contain a default input for the variables, such as the name, break, fastfail, etc.,
+This file will contain a default input for the variables,
+such as the name, break, fastfail, etc.,
 
 Additionally, you can run the `poetry run gatorconfig --help` for more
 information about the configuration. This command will list the variables
