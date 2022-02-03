@@ -12,8 +12,8 @@ from gatorconfig import scrape_releases as scrape
 from gatorconfig.gui.cwidgets import CFilePicker
 
 
-# pylint: disable=R0902
-# pylint: disable=W0108
+# pylint: disable=too-many-instance-attributes
+# pylint: disable=unnecessary-lambda
 # Disabling R0902 because this is a main class. PyQt6 *requires* this type of code.
 # Could split this into multiple classes if REALLY needed but that can wait until later.
 # Also disabling W0108 because the lambda is necessary.
