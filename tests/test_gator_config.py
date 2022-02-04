@@ -14,7 +14,6 @@ def test_cli_input(mocker, tmpdir):
         result = runner.invoke(cli, [
             "--name",
             "Test",
-            "--break",
             "--fastfail",
             "--gen-readme",
             "--file",

@@ -22,16 +22,17 @@ def default_name():
 @cli.command()
 def cli_input(
     name: str = typer.Option(default_name(), help="The name of the project"),
-    brk: bool = typer.Option(True, "--break", help="""Configure GatorGradle to fail the grading
-    run when a GatorGrader check fails"""),
+    no_break: bool = typer.Option(False, "--no-break", help="""Configure GatorGradle to not fail the
+    grading run when a GatorGrader check fails"""),
     overwrite: bool = typer.Option(False, help="Allows GatorConfig to overwrite existing files"),
-    fastfail: bool = typer.Option(False, help="Enables fastfail"),
+    fastfail: bool = typer.Option(False, help="""Configure GatorGradle to fail the grading run
+     right when a single GatorGrader check fails"""),
     gen_readme: bool = typer.Option(False, help="Generates a README file"),
     file: List[str] = typer.Option([], help="""Enter singular file path, can be done
     multiple times"""),
     output_path: Path = typer.Option(Path.cwd(), help="Enter preferred output path"),
-    indent: int = typer.Option(4, help="""Enter the value of indent that will affect the header
-    in the gatorgrader.yml file"""),
+    indent: int = typer.Option(4, help="""Enter the number of spaces for an indentation
+    level in the GatorGrader configuration file"""),
     commit_count: int = typer.Option(5, help="Enter preferred minimum amount of commits"),
     gui: bool = typer.Option(False, help="Open GatorConfig in GUI mode"),
 ):
@@ -45,7 +46,7 @@ def cli_input(
         # Creation of the output variable
         header = {
             "name": name,
-            "break": brk,
+            "break": not no_break,
             "fastfail": fastfail,
             "readme": gen_readme,
             "indent": indent,
@@ -66,7 +67,7 @@ def cli_input(
             # Creation of the output variable
             header = {
                 "name": name,
-                "break": brk,
+                "break": not no_break,
                 "fastfail": fastfail,
                 "indent": indent,
                 "commits": commit_count,
