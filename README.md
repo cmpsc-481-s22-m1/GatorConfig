@@ -87,7 +87,7 @@ are executed under the `[tool.taskipy.tasks]` header in `pyproject.toml`.
 - **Test** your code with `poetry run task test`
 - **Lint** your code with `poetry run task lint`
 
-### Authors 
+### Authors
 
 - Wesley Long, @WesleyL30
 - Danny Ullrich, @ullrichd21
