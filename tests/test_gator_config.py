@@ -19,10 +19,9 @@ def test_cli_input(mocker, tmpdir):
             "Object 1",
             "--indent",
             6,
-            "--commit-count",
-            6,
             "--output-path",
-            test_dir
+            test_dir,
+            "--gen-readme"
             ])
     print("Test Output:", result.stdout)
     test_file = test_dir / "config" / "gatorgrader.yml"
