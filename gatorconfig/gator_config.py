@@ -53,7 +53,7 @@ def cli_input(
                 "indent": indent,
             }
         file_yaml = gatoryaml.dump(header, body)
-        output_file(file_yaml, output_path)
+        output_file(file_yaml, config_path)
     elif config_path.exists():
         print(f"'gatorgrader.yml' already exists within {config_dir}.")
         print("\nUse '--overwrite' to rewrite this file.")
@@ -82,17 +82,16 @@ def readme_gen(output_path: Path):
         print("Your repository already contains a README.md.")
 
 
-def output_file(yaml_string: str, output_path: Path):
+def output_file(yaml_string: str, config_path: Path):
     """Create and write to file if it doesn't exist, writes to file otherwise.
 
     Args:
         yaml_string (str): [description]
         output_path (Path): [description]
     """
-    path = Path(output_path / 'config')
-    path.mkdir(exist_ok=True)
-    (path / 'gatorgrader.yml').open('w').write(yaml_string)
-    print(f"Wrote file to: {path}" + "/gatorgrader.yml")
+    config_path.parent.mkdir(exist_ok=True)
+    config_path.open('w').write(yaml_string)
+    print(f"Wrote file to: {config_path}")
 
 
 def get_checks(file: List[Path]) -> Dict:
