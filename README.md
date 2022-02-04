@@ -2,7 +2,7 @@
 
 ![logo](https://user-images.githubusercontent.com/42869122/152203388-39f5f0ef-e4c7-4f80-b667-07a4ed739b4d.png)
 
-A simple Python project utilizing both a CLI and GUI approach
+A simple Python tool utilizing both a CLI and GUI approach
 to automate the generation of configuration files for
 [GatorGrader](https://github.com/GatorEducator/gatorgrader).
 
@@ -39,18 +39,6 @@ in CLI, type the command:
 Once you run this command, the program will output:
 
 `Wrote file to: C:\Users\<YOUR PATH>\config\gatorgrader.yml`
-
-### GatorConfig CLI Options
-
-| Tag          | Description|
-|--------------|-----------------------------------------------------------------------------------------|
-| --name| Sets name for the project.  Defaults to name of current directory.|
-| --break| Enables the `break` option in configuration file. Defaults to True.|
-| --fastfail| Enables the `fastfail` option in configuration file.  Defaults to False.|
-| --gen_readme | Creates markdown file with project name and instructions on running GatorGradle.|
-| --file       | Specify path to file, can be used multiple times. No Default|
-| --gui        | Opens GUI. **MUST HAVE ALL PACKAGES INSTALLED**|
-| --indent     | Specify indent size.  Default is 4.|
 
 This command will auto-generate a default configuration file for GatorGradle
 named `gatorgrader.yml` located in the `config` folder.
