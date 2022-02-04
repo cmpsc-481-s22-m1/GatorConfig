@@ -201,11 +201,11 @@ class Form(QTabWidget):
         txt = self.idcommand.text()
         if txt != "":
             data["header"]["idcommand"] = txt
-            return data
+        return data
 
     def insert_executables(self, data):
         """Returns full_data header with added executables if the user specified any"""
         txt = self.executables.text()
         if txt != "":
             data["header"]["executables"] = txt
-            return data
+        return data
