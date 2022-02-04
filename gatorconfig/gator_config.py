@@ -26,7 +26,7 @@ def cli_input(
     grading run when a GatorGrader check fails"""),
     overwrite: bool = typer.Option(False, help="Allows GatorConfig to overwrite existing files"),
     fastfail: bool = typer.Option(False, help="""Configure GatorGradle to fail the grading run
-     right when a single GatorGrader check fails"""),
+    right when a single GatorGrader check fails"""),
     gen_readme: bool = typer.Option(False, help="Generates a README file"),
     file: List[str] = typer.Option([], help="""Enter singular file path, can be done
     multiple times"""),
