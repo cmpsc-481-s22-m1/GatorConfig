@@ -182,8 +182,8 @@ class Form(QTabWidget):
                         "body": files
                      }
 
-        self.insert_idcommand(data)
-        self.insert_executables(data)
+        full_data = self.insert_idcommand(full_data)
+        full_data = self.insert_executables(full_data)
 
         print("Form Submitted!")
         return full_data
@@ -197,13 +197,15 @@ class Form(QTabWidget):
         return self.grader_version.text()
 
     def insert_idcommand(self, data):
+        """Returns full_data header with added idcommand if the user specified one."""
         txt = self.idcommand.text()
         if txt != "":
             data["header"]["idcommand"] = txt
             return data
 
     def insert_executables(self, data):
+        """Returns full_data header with added executables if the user specified any"""
         txt = self.executables.text()
         if txt != "":
-            data["header"]["idcommand"] = txt
+            data["header"]["executables"] = txt
             return data
