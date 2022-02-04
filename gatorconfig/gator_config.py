@@ -34,6 +34,7 @@ def cli_input(
     indent: int = typer.Option(4, help="""Enter the number of spaces for an indentation
     level in the GatorGrader configuration file"""),
     commit_count: int = typer.Option(5, help="Enter preferred minimum amount of commits"),
+    actions: bool = typer.Option(True, help="Toggles whether or not github actions are created"),
     gui: bool = typer.Option(False, help="Open GatorConfig in GUI mode"),
 ):
     """Gather input from the command line."""
