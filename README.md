@@ -19,32 +19,19 @@ spelling with [cspell](https://cspell.org/).
 
 ## Usage
 
-### Installing Python dependencies
+### Install with pip or pipx
 
-After cloning this project, you will likely want to instruct Poetry to create a
-virtual environment and install the Python packages (such as pytest and pylint)
-listed in `pyproject.toml`.
-
-To install Python dependencies:
+To install the tool and its dependencies using pip, run the following command:
 
 ```bash
-poetry install -E gui
+pip install gatorconfig
 ```
 
-To install without the extra GUI feature, install with:
+Alternatively, you can install using pipx by running:
 
 ```bash
-poetry install
+pipx install gatorconfig
 ```
-
-### Running tasks
-
-This project uses the [taskipy](https://github.com/illBeRoy/taskipy) task runner
-to simplify testing and linting. You can see the actual commands run when tasks
-are executed under the `[tool.taskipy.tasks]` header in `pyproject.toml`.
-
-- **Test** your code with `poetry run task test`
-- **Lint** your code with `poetry run task lint`
 
 ### Running GatorConfig
 
@@ -65,7 +52,7 @@ Once you run this command, the program will output:
 | --name| Sets name for the project.  Defaults to name of current directory.|
 | --break| Enables the `break` option in configuration file. Defaults to True.|
 | --fastfail| Enables the `fastfail` option in configuration file.  Defaults to False.|
-| --gen_readme | Creates empty markdown file with the project name.|
+| --gen_readme | Creates markdown file with project name and instructions on running GatorGradle.|
 | --file       | Specify path to file, can be used multiple times. No Default|
 | --gui        | Opens GUI. **MUST HAVE ALL PACKAGES INSTALLED**|
 | --indent     | Specify indent size.  Default is 4.|
@@ -79,3 +66,16 @@ such as the name, break, fastfail, etc.,
 Additionally, you can run the `poetry run gatorconfig --help` for more
 information about the configuration. This command will list the variables
 in the file as well as the defaults it outputs.
+
+## Contributing
+
+
+
+### Running tasks
+
+This project uses the [taskipy](https://github.com/illBeRoy/taskipy) task runner
+to simplify testing and linting. You can see the actual commands run when tasks
+are executed under the `[tool.taskipy.tasks]` header in `pyproject.toml`.
+
+- **Test** your code with `poetry run task test`
+- **Lint** your code with `poetry run task lint`
