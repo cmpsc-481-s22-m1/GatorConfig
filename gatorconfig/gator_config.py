@@ -53,29 +53,13 @@ def cli_input(
             "indent": indent,
             "commits": commit_count,
         }
+        if gui:
+            gui_obj = Gui()
+            header, body = gui_obj.get_data()
         file_yaml = gatoryaml.dump(header, body, indent=indent)
         output_file(file_yaml, config_path)
     elif config_path.exists():
         print(f"'gatorgrader.yml' already exists within {config_dir}")
-
-    if overwrite or not config_path.exists():
-        if gui:
-            gui_obj = Gui()
-            header, body = gui_obj.get_data()
-        else:
-            # Creation of the output variable
-            body = get_checks(file)
-            # Creation of the output variable
-            header = {
-                "name": name,
-                "break": not no_break,
-                "fastfail": fastfail,
-                "indent": indent,
-            }
-        file_yaml = gatoryaml.dump(header, body)
-        output_file(file_yaml, config_path)
-    elif config_path.exists():
-        print(f"'gatorgrader.yml' already exists within {config_dir}.")
         print("\nUse '--overwrite' to rewrite this file.")
     if actions:
         actions_configuration.create_configuration_file('.github/workflows/grade.yml')
