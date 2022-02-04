@@ -91,7 +91,6 @@ class Form(QTabWidget):
         # Add button to layout
         group_lay.addWidget(add_file_button)
 
-        # group.setLayout(group_lay)
         form_layout.addRow(self.tabs)
         form_layout.addRow(group_lay)
 
@@ -117,7 +116,7 @@ class Form(QTabWidget):
         # Hbox Layout
         self.lay = QHBoxLayout()
         self.startup_script_text = QLineEdit()
-        self.startup_script_button = QPushButton("Open",
+        self.startup_script_button = QPushButton("Browse...",
                                                  clicked=lambda: self.get_path_from_file(
                                                      self.startup_script_text))
 
@@ -137,9 +136,6 @@ class Form(QTabWidget):
 
         self.description_input2 = QPlainTextEdit()
 
-        # submit_button = QPushButton("Submit", clicked = lambda: self.submit_clicked())
-        # submit_button.setSizePolicy(QSizePolicy.Fixed, QSizePolicy.Fixed)
-
         self.setTabText(1, "Advanced")
         self.advanced.setLayout(form_layout)
 
@@ -147,8 +143,6 @@ class Form(QTabWidget):
         """Creates a new CheckFile and adds it to the basic config's file tabs."""
         self.tabs.addTab(CheckFile(), "File " + str(self.tabs.count() + 1))
         self.tabs.setCurrentIndex(self.tabs.currentIndex() + 1)
-
-        # group_lay.insertWidget(group_lay.count() - 1, CheckFile(group_lay.count()))
 
     def get_path_from_file(self, target_text):
         """Opens a file dialog to select a new file.
@@ -200,7 +194,6 @@ class Form(QTabWidget):
         txt = self.idcommand.text()
         if txt != "":
             data["header"]["idcommand"] = txt
-            return data
         return data
 
     def insert_executables(self, data):
@@ -208,7 +201,6 @@ class Form(QTabWidget):
         txt = self.executables.text()
         if txt != "":
             data["header"]["executables"] = txt
-            return data
         return data
 
     def insert_reflection(self, data):
@@ -216,5 +208,4 @@ class Form(QTabWidget):
         txt = self.reflection.text()
         if txt != "":
             data["header"]["reflection"] = txt
-            return data
         return data
