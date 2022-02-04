@@ -22,15 +22,18 @@ def default_name():
 @cli.command()
 def cli_input(
     name: str = typer.Option(default_name(), help="The name of the project"),
-    brk: bool = typer.Option(True, "--break", help="Enables break"),
+    no_break: bool = typer.Option(False, "--no-break", help="""Configure GatorGradle to not fail the
+    grading run when a GatorGrader check fails"""),
     overwrite: bool = typer.Option(False, help="Allows GatorConfig to overwrite existing files"),
-    fastfail: bool = typer.Option(False, help="Enables fastfail"),
+    fastfail: bool = typer.Option(False, help="""Configure GatorGradle to fail the grading run
+    immediately when a single GatorGrader check fails"""),
     gen_readme: bool = typer.Option(False, help="Generates a README file"),
     file: List[str] = typer.Option([], help="""Enter singular file path, can be done
     multiple times"""),
     output_path: Path = typer.Option(Path.cwd(), help="Enter preferred output path"),
-    indent: int = typer.Option(4, help="""Enter the value of indent that will affect the header
-    in the gatorgrader.yml file"""),
+    indent: int = typer.Option(4, help="""Enter the number of spaces for an indentation
+    level in the GatorGrader configuration file"""),
+    commit_count: int = typer.Option(5, help="Enter preferred minimum amount of commits"),
     actions: bool = typer.Option(True, help="Toggles whether or not github actions are created"),
     gui: bool = typer.Option(False, help="Open GatorConfig in GUI mode"),
 ):
@@ -38,6 +41,23 @@ def cli_input(
     config_dir = output_path / "config"
     config_path = config_dir / "gatorgrader.yml"
     config_dir.mkdir(exist_ok=True)
+    if overwrite or not config_path.exists():
+        # Creation of the output variable
+        body = get_checks(file)
+        # Creation of the output variable
+        header = {
+            "name": name,
+            "break": not no_break,
+            "fastfail": fastfail,
+            "readme": gen_readme,
+            "indent": indent,
+            "commits": commit_count,
+        }
+        file_yaml = gatoryaml.dump(header, body)
+        output_file(file_yaml, config_path)
+    elif config_path.exists():
+        print(f"'gatorgrader.yml' already exists within {config_dir}")
+
     if overwrite or not config_path.exists():
         if gui:
             gui_obj = Gui()
@@ -48,7 +68,7 @@ def cli_input(
             # Creation of the output variable
             header = {
                 "name": name,
-                "break": brk,
+                "break": not no_break,
                 "fastfail": fastfail,
                 "indent": indent,
             }
@@ -65,7 +85,7 @@ def cli_input(
 
 def readme_gen(output_path: Path):
     """Generate basic README in current directory."""
-    try:
+    if output_path.exists():
         with open(Path(output_path / "README.md"), "x", encoding="utf8") as file:
             file.write(
                 "# " + default_name() + "\n" + "\n" +
@@ -78,8 +98,6 @@ def readme_gen(output_path: Path):
                 "Docker container or environment containing Gradle:"
                 + "\n" + "\n" + "```" + "\n" + "gradle grade" + "\n" + "```" + "\n"
             )
-    except FileExistsError:
-        print("Your repository already contains a README.md.")
 
 
 def output_file(yaml_string: str, config_path: Path):
@@ -111,7 +129,7 @@ def get_checks(file: List[Path]) -> Dict:
                       ' MatchFileFragment --fragment "TODO" --count 0']
         print(f"These checks are added by default:\n {check_list} \n")
         while running:
-            check = input(f"Enter a check for {item} (Press 'Enter' to move on): ")
+            check = input(f"Enter a check for {item} (Press 'Enter' to move on to the next file): ")
             if check.lower() == "":
                 running = False
             else:
