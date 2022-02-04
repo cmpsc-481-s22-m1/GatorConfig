@@ -1,6 +1,8 @@
 """Custom PyQt Widgets"""
 # pylint: disable=no-name-in-module
 # RC file is not working.
+import os
+
 from PyQt6.QtWidgets import QWidget, QLineEdit, QPushButton, QFileDialog, QHBoxLayout
 
 
@@ -16,10 +18,9 @@ class CFilePicker(QWidget):
         self.line = QLineEdit()
         if default is not None:
             self.line.setText(default)
-        self.button = QPushButton("Open",
+        self.button = QPushButton("Browse...",
                                   clicked=lambda: self.line.setText(
-                                      QFileDialog().getExistingDirectory()))
-        # self.button.setSizePolicy(QSizePolicy.Policy.Fixed, QSizePolicy.Policy.Fixed)
+                                      QFileDialog.getOpenFileName(self, 'OpenFile')[0]))
         hbox = QHBoxLayout()
         hbox.addWidget(self.line)
         hbox.addWidget(self.button)
@@ -27,7 +28,7 @@ class CFilePicker(QWidget):
 
     def set_textbox_text(self, text):
         """Set the textbox text"""
-        self.line.setText(text)
+        self.line.setText(os.path.relpath(text))
 
     def get_file_path(self):
         """Return the file path from the text box"""

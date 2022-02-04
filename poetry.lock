@@ -97,7 +97,7 @@ python-versions = "*"
 
 [[package]]
 name = "gatoryaml"
-version = "1.0.0"
+version = "1.0.1"
 description = "Custom YAML-like generator for GatorGrader config files."
 category = "main"
 optional = false
@@ -635,8 +635,8 @@ easyprocess = [
     {file = "EasyProcess-1.1.tar.gz", hash = "sha256:885898302a57aab948973e8b5d32a4229392b9fb2d986ab1d4ffd590e5ba90ec"},
 ]
 gatoryaml = [
-    {file = "GatorYaml-1.0.0-py3-none-any.whl", hash = "sha256:0a18c08eddee4fb99cd1cfc2b14179166f384f64a73d75f7c8d5ac822fa2ef36"},
-    {file = "GatorYaml-1.0.0.tar.gz", hash = "sha256:315b191f62f5ce8c657724a806659f61e9e6270a6a312390041fadbb51ad1fe9"},
+    {file = "GatorYaml-1.0.1-py3-none-any.whl", hash = "sha256:30618dd07a03011883d71af8068d73bf7d88f424cccaab4e81c217fbbf817f03"},
+    {file = "GatorYaml-1.0.1.tar.gz", hash = "sha256:5f5ab83728f0a2a1386ea5f2b0076d79df10a22e436eed8cdcee4322cedfab81"},
 ]
 idna = [
     {file = "idna-3.3-py3-none-any.whl", hash = "sha256:84d9dd047ffa80596e0f246e2eab0b391788b0503584e8945f2368256d2735ff"},

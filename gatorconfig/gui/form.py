@@ -91,7 +91,6 @@ class Form(QTabWidget):
         # Add button to layout
         group_lay.addWidget(add_file_button)
 
-        # group.setLayout(group_lay)
         form_layout.addRow(self.tabs)
         form_layout.addRow(group_lay)
 
@@ -117,7 +116,7 @@ class Form(QTabWidget):
         # Hbox Layout
         self.lay = QHBoxLayout()
         self.startup_script_text = QLineEdit()
-        self.startup_script_button = QPushButton("Open",
+        self.startup_script_button = QPushButton("Browse...",
                                                  clicked=lambda: self.get_path_from_file(
                                                      self.startup_script_text))
 
@@ -137,9 +136,6 @@ class Form(QTabWidget):
 
         self.description_input2 = QPlainTextEdit()
 
-        # submit_button = QPushButton("Submit", clicked = lambda: self.submit_clicked())
-        # submit_button.setSizePolicy(QSizePolicy.Fixed, QSizePolicy.Fixed)
-
         self.setTabText(1, "Advanced")
         self.advanced.setLayout(form_layout)
 
@@ -147,8 +143,6 @@ class Form(QTabWidget):
         """Creates a new CheckFile and adds it to the basic config's file tabs."""
         self.tabs.addTab(CheckFile(), "File " + str(self.tabs.count() + 1))
         self.tabs.setCurrentIndex(self.tabs.currentIndex() + 1)
-
-        # group_lay.insertWidget(group_lay.count() - 1, CheckFile(group_lay.count()))
 
     def get_path_from_file(self, target_text):
         """Opens a file dialog to select a new file.
@@ -175,14 +169,15 @@ class Form(QTabWidget):
                             "break": self.break_fail.isChecked(),
                             "fastfail": self.fast_fail.isChecked(),
                             "indent": int(self.indent_size.text()),
-                            "idcommand": "",
                             "version": self.get_grader_version(),
-                            "executables": "",
                             "startup": self.startup_script_text.text(),
                             "reflection": ""
                         },
                         "body": files
                      }
+
+        full_data = self.insert_idcommand(full_data)
+        full_data = self.insert_executables(full_data)
 
         print("Form Submitted!")
         return full_data
@@ -194,3 +189,17 @@ class Form(QTabWidget):
                 return "master"
             return self.grader_version.currentText()
         return self.grader_version.text()
+
+    def insert_idcommand(self, data):
+        """Returns full_data header with added idcommand if the user specified one."""
+        txt = self.idcommand.text()
+        if txt != "":
+            data["header"]["idcommand"] = txt
+        return data
+
+    def insert_executables(self, data):
+        """Returns full_data header with added executables if the user specified any"""
+        txt = self.executables.text()
+        if txt != "":
+            data["header"]["executables"] = txt
+        return data
