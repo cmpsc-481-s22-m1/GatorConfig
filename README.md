@@ -5,6 +5,8 @@
 A simple Python tool utilizing both a CLI and GUI approach
 to automate the generation of configuration files for
 [GatorGrader](https://github.com/GatorEducator/gatorgrader).
+This tool is designed to assist educators in grading
+GitHub-based assignments for their computer science courses.
 
 ## Requirements
 
@@ -86,9 +88,9 @@ are executed under the `[tool.taskipy.tasks]` header in `pyproject.toml`.
 - **Lint** your code with `poetry run task lint`
 
 ### Authors 
+
 - Wesley Long, @WesleyL30
 - Danny Ullrich, @ullrichd21
 - Kobe Coleman, @ColemanKobe
 - Paige Downey, @PaigeCD
 - Favour Ojo, @favourojo
-
