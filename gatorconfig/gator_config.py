@@ -70,14 +70,14 @@ def cli_input(
                 "break": not no_break,
                 "fastfail": fastfail,
                 "indent": indent,
-                "commits": commit_count,
             }
         file_yaml = gatoryaml.dump(header, body)
         output_file(file_yaml, config_path)
     elif config_path.exists():
         print(f"'gatorgrader.yml' already exists within {config_dir}.")
         print("\nUse '--overwrite' to rewrite this file.")
-    actions_configuration.create_configuration_file('.github/workflows/grade.yml')
+    if actions:
+        actions_configuration.create_configuration_file('.github/workflows/grade.yml')
     if gen_readme:
         readme_gen(output_path)
 
