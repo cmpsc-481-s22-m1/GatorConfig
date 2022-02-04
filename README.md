@@ -4,12 +4,7 @@
 
 A simple Python project utilizing both a CLI and GUI approach
 to automate the generation of configuration files for
-[GatorGrader](https://github.com/GatorEducator/gatorgrader). The GitHub Actions
-workflow executes [pytest](https://pytest.org/) (with
-[coverage](https://pypi.org/project/pytest-cov/)) and
-[pylint](https://pylint.org/) using the Poetry configuration, and checks
-markdown with [markdownlint](https://github.com/DavidAnson/markdownlint) and
-spelling with [cspell](https://cspell.org/).
+[GatorGrader](https://github.com/GatorEducator/gatorgrader).
 
 ## Requirements
 
@@ -45,7 +40,7 @@ Once you run this command, the program will output:
 
 `Wrote file to: C:\Users\<YOUR PATH>\config\gatorgrader.yml`
 
-### GatorConfig CLI Tags
+### GatorConfig CLI Options
 
 | Tag          | Description|
 |--------------|-----------------------------------------------------------------------------------------|
@@ -56,12 +51,9 @@ Once you run this command, the program will output:
 | --file       | Specify path to file, can be used multiple times. No Default|
 | --gui        | Opens GUI. **MUST HAVE ALL PACKAGES INSTALLED**|
 | --indent     | Specify indent size.  Default is 4.|
-| --commits    | Specify minimum commits a project must have. Default is 5|
 
 This command will auto-generate a default configuration file for GatorGradle
 named `gatorgrader.yml` located in the `config` folder.
-This file will contain a default input for the variables,
-such as the name, break, fastfail, etc.,
 
 Additionally, you can run the `poetry run gatorconfig --help` for more
 information about the configuration. This command will list the variables
@@ -69,7 +61,32 @@ in the file as well as the defaults it outputs.
 
 ## Contributing
 
+### Technical details
 
+The GitHub Actions
+workflow executes [pytest](https://pytest.org/) (with
+[coverage](https://pypi.org/project/pytest-cov/)) and
+[pylint](https://pylint.org/) using the Poetry configuration, and checks
+markdown with [markdownlint](https://github.com/DavidAnson/markdownlint) and
+spelling with [cspell](https://cspell.org/).
+
+### Installing Python dependencies
+
+After cloning this project, you will likely want to instruct Poetry to create a
+virtual environment and install the Python packages (such as pytest and pylint)
+listed in `pyproject.toml`.
+
+To install Python dependencies:
+
+```bash
+poetry install -E gui
+```
+
+To install without the extra GUI feature, install with:
+
+```bash
+poetry install
+```
 
 ### Running tasks
 
