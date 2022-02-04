@@ -84,7 +84,7 @@ def cli_input(
 
 def readme_gen(output_path: Path):
     """Generate basic README in current directory."""
-    try:
+    if output_path.exists():
         with open(Path(output_path / "README.md"), "x", encoding="utf8") as file:
             file.write(
                 "# " + default_name() + "\n" + "\n" +
@@ -97,8 +97,6 @@ def readme_gen(output_path: Path):
                 "Docker container or environment containing Gradle:"
                 + "\n" + "\n" + "```" + "\n" + "gradle grade" + "\n" + "```" + "\n"
             )
-    except FileExistsError:
-        print("Your repository already contains a README.md.")
 
 
 def output_file(yaml_string: str, output_path: Path):
