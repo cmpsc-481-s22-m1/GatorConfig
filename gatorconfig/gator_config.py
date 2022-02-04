@@ -53,7 +53,7 @@ def cli_input(
             "indent": indent,
             "commits": commit_count,
         }
-        file_yaml = gatoryaml.dump(header, body)
+        file_yaml = gatoryaml.dump(header, body, indent=indent)
         output_file(file_yaml, config_path)
     elif config_path.exists():
         print(f"'gatorgrader.yml' already exists within {config_dir}")
