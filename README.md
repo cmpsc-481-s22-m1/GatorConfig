@@ -34,7 +34,7 @@ GatorConfig is a tool that can utilize the command line interface, which
 was built to accommodate the users. To run the GatorConfig program
 in CLI, type the command:
 
-`poetry run gatorconfig`
+`gatorconfig`
 
 Once you run this command, the program will output:
 
@@ -43,7 +43,7 @@ Once you run this command, the program will output:
 This command will auto-generate a default configuration file for GatorGradle
 named `gatorgrader.yml` located in the `config` folder.
 
-Additionally, you can run the `poetry run gatorconfig --help` for more
+Additionally, you can run the `gatorconfig --help` for more
 information about the configuration. This command will list the variables
 in the file as well as the defaults it outputs.
 
