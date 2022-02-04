@@ -1,5 +1,5 @@
 """Checked File widgets"""
-# pylint: disable=E0611
+# pylint: disable=no-name-in-module
 # RC file is not working.
 import os
 from PyQt6.QtWidgets import QWidget, \
@@ -24,7 +24,7 @@ class CheckFile(QWidget):
         lay = QHBoxLayout()
         self.check_label = QLabel("File ")
         self.path_text = QLineEdit()
-        self.path_button = QPushButton("Open",
+        self.path_button = QPushButton("Browse...",
                                        clicked=lambda: self.get_path_from_file(self.path_text))
         self.file_params = QPlainTextEdit()
 

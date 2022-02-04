@@ -18,10 +18,9 @@ class CFilePicker(QWidget):
         self.line = QLineEdit()
         if default is not None:
             self.line.setText(default)
-        self.button = QPushButton("Open",
+        self.button = QPushButton("Browse...",
                                   clicked=lambda: self.line.setText(
                                       QFileDialog.getOpenFileName(self, 'OpenFile')[0]))
-        # self.button.setSizePolicy(QSizePolicy.Policy.Fixed, QSizePolicy.Policy.Fixed)
         hbox = QHBoxLayout()
         hbox.addWidget(self.line)
         hbox.addWidget(self.button)
