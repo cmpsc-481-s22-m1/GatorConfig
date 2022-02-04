@@ -65,7 +65,7 @@ Once you run this command, the program will output:
 | --name| Sets name for the project.  Defaults to name of current directory.|
 | --break| Enables the `break` option in configuration file. Defaults to True.|
 | --fastfail| Enables the `fastfail` option in configuration file.  Defaults to False.|
-| --gen_readme | Creates empty markdown file with the project name.|
+| --gen-readme | Creates empty markdown file with the project name.|
 | --file       | Specify path to file, can be used multiple times. No Default|
 | --gui        | Opens GUI. **MUST HAVE ALL PACKAGES INSTALLED**|
 | --indent     | Specify indent size.  Default is 4.|
