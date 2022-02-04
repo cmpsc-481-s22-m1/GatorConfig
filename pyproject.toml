@@ -11,6 +11,14 @@ packages = [
     { include = "gatorconfig" }
 ]
 include = ["LICENSE"]
+classifiers = [
+    "Topic :: Software Development :: Build Tools",
+    "Development Status :: 5 - Production/Stable",
+    "Environment :: Console",
+    "Intended Audience :: Education",
+    "License :: Free For Educational Use",
+    "Programming Language :: Python :: 3.7"
+]
 
 [tool.poetry.dependencies]
 python = ">=3.7,<4.0"
