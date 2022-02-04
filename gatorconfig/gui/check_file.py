@@ -49,6 +49,7 @@ class CheckFile(QWidget):
         """Opens a file dialog to select a new file.
         Sets self.file to the file name and sets the tab text."""
         self.file = QFileDialog.getOpenFileName(self, 'OpenFile')[0]
+        self.file = os.path.relpath(self.file, os.curdir)
         target_text.setText(self.file)
         tabs = self.parentWidget().parentWidget()
         tabs.setTabText(tabs.currentIndex(), os.path.basename(self.file))
