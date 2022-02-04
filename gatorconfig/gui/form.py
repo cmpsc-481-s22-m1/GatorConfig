@@ -175,14 +175,15 @@ class Form(QTabWidget):
                             "break": self.break_fail.isChecked(),
                             "fastfail": self.fast_fail.isChecked(),
                             "indent": int(self.indent_size.text()),
-                            "idcommand": "",
                             "version": self.get_grader_version(),
-                            "executables": "",
                             "startup": self.startup_script_text.text(),
                             "reflection": ""
                         },
                         "body": files
                      }
+
+        self.insert_idcommand(data)
+        self.insert_executables(data)
 
         print("Form Submitted!")
         return full_data
@@ -194,3 +195,15 @@ class Form(QTabWidget):
                 return "master"
             return self.grader_version.currentText()
         return self.grader_version.text()
+
+    def insert_idcommand(self, data):
+        txt = self.idcommand.text()
+        if txt != "":
+            data["header"]["idcommand"] = txt
+            return data
+
+    def insert_executables(self, data):
+        txt = self.executables.text()
+        if txt != "":
+            data["header"]["idcommand"] = txt
+            return data
