@@ -31,30 +31,13 @@ def cli_input(
     output_path: Path = typer.Option(Path.cwd(), help="Enter preferred output path"),
     indent: int = typer.Option(4, help="""Enter the value of indent that will affect the header
     in the gatorgrader.yml file"""),
-    commit_count: int = typer.Option(5, help="Enter preferred minimum amount of commits"),
+    actions: bool = typer.Option(True, help="Toggles whether or not github actions are created"),
     gui: bool = typer.Option(False, help="Open GatorConfig in GUI mode"),
 ):
     """Gather input from the command line."""
     config_dir = output_path / "config"
     config_path = config_dir / "gatorgrader.yml"
     config_dir.mkdir(exist_ok=True)
-    if overwrite or not config_path.exists():
-        # Creation of the output variable
-        body = get_checks(file)
-        # Creation of the output variable
-        header = {
-            "name": name,
-            "break": brk,
-            "fastfail": fastfail,
-            "readme": gen_readme,
-            "indent": indent,
-            "commits": commit_count,
-        }
-        file_yaml = gatoryaml.dump(header, body)
-        output_file(file_yaml, output_path)
-    elif config_path.exists():
-        print(f"'gatorgrader.yml' already exists within {config_dir}")
-
     if overwrite or not config_path.exists():
         if gui:
             gui_obj = Gui()
@@ -68,35 +51,35 @@ def cli_input(
                 "break": brk,
                 "fastfail": fastfail,
                 "indent": indent,
-                "commits": commit_count,
             }
         file_yaml = gatoryaml.dump(header, body)
         output_file(file_yaml, output_path)
     elif config_path.exists():
         print(f"'gatorgrader.yml' already exists within {config_dir}.")
         print("\nUse '--overwrite' to rewrite this file.")
-    actions_configuration.create_configuration_file('.github/workflows/grade.yml')
-    readme_gen(gen_readme, output_path)
-
-
-def readme_gen(gen_readme: bool, output_path: Path):
-    """Generate basic README in current directory."""
+    if actions:
+        actions_configuration.create_configuration_file('.github/workflows/grade.yml')
     if gen_readme:
-        try:
-            with open(Path(output_path / "README.md"), "x", encoding="utf8") as file:
-                file.write(
-                    "# " + default_name() + "\n" + "\n" +
-                    "This is the repository containing the " + default_name() + " assignment."
-                    + "\n" + "\n" + "## Using GatorGradle" + "\n" + "\n" +
-                    "This assignment utilizes " +
-                    "[GatorGrader](https://github.com/GatorEducator/gatorgrader)"
-                    " in order to perform automated grading checks." +
-                    " To grade your assignment, run the following command in your " +
-                    "Docker container or environment containing Gradle:"
-                    + "\n" + "\n" + "```" + "\n" + "gradle grade" + "\n" + "```" + "\n"
-                )
-        except FileExistsError:
-            print("Your repository already contains a README.md.")
+        readme_gen(output_path)
+
+
+def readme_gen(output_path: Path):
+    """Generate basic README in current directory."""
+    try:
+        with open(Path(output_path / "README.md"), "x", encoding="utf8") as file:
+            file.write(
+                "# " + default_name() + "\n" + "\n" +
+                "This is the repository containing the " + default_name() + " assignment."
+                + "\n" + "\n" + "## Using GatorGradle" + "\n" + "\n" +
+                "This assignment utilizes " +
+                "[GatorGrader](https://github.com/GatorEducator/gatorgrader)"
+                " in order to perform automated grading checks." +
+                " To grade your assignment, run the following command in your " +
+                "Docker container or environment containing Gradle:"
+                + "\n" + "\n" + "```" + "\n" + "gradle grade" + "\n" + "```" + "\n"
+            )
+    except FileExistsError:
+        print("Your repository already contains a README.md.")
 
 
 def output_file(yaml_string: str, output_path: Path):
