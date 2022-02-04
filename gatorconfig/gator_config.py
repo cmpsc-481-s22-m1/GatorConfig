@@ -22,14 +22,16 @@ def default_name():
 @cli.command()
 def cli_input(
     name: str = typer.Option(default_name(), help="The name of the project"),
-    brk: bool = typer.Option(True, "--break", help="Configure GatorGradle to fail the grading run when a GatorGrader check fails"),
+    brk: bool = typer.Option(True, "--break", help="""Configure GatorGradle to fail the grading
+    run when a GatorGrader check fails"""),
     overwrite: bool = typer.Option(False, help="Allows GatorConfig to overwrite existing files"),
-    fastfail: bool = typer.Option(False, help="Configure GatorGradle to fail the grading run right when a single GatorGrader check fails"),
+    fastfail: bool = typer.Option(False, help="Enables fastfail"),
     gen_readme: bool = typer.Option(False, help="Generates a README file"),
     file: List[str] = typer.Option([], help="""Enter singular file path, can be done
     multiple times"""),
     output_path: Path = typer.Option(Path.cwd(), help="Enter preferred output path"),
-    indent: int = typer.Option(4, help="""Enter the number of spaces for an indentation level in the GatorGrader configuration file"""),
+    indent: int = typer.Option(4, help="""Enter the value of indent that will affect the header
+    in the gatorgrader.yml file"""),
     commit_count: int = typer.Option(5, help="Enter preferred minimum amount of commits"),
     gui: bool = typer.Option(False, help="Open GatorConfig in GUI mode"),
 ):
@@ -128,7 +130,7 @@ def get_checks(file: List[Path]) -> Dict:
                       ' MatchFileFragment --fragment "TODO" --count 0']
         print(f"These checks are added by default:\n {check_list} \n")
         while running:
-            check = input(f"Enter a check for {item} (Press 'Enter' to move on): ")
+            check = input(f"Enter a check for {item} (Press 'Enter' to move on to the next file): ")
             if check.lower() == "":
                 running = False
             else:
