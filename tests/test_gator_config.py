@@ -5,7 +5,6 @@ from gatorconfig.gator_config import cli
 from gatorconfig.gator_config import output_file
 
 runner = CliRunner()
-# @pytest.mark.skip(reason="no way of currently testing this")
 def test_cli_input(mocker, tmpdir):
     """Test cli input with every flag"""
     test_dir = tmpdir.mkdir("testing")
@@ -54,7 +53,6 @@ def test_cli_overwrite(tmpdir):
     assert result.exit_code == 0
     with open(test_file, encoding="utf8") as fle:
         assert "break: True" in fle.read()
-#@pytest.mark.parametrize("input_text", ["I am text"])
 
 def test_output_file(tmpdir):
     """Test creation of file, and if the file has the correct contents"""
