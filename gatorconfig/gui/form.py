@@ -171,7 +171,6 @@ class Form(QTabWidget):
                             "indent": int(self.indent_size.text()),
                             "version": self.get_grader_version(),
                             "startup": self.startup_script_text.text(),
-                            "reflection": ""
                         },
                         "body": files
                      }
@@ -202,4 +201,11 @@ class Form(QTabWidget):
         txt = self.executables.text()
         if txt != "":
             data["header"]["executables"] = txt
+        return data
+
+    def insert_reflection(self, data):
+        """Returns full_data header with added reflection path if the user specified one"""
+        txt = self.reflection.text()
+        if txt != "":
+            data["header"]["reflection"] = txt
         return data
