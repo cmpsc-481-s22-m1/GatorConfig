@@ -16,7 +16,7 @@ classifiers = [
     "Development Status :: 5 - Production/Stable",
     "Environment :: Console",
     "Intended Audience :: Education",
-    "License :: Free For Educational Use",
+    "License :: Freely Distributable",
     "Programming Language :: Python :: 3.7"
 ]
 
