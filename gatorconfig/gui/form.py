@@ -175,10 +175,7 @@ class Form(QTabWidget):
                         "body": files
                      }
 
-        full_data = self.insert_idcommand(full_data)
-        full_data = self.insert_executables(full_data)
-        full_data = self.insert_reflection(full_data)
-        full_data = self.insert_startup(full_data)
+        full_data = self.insert_checked_commands(full_data)
         print("Form Submitted!")
         return full_data
 
