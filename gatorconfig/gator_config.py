@@ -42,20 +42,21 @@ def cli_input(
     config_path = config_dir / "gatorgrader.yml"
     config_dir.mkdir(exist_ok=True)
     if overwrite or not config_path.exists():
-        # Creation of the output variable
-        body = get_checks(file)
-        # Creation of the output variable
-        header = {
-            "name": name,
-            "break": not no_break,
-            "fastfail": fastfail,
-            "readme": gen_readme,
-            "indent": indent,
-            "commits": commit_count,
-        }
         if gui:
             gui_obj = Gui()
             header, body = gui_obj.get_data()
+        else:
+            # Creation of the output variable
+            body = get_checks(file)
+            # Creation of the output variable
+            header = {
+                "name": name,
+                "break": not no_break,
+                "fastfail": fastfail,
+                "readme": gen_readme,
+                "indent": indent,
+                "commits": commit_count,
+            }
         file_yaml = gatoryaml.dump(header, body, indent=indent)
         output_file(file_yaml, config_path)
     elif config_path.exists():
