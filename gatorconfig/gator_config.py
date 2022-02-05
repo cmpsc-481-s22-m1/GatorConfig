@@ -33,7 +33,6 @@ def cli_input(
     output_path: Path = typer.Option(Path.cwd(), help="Enter preferred output path"),
     indent: int = typer.Option(4, help="""Enter the number of spaces for an indentation
     level in the GatorGrader configuration file"""),
-    commit_count: int = typer.Option(5, help="Enter preferred minimum amount of commits"),
     actions: bool = typer.Option(True, help="Toggles whether or not github actions are created"),
     gui: bool = typer.Option(False, help="Open GatorConfig in GUI mode"),
 ):
@@ -55,7 +54,6 @@ def cli_input(
                 "fastfail": fastfail,
                 "readme": gen_readme,
                 "indent": indent,
-                "commits": commit_count,
             }
         file_yaml = gatoryaml.dump(header, body, indent=indent)
         output_file(file_yaml, config_path)
