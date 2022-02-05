@@ -4,7 +4,6 @@ from gatorconfig.gui.homepage import Homepage
 from gatorconfig.gui.check_file import CheckFile
 from gatorconfig.gui.form import Form
 from gatorconfig.gui.cwidgets import CFilePicker
-from gatorconfig.gui_main import Gui
 
 
 def test_file_picker(qtbot):
