@@ -44,6 +44,7 @@ class Form(QTabWidget):
         # Add widgets to the form
         self.fast_fail = QCheckBox()
         self.break_fail = QCheckBox()
+        self.break_fail.setChecked(True)
         self.generate_readme = QCheckBox()
 
         # Get github releases
@@ -170,14 +171,14 @@ class Form(QTabWidget):
                             "fastfail": self.fast_fail.isChecked(),
                             "indent": int(self.indent_size.text()),
                             "version": self.get_grader_version(),
-                            "startup": self.startup_script_text.text(),
                         },
                         "body": files
                      }
 
         full_data = self.insert_idcommand(full_data)
         full_data = self.insert_executables(full_data)
-full_data = self.insert_reflection(full_data)
+        full_data = self.insert_reflection(full_data)
+        full_data = self.insert_startup(full_data)
         print("Form Submitted!")
         return full_data
 
@@ -189,23 +190,19 @@ full_data = self.insert_reflection(full_data)
             return self.grader_version.currentText()
         return self.grader_version.text()
 
-    def insert_idcommand(self, data):
-        """Returns full_data header with added idcommand if the user specified one."""
-        txt = self.idcommand.text()
-        if txt != "":
-            data["header"]["idcommand"] = txt
-        return data
+    def insert_checked_commands(self, data):
+        """Returns full_data header with added idcommand, executables,
+        reflection, and startup script if the user specified them."""
+        if self.idcommand.text() != "":
+            data["header"]["idcommand"] = self.idcommand.text()
 
-    def insert_executables(self, data):
-        """Returns full_data header with added executables if the user specified any"""
-        txt = self.executables.text()
-        if txt != "":
-            data["header"]["executables"] = txt
-        return data
+        if self.executables.text() != "":
+            data["header"]["executables"] = self.executables.text()
 
-    def insert_reflection(self, data):
-        """Returns full_data header with added reflection path if the user specified one"""
-        txt = self.reflection.text()
-        if txt != "":
-            data["header"]["reflection"] = txt
+        if self.reflection.text() != "":
+            data["header"]["reflection"] = self.reflection.text()
+
+        if self.startup_script_text.text() != "":
+            data["header"]["startup"] = self.startup_script_text.text()
+
         return data

@@ -1,4 +1,6 @@
 """A GUI to easily create GatorYAML configuration dictionaries"""
+
+
 # from Form import Form
 # from Homepage import Homepage
 
@@ -43,7 +45,6 @@ class Gui:
         self.win.show()
 
         self.app.exec()
-
 
     def close_window(self):
         """Closes the window. Added to appease lord PyLint"""
