@@ -30,6 +30,8 @@ class CFilePicker(QWidget):
         """Set the textbox text"""
         self.line.setText(os.path.relpath(text))
 
-    def get_file_path(self):
+    def text(self):
         """Return the file path from the text box"""
-        return self.line.text()
+        if self.line.text() == "":
+            return ""
+        return os.path.relpath(self.line.text())
