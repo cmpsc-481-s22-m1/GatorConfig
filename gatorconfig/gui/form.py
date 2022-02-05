@@ -177,7 +177,7 @@ class Form(QTabWidget):
 
         full_data = self.insert_idcommand(full_data)
         full_data = self.insert_executables(full_data)
-
+full_data = self.insert_reflection(full_data)
         print("Form Submitted!")
         return full_data
 
