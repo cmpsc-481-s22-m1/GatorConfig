@@ -1,19 +1,32 @@
 [tool.poetry]
 name = "GatorConfig"
-version = "0.1.0"
+version = "1.0.0"
 description = "Autogeneration of GatorGradle configuration files."
 authors = ["Daniel Ullrich", "Kobe Coleman", "Paige Downey", "Favour Ojo", "Wesley Long"]
 license = "MIT"
+readme = "README.md"
+homepage = "https://github.com/cmpsc-481-s22-m1/GatorConfig"
+repository = "https://github.com/cmpsc-481-s22-m1/GatorConfig"
 packages = [
     { include = "gatorconfig" }
+]
+include = ["LICENSE"]
+classifiers = [
+    "Topic :: Software Development :: Build Tools",
+    "Development Status :: 5 - Production/Stable",
+    "Environment :: Console",
+    "Intended Audience :: Education",
+    "License :: Freely Distributable",
+    "Programming Language :: Python :: 3.7"
 ]
 
 [tool.poetry.dependencies]
 python = ">=3.7,<4.0"
 typer = "^0.4.0"
 "ruamel.yaml" = "^0.17.20"
-PyQt5 = "^5.15.6"
 requests = "^2.27.1"
+PyQt6 = {version = "^6.2.2", optional = true}
+gatoryaml = "^1.0.0"
 
 [tool.poetry.dev-dependencies]
 taskipy = "^1.9.0"
@@ -25,6 +38,9 @@ pytest-mock = "^3.6.1"
 pytest-qt = "^4.0.2"
 pytest-xvfb = "^2.0.0"
 requests-mock = "^1.9.3"
+
+[tool.poetry.extras]
+gui = ["PyQt6"]
 
 [tool.poetry.scripts]
 gatorconfig = "gatorconfig.gator_config:cli"

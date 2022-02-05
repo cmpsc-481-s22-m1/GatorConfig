@@ -1,7 +1,9 @@
 """Main page for the PyQT app"""
 
-from PyQt5.QtCore import Qt
-from PyQt5.QtWidgets import QMainWindow, QWidget, QVBoxLayout, QLabel, QPushButton
+# pylint: disable=no-name-in-module
+# RC file is not working.
+from PyQt6.QtCore import Qt
+from PyQt6.QtWidgets import QMainWindow, QWidget, QVBoxLayout, QLabel, QPushButton
 from gatorconfig.gui.form import Form
 
 
@@ -20,7 +22,7 @@ class Homepage(QMainWindow):
         lay = QVBoxLayout()
 
         # Create top label
-        top_label = QLabel("New Configuration File", alignment=Qt.AlignHCenter)
+        top_label = QLabel("New Configuration File", alignment=Qt.AlignmentFlag.AlignHCenter)
 
         # Create Form
         form = Form()
@@ -32,7 +34,7 @@ class Homepage(QMainWindow):
         lay.addWidget(top_label)
         lay.addWidget(form)
         lay.addWidget(submit_button)
-        lay.setAlignment(submit_button, Qt.AlignRight)
+        lay.setAlignment(submit_button, Qt.AlignmentFlag.AlignRight)
         lay.addStretch()
 
         # Set Layout
@@ -46,3 +48,6 @@ class Homepage(QMainWindow):
         data = form.submit_form()
         self.owner.data = data
         self.close()
+
+    def useless(self):
+        """A useless method to be filled in if needed but is only here to appease PyLint"""

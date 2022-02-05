@@ -1,7 +1,8 @@
 """Checked File widgets"""
-
+# pylint: disable=no-name-in-module
+# RC file is not working.
 import os
-from PyQt5.QtWidgets import QWidget, \
+from PyQt6.QtWidgets import QWidget, \
     QVBoxLayout, QLabel, \
     QHBoxLayout, QLineEdit, QPushButton, \
     QPlainTextEdit, QFrame, \
@@ -23,7 +24,7 @@ class CheckFile(QWidget):
         lay = QHBoxLayout()
         self.check_label = QLabel("File ")
         self.path_text = QLineEdit()
-        self.path_button = QPushButton("Open",
+        self.path_button = QPushButton("Browse...",
                                        clicked=lambda: self.get_path_from_file(self.path_text))
         self.file_params = QPlainTextEdit()
 
@@ -37,8 +38,8 @@ class CheckFile(QWidget):
 
         # Horizontal line separator
         self.frame = QFrame()
-        self.frame.setFrameShape(QFrame.HLine)
-        self.frame.setFrameShadow(QFrame.Sunken)
+        self.frame.setFrameShape(QFrame.Shape.HLine)
+        self.frame.setFrameShadow(QFrame.Shadow.Sunken)
 
         self.outer_lay.addWidget(self.frame)
 
@@ -48,6 +49,7 @@ class CheckFile(QWidget):
         """Opens a file dialog to select a new file.
         Sets self.file to the file name and sets the tab text."""
         self.file = QFileDialog.getOpenFileName(self, 'OpenFile')[0]
+        self.file = os.path.relpath(self.file, os.curdir)
         target_text.setText(self.file)
         tabs = self.parentWidget().parentWidget()
         tabs.setTabText(tabs.currentIndex(), os.path.basename(self.file))
@@ -56,4 +58,4 @@ class CheckFile(QWidget):
         """Gets all the data of the checked files and returns their file paths and params."""
         if self.file is None:
             self.file = self.path_text.text()
-        return self.file, self.file_params.toPlainText().split()
+        return self.file, self.file_params.toPlainText().split("\n")
