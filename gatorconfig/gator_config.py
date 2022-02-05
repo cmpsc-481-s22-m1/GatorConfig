@@ -52,7 +52,6 @@ def cli_input(
                 "name": name,
                 "break": not no_break,
                 "fastfail": fastfail,
-                "readme": gen_readme,
                 "indent": indent,
             }
         file_yaml = gatoryaml.dump(header, body, indent=indent)
