@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "GatorConfig"
-version = "0.1.0"
+version = "1.0.0"
 description = "Autogeneration of GatorGradle configuration files."
 authors = ["Daniel Ullrich", "Kobe Coleman", "Paige Downey", "Favour Ojo", "Wesley Long"]
 license = "MIT"

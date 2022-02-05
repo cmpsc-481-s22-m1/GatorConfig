@@ -44,6 +44,7 @@ class Form(QTabWidget):
         # Add widgets to the form
         self.fast_fail = QCheckBox()
         self.break_fail = QCheckBox()
+        self.break_fail.setChecked(True)
         self.generate_readme = QCheckBox()
 
         # Get github releases
@@ -170,14 +171,14 @@ class Form(QTabWidget):
                             "fastfail": self.fast_fail.isChecked(),
                             "indent": int(self.indent_size.text()),
                             "version": self.get_grader_version(),
-                            "startup": self.startup_script_text.text(),
                         },
                         "body": files
                      }
 
         full_data = self.insert_idcommand(full_data)
         full_data = self.insert_executables(full_data)
-full_data = self.insert_reflection(full_data)
+        full_data = self.insert_reflection(full_data)
+        full_data = self.insert_startup(full_data)
         print("Form Submitted!")
         return full_data
 
@@ -206,6 +207,13 @@ full_data = self.insert_reflection(full_data)
     def insert_reflection(self, data):
         """Returns full_data header with added reflection path if the user specified one"""
         txt = self.reflection.text()
+        if txt != "":
+            data["header"]["reflection"] = txt
+        return data
+
+    def insert_startup(self, data):
+        """Returns full_data header with added startup path if the user specified one"""
+        txt = self.startup_script_text.text()
         if txt != "":
             data["header"]["reflection"] = txt
         return data
