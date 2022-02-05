@@ -190,30 +190,19 @@ class Form(QTabWidget):
             return self.grader_version.currentText()
         return self.grader_version.text()
 
-    def insert_idcommand(self, data):
-        """Returns full_data header with added idcommand if the user specified one."""
-        txt = self.idcommand.text()
-        if txt != "":
-            data["header"]["idcommand"] = txt
-        return data
+    def insert_checked_commands(self, data):
+        """Returns full_data header with added idcommand, executables,
+        reflection, and startup script if the user specified them."""
+        if self.idcommand.text() != "":
+            data["header"]["idcommand"] = self.idcommand.text()
 
-    def insert_executables(self, data):
-        """Returns full_data header with added executables if the user specified any"""
-        txt = self.executables.text()
-        if txt != "":
-            data["header"]["executables"] = txt
-        return data
+        if self.executables.text() != "":
+            data["header"]["executables"] = self.executables.text()
 
-    def insert_reflection(self, data):
-        """Returns full_data header with added reflection path if the user specified one"""
-        txt = self.reflection.text()
-        if txt != "":
-            data["header"]["reflection"] = txt
-        return data
+        if self.reflection.text() != "":
+            data["header"]["reflection"] = self.reflection.text()
 
-    def insert_startup(self, data):
-        """Returns full_data header with added startup path if the user specified one"""
-        txt = self.startup_script_text.text()
-        if txt != "":
-            data["header"]["reflection"] = txt
+        if self.startup_script_text.text() != "":
+            data["header"]["startup"] = self.startup_script_text.text()
+
         return data
